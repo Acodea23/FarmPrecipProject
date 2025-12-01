@@ -1,9 +1,19 @@
+[build-system]
+requires = ["uv_build >= 0.9.5, <0.10.0"]
+build-backend = "uv_build"
+
 [project]
-name = "farmprecipproject"
+name = "farm_precip_project"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+
 dependencies = [
     "bs4>=0.0.2",
     "dotenv",

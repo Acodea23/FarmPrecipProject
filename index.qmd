@@ -1,0 +1,9 @@
+---
+title: "Farm Precipition with Income Package"
+---
+
+Here is a website about my pytho package
+
+Documentation [here](documentation.qmd).
+
+Get started [here](tutorial.qmd).

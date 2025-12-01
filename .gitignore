@@ -1,2 +1,17 @@
 .env
 /state_farm_data
+/.quarto/
+**/*.quarto_ipynb
+
+_pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+site_libs
+
+.venv
+
+/docs/site_libs

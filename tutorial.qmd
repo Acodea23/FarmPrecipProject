@@ -1,0 +1,10 @@
+---
+title: "getting started"
+jupyter: python3
+---
+
+Here is how you use my package:
+
+```{python}
+from FarmPrecipProject import some_function
+```
