@@ -2,7 +2,7 @@
 title: "Farm Precipition with Income Package"
 ---
 
-Here is a website about my pytho package
+Here is a website about our python package
 
 Documentation [here](documentation.qmd).
 

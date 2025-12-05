@@ -115,8 +115,25 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  <li><a href="#file-descriptions" id="toc-file-descriptions" class="nav-link" data-scroll-target="#file-descriptions">File Descriptions</a></li>
+  <li><a href="#combined-data-file" id="toc-combined-data-file" class="nav-link" data-scroll-target="#combined-data-file">Combined Data File</a></li>
+  </ul></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
+  <ul class="collapse">
+  <li><a href="#precipitationpdsi-data-preparation" id="toc-precipitationpdsi-data-preparation" class="nav-link" data-scroll-target="#precipitationpdsi-data-preparation">Precipitation/PDSI Data Preparation</a></li>
+  <li><a href="#precipitationpdsi-data-tranforming" id="toc-precipitationpdsi-data-tranforming" class="nav-link" data-scroll-target="#precipitationpdsi-data-tranforming">Precipitation/PDSI Data Tranforming</a></li>
+  </ul></li>
+  <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files">Files</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -124,8 +141,44 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="data" class="level1">
+<h1>Data</h1>
+<section id="sources" class="level3">
+<h3 class="anchored" data-anchor-id="sources">Sources</h3>
+<p><a href="https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt">Precipitation</a> - NOAA (National Oceanic and Atmospheric Administration). This data uses the PDSI metric. Which is an indicator of how much water is available compared to the average amount of water normally available in that region. It factors in precipitation, temperature, and soil moisture. This data tells us the monthly PDSI of each region of each state for each year. It is reasonable to average across regions, because for each state the regions are roughy equal in size.</p>
+<p><a href="https://data.ers.usda.gov/reports.aspx?ID=4047#Pae6cc0e926f6455896ee3f109f3b7f51_14_109iT0R0x43">Farm Income</a> -</p>
+</section>
+<section id="file-descriptions" class="level3">
+<h3 class="anchored" data-anchor-id="file-descriptions">File Descriptions</h3>
+<p>The Precipitation dataset is a .txt file. It’s first column contains a code for the state, division, element (in this case PDSI), and year. It then contains a column for each month, which contains the PDSI value for that month.</p>
+<p>An example row from the txt file: | | 0101051895 | 0.11 | -0.81 | -0.56 | -0.72 | -0.85 | -0.99 | -0.90 | -1.13 | -1.69 | -1.72 | -2.04 | -2.12 |</p>
+<p>State code = 01 (which corresponds to a state) Division number = 01 (first climate division in Florida) Element code = 05 (PDSI) Year = 1895 January PDSI value = 0.11 February PDSI value = -0.81 March PDSI value = -0.56 … and so forth through December.</p>
+</section>
+<section id="combined-data-file" class="level3">
+<h3 class="anchored" data-anchor-id="combined-data-file">Combined Data File</h3>
+</section>
+</section>
+<section id="functions" class="level1">
+<h1>Functions</h1>
+<section id="precipitationpdsi-data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="precipitationpdsi-data-preparation">Precipitation/PDSI Data Preparation</h3>
+<p>These functions will use a url file to produce write multiple files. The raw output from the url to a txt and csv file. It then produces a table that provides the average PDSI per state per year and writes it to a csv.</p>
+<ul>
+<li><p><strong>read_url_txt(url = url.txt)</strong> Input is a url containing a txt file. Uses requests package to have requests.get output. Uses write_txt() and txt_to_csv() (see below) to save txt and csv files from dataset.</p></li>
+<li><p><strong>write_txt(txt_name = “string.txt”, r = requests.get output)</strong> Takes input an input that is requests.get(). Saves txt file from website. Does not return a value.</p></li>
+<li><p><strong>txt_to_csv(txt_name = “string.txt”, colspecs = [contains tuples breaking up first column’s indicators], cols = [contains column names as strings], csv_name = “csv_string.csv”)</strong> Reads txt file. Creates new columns from first column, breaks up indicator into columns. Converts strings cells containing PDSI to numeric values, Writes new table to csv.</p></li>
+<li><p><strong>normalized_data(df = pandas dataframe, months = [strings of names of months used in cols list above], groups = [strings of cols to group by])</strong> Averages the mean PDSI across months for each row, saves it as a column. This is the yearly average PDSI for each district of each state. Then creates a new table averaging the PDSI yearly PDSI for every state across all its districts. Writes the table to a csv.</p></li>
+</ul>
+</section>
+<section id="precipitationpdsi-data-tranforming" class="level3">
+<h3 class="anchored" data-anchor-id="precipitationpdsi-data-tranforming">Precipitation/PDSI Data Tranforming</h3>
+</section>
+</section>
+<section id="files" class="level1">
+<h1>Files</h1>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

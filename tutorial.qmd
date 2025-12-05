@@ -6,5 +6,6 @@ jupyter: python3
 Here is how you use my package:
 
 ```{python}
-from FarmPrecipProject import some_function
+from farm_precip_project import write_txt
+print("Hello World")
 ```
