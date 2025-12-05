@@ -3,12 +3,13 @@
 ### Sources
 [Precipitation](https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt) - NOAA (National Oceanic and Atmospheric Administration). This data uses the PDSI metric. Which is an indicator of how much water is available compared to the average amount of water normally available in that region. It factors in precipitation, temperature, and soil moisture. This data tells us the monthly PDSI of each region of each state for each year. It is reasonable to average across regions, because for each state the regions are roughy equal in size.
 
-[Farm Income](https://data.ers.usda.gov/reports.aspx?ID=4047#Pae6cc0e926f6455896ee3f109f3b7f51_14_109iT0R0x43) - 
+[Farm Income](https://data.ers.usda.gov/reports.aspx?ID=4047#Pae6cc0e926f6455896ee3f109f3b7f51_14_109iT0R0x43) - USDA (United States Department of Agriculture). This website contains an excel spreadsheet that can be downloaded. This excel file contians a sheet for each state. Each state's sheet contains a column per year where each row contains dollar values for different parts of a State's agricultural profits. It includes crop, livestock, and expense data among other things.
 
 ### File Descriptions
 The Precipitation dataset is a .txt file. It's first column contains a code for the state, division, element (in this case PDSI), and year. It then contains a column for each month, which contains the PDSI value for that month.
 
 An example row from the txt file:
+
 |    |   0101051895 |   0.11 |   -0.81 |   -0.56 |   -0.72 |   -0.85 |   -0.99 |   -0.90 |   -1.13 |   -1.69 |   -1.72 |   -2.04 |   -2.12 |
 
 State code = 01 (which corresponds to a state)
