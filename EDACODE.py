@@ -13,6 +13,12 @@ print(df.head())
 print(df.describe())
 print(df.isna().sum())
 
+def basic_summary(df):
+    print(df.head())
+    print(df.describe())
+    print(df.isna().sum())
+
+basic_summary(df)
 
 # --------------------------------------------------------
 # 2. TEMPORAL PRECIPITATION TREND
@@ -27,6 +33,19 @@ plt.title("Average Precipitation Across the U.S. Over Time")
 plt.tight_layout()
 plt.savefig("precip_over_time.png", dpi=300)
 plt.close()
+
+group_by = "year"
+titles = ["1", "2", "3"]
+def precip_trend_figure(df, group_by,titles):
+    mean_precip_by_year = df.groupby(group_by)["yearly_avg"].mean()
+    plt.figure(figsize=(12,6))
+    plt.plot(mean_precip_by_year)
+    plt.xlabel(titles[0])
+    plt.ylabel("Mean Normalized Precipitation")
+    plt.title("Average Precipitation Across the U.S. Over Time")
+    plt.tight_layout()
+    plt.savefig("precip_over_time.png", dpi=300)
+    plt.close()
 
 
 # --------------------------------------------------------

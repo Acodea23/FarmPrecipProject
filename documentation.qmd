@@ -10,7 +10,7 @@ The Precipitation dataset is a .txt file. It's first column contains a code for 
 
 An example row from the txt file:
 
-|    |   0101051895 |   0.11 |   -0.81 |   -0.56 |   -0.72 |   -0.85 |   -0.99 |   -0.90 |   -1.13 |   -1.69 |   -1.72 |   -2.04 |   -2.12 |
+| 0101051895 |   0.11 |   -0.81 |   -0.56 |   -0.72 |   -0.85 |   -0.99 |   -0.90 |   -1.13 |   -1.69 |   -1.72 |   -2.04 |   -2.12 |
 
 State code = 01 (which corresponds to a state)
 Division number = 01 (first climate division in Florida)
@@ -31,10 +31,49 @@ March PDSI value = -0.56
 ### Precipitation/PDSI Data Preparation
 These functions will use a url file to produce write multiple files. The raw output from the url to a txt and csv file. It then produces a table that provides the average PDSI per state per year and writes it to a csv.
 
-- **read_url_txt(url = url.txt)**
-Input is a url containing a txt file.
+- **read_url_txt(url, txt_name, csv_name, colspecs, cols)**
+
+Overview:
+
+Input is a url containing a .txt file.
 Uses requests package to have requests.get output.
-Uses write_txt() and txt_to_csv() (see below) to save txt and csv files from dataset.
+Uses write_txt() and txt_to_csv() (see below) to save .txt and .csv files from dataset.
+
+Args:
+
+*url*:str - a url pointing to a remote .txt file. ("https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt")
+
+*txt_name*:str - the name the .txt file will be saved to. ("name.txt")
+
+*csv_name*:str - the name the .csv file will be saved to. ("name.csv")
+
+*col_specs*:list - contains tuples that indicate how to break string into parts. Must be same length as *cols*.([(0, 2), (2, 4), (4, 6), (6, 10),(10, 17)])
+
+*cols*:list - contains names of new columns that are created with col_specs. Must be same length as *col_specs*. (cols = ["col1", "col2", "col3", "col4","col5"])
+
+Impact:
+Returns None. This function will write files, but will not return anything.
+
+Example:
+```python
+import requests
+import pandas
+from farm_precip_project import read_url_txt, write_txt, txt_to_csv
+
+# Step 1: Fetch remote data
+url = "https://example.org/pdsi_data_2020.txt"
+r = requests.get(url)
+
+if r.status_code == 200:
+    # Step 2: Save raw text
+    write_txt("pdsi_2020.txt", r)
+
+    # Step 3: Parse fixed-width into CSV
+    # Suppose the first column encodes multiple indicators; we split using colspecs:
+    colspecs = [(0, 4), (4, 8), (8, 12)]  # start-inclusive, end-exclusive
+    cols     = ["state_code", "district_code", "indicator"]
+    txt_to_csv("pdsi_2020.txt", colspecs, cols, "pdsi_2020.csv")
+```
 
 - **write_txt(txt_name = "string.txt", r = requests.get output)**
 Takes input an input that is requests.get().
