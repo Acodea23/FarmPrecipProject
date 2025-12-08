@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>documentation – website</title>
+<title>Documentation For Package – website</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -164,16 +164,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
   <ul class="collapse">
   <li><a href="#precipitationpdsi-data-preparation" id="toc-precipitationpdsi-data-preparation" class="nav-link" data-scroll-target="#precipitationpdsi-data-preparation">Precipitation/PDSI Data Preparation</a></li>
-  <li><a href="#precipitationpdsi-data-tranforming" id="toc-precipitationpdsi-data-tranforming" class="nav-link" data-scroll-target="#precipitationpdsi-data-tranforming">Precipitation/PDSI Data Tranforming</a></li>
   </ul></li>
   <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files">Files</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Documentation For Package</h1>
+</div>
 
 
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <section id="data" class="level1">
@@ -203,40 +218,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>read_url_txt(url, txt_name, csv_name, colspecs, cols)</strong></li>
 </ul>
 <p>Overview:</p>
-<p>Input is a url containing a .txt file. Uses requests package to have requests.get output. Uses write_txt() and txt_to_csv() (see below) to save .txt and .csv files from dataset.</p>
+<p>Input is a url containing a .txt file. Uses requests package to have requests.get output. Saves a .csv file and uses txt_to_csv() (see below) to save .txt file of dataset. Calls <em>txt_to_csv</em> as part of process.</p>
 <p>Args:</p>
-<p><em>url</em>:str - a url pointing to a remote .txt file. (“https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt”)</p>
-<p><em>txt_name</em>:str - the name the .txt file will be saved to. (“name.txt”)</p>
-<p><em>csv_name</em>:str - the name the .csv file will be saved to. (“name.csv”)</p>
-<p><em>col_specs</em>:list - contains tuples that indicate how to break string into parts. Must be same length as <em>cols</em>.([(0, 2), (2, 4), (4, 6), (6, 10),(10, 17)])</p>
-<p><em>cols</em>:list - contains names of new columns that are created with col_specs. Must be same length as <em>col_specs</em>. (cols = [“col1”, “col2”, “col3”, “col4”,“col5”])</p>
+<p><em>url</em>:str - a url pointing to a remote .txt file. (“https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt”) <em>txt_name</em>:str - the name the .txt file will be saved to. (“name.txt”) <em>csv_name</em>:str - the name the .csv file will be saved to. (“name.csv”) <em>col_specs</em>:list - contains tuples that indicate how to break string into parts. Must be same length as <em>cols</em>.([(0, 2), (2, 4), (4, 6), (6, 10),(10, 17)]) <em>cols</em>:list - contains names of new columns that are created with col_specs. Must be same length as <em>col_specs</em>. (cols = [“col1”, “col2”, “col3”, “col4”,“col5”])</p>
+<p>Impact: Returns None. This function will write files, but will not return anything.</p>
+<ul>
+<li><strong>txt_to_csv(txt_name, csv_name, colspecs, cols)</strong></li>
+</ul>
+<p>Overview:</p>
+<p>Reads txt file. Parses government coding system from first column into various columns. Converts strings cells containing PDSI information to numeric values, Writes new broken up table to csv.</p>
+<p>Args: <em>txt_name</em>:str - the name the .txt file will be saved to. (“name.txt”) <em>csv_name</em>:str - the name the .csv file will be saved to. (“name.csv”) <em>col_specs</em>:list - contains tuples that indicate how to break string into parts. Must be same length as <em>cols</em>.([(0, 2), (2, 4), (4, 6), (6, 10),(10, 17)]) <em>cols</em>:list - contains names of new columns that are created with col_specs. Must be same length as <em>col_specs</em>. (cols = [“col1”, “col2”, “col3”, “col4”,“col5”])</p>
 <p>Impact: Returns None. This function will write files, but will not return anything.</p>
 <p>Example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> read_url_txt, write_txt, txt_to_csv</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> read_url_txt, txt_to_csv</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Fetch remote data</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://example.org/pdsi_data_2020.txt"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> r.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 2: Save raw text</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    write_txt(<span class="st">"pdsi_2020.txt"</span>, r)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 3: Parse fixed-width into CSV</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Suppose the first column encodes multiple indicators; we split using colspecs:</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    colspecs <span class="op">=</span> [(<span class="dv">0</span>, <span class="dv">4</span>), (<span class="dv">4</span>, <span class="dv">8</span>), (<span class="dv">8</span>, <span class="dv">12</span>)]  <span class="co"># start-inclusive, end-exclusive</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    cols     <span class="op">=</span> [<span class="st">"state_code"</span>, <span class="st">"district_code"</span>, <span class="st">"indicator"</span>]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    txt_to_csv(<span class="st">"pdsi_2020.txt"</span>, colspecs, cols, <span class="st">"pdsi_2020.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>txt_name <span class="op">=</span> <span class="st">"rain.txt"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>csv_name <span class="op">=</span> <span class="st">"rain_dirty.csv"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>colspecs <span class="op">=</span> [</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">0</span>, <span class="dv">2</span>), (<span class="dv">2</span>, <span class="dv">4</span>), (<span class="dv">4</span>, <span class="dv">6</span>), (<span class="dv">6</span>, <span class="dv">10</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">10</span>, <span class="dv">17</span>), (<span class="dv">17</span>, <span class="dv">24</span>), (<span class="dv">24</span>, <span class="dv">31</span>), (<span class="dv">31</span>, <span class="dv">38</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">38</span>, <span class="dv">45</span>), (<span class="dv">45</span>, <span class="dv">52</span>), (<span class="dv">52</span>, <span class="dv">59</span>), (<span class="dv">59</span>, <span class="dv">66</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">66</span>, <span class="dv">73</span>), (<span class="dv">73</span>, <span class="dv">80</span>), (<span class="dv">80</span>, <span class="dv">87</span>), (<span class="dv">87</span>, <span class="dv">94</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"state"</span>, <span class="st">"division"</span>, <span class="st">"element"</span>, <span class="st">"year"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"jan"</span>,<span class="st">"feb"</span>,<span class="st">"mar"</span>,<span class="st">"apr"</span>,<span class="st">"may"</span>,<span class="st">"jun"</span>,<span class="st">"jul"</span>,<span class="st">"aug"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sep"</span>,<span class="st">"oct"</span>,<span class="st">"nov"</span>,<span class="st">"dec"</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>read_url_txt(url, txt_name, csv_name, colspecs, cols)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(csv_name).head(<span class="dv">1</span>).to_markdown())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li><p><strong>write_txt(txt_name = “string.txt”, r = requests.get output)</strong> Takes input an input that is requests.get(). Saves txt file from website. Does not return a value.</p></li>
-<li><p><strong>txt_to_csv(txt_name = “string.txt”, colspecs = [contains tuples breaking up first column’s indicators], cols = [contains column names as strings], csv_name = “csv_string.csv”)</strong> Reads txt file. Creates new columns from first column, breaks up indicator into columns. Converts strings cells containing PDSI to numeric values, Writes new table to csv.</p></li>
-<li><p><strong>normalized_data(df = pandas dataframe, months = [strings of names of months used in cols list above], groups = [strings of cols to group by])</strong> Averages the mean PDSI across months for each row, saves it as a column. This is the yearly average PDSI for each district of each state. Then creates a new table averaging the PDSI yearly PDSI for every state across all its districts. Writes the table to a csv.</p></li>
+<li><strong>normalized_data(df, months, groups, csv_name_clean, new_col_name)</strong></li>
 </ul>
-</section>
-<section id="precipitationpdsi-data-tranforming" class="level3">
-<h3 class="anchored" data-anchor-id="precipitationpdsi-data-tranforming">Precipitation/PDSI Data Tranforming</h3>
+<p>Overview: Averages the PDSI across months for each row, and saves it as a new column. This is the yearly average PDSI for each district of each state. Creates a new table averaging the yearly PDSI for every state across all its districts. Writes the table to a csv.</p>
+<p>Args: <em>df_to_read</em>:str - contains name of csv to read. <em>new_col_name</em>:str - name of new column that is added when calculating average for each row. <em>csv_name_clean</em>:str - name of csv you want to save your calculated table to. (“averaged_vals.csv”) <em>months</em>:list - contains strings of values that will be used to calculate the averages for each row. ([“col1”,“col2”,“col3”]) <em>groups</em>:list - contains strings of values to group by when calculating averages across rows. ([“group1”, “group2”])</p>
+<p>Impact: Returns None. This function will write files, but will not return anything.</p>
+<p>Example:</p>
+<div id="a7983eda" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> normalized_data</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> [<span class="st">"jan"</span>,<span class="st">"feb"</span>,<span class="st">"mar"</span>,<span class="st">'apr'</span>,<span class="st">"may"</span>,<span class="st">"jun"</span>,<span class="st">"jul"</span>,<span class="st">"aug"</span>,<span class="st">"sep"</span>,<span class="st">"oct"</span>,<span class="st">"nov"</span>,<span class="st">"dec"</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [<span class="st">"state"</span>,<span class="st">"year"</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>new_col_name <span class="op">=</span> <span class="st">"yearly_avg"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>csv_name_clean <span class="op">=</span> <span class="st">"rain_clean.csv"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>df_to_read <span class="op">=</span> <span class="st">"rain_dirty.csv"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>normalized_data(df_to_read, new_col_name, csv_name_clean, months, groups)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(csv_name_clean).head(<span class="dv">1</span>).to_markdown())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>|    |   state |   year |   yearly_avg |
+|---:|--------:|-------:|-------------:|
+|  0 |       1 |   1895 |    -0.821354 |</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="files" class="level1">

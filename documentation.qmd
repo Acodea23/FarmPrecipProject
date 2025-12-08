@@ -1,3 +1,8 @@
+---
+title: "Documentation For Package"
+jupyter: python3
+---
+
 # Data
 
 ### Sources
@@ -11,6 +16,7 @@ The Precipitation dataset is a .txt file. It's first column contains a code for 
 An example row from the txt file:
 
 | 0101051895 |   0.11 |   -0.81 |   -0.56 |   -0.72 |   -0.85 |   -0.99 |   -0.90 |   -1.13 |   -1.69 |   -1.72 |   -2.04 |   -2.12 |
+
 
 State code = 01 (which corresponds to a state)
 Division number = 01 (first climate division in Florida)
@@ -37,18 +43,33 @@ Overview:
 
 Input is a url containing a .txt file.
 Uses requests package to have requests.get output.
-Uses write_txt() and txt_to_csv() (see below) to save .txt and .csv files from dataset.
+Saves a .csv file and uses txt_to_csv() (see below) to save .txt file of dataset.
+Calls *txt_to_csv* as part of process.
 
 Args:
 
 *url*:str - a url pointing to a remote .txt file. ("https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt")
-
 *txt_name*:str - the name the .txt file will be saved to. ("name.txt")
-
 *csv_name*:str - the name the .csv file will be saved to. ("name.csv")
-
 *col_specs*:list - contains tuples that indicate how to break string into parts. Must be same length as *cols*.([(0, 2), (2, 4), (4, 6), (6, 10),(10, 17)])
+*cols*:list - contains names of new columns that are created with col_specs. Must be same length as *col_specs*. (cols = ["col1", "col2", "col3", "col4","col5"])
 
+Impact:
+Returns None. This function will write files, but will not return anything.
+
+- **txt_to_csv(txt_name, csv_name, colspecs, cols)**
+
+Overview:
+
+Reads txt file.
+Parses government coding system from first column into various columns.
+Converts strings cells containing PDSI information to numeric values, 
+Writes new broken up table to csv.
+
+Args:
+*txt_name*:str - the name the .txt file will be saved to. ("name.txt")
+*csv_name*:str - the name the .csv file will be saved to. ("name.csv")
+*col_specs*:list - contains tuples that indicate how to break string into parts. Must be same length as *cols*.([(0, 2), (2, 4), (4, 6), (6, 10),(10, 17)])
 *cols*:list - contains names of new columns that are created with col_specs. Must be same length as *col_specs*. (cols = ["col1", "col2", "col3", "col4","col5"])
 
 Impact:
@@ -57,43 +78,69 @@ Returns None. This function will write files, but will not return anything.
 Example:
 ```python
 import requests
-import pandas
-from farm_precip_project import read_url_txt, write_txt, txt_to_csv
+import pandas as pd
+from farm_precip_project import read_url_txt, txt_to_csv
 
-# Step 1: Fetch remote data
-url = "https://example.org/pdsi_data_2020.txt"
-r = requests.get(url)
+url = "https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt"
 
-if r.status_code == 200:
-    # Step 2: Save raw text
-    write_txt("pdsi_2020.txt", r)
+txt_name = "rain.txt"
+csv_name = "rain_dirty.csv"
 
-    # Step 3: Parse fixed-width into CSV
-    # Suppose the first column encodes multiple indicators; we split using colspecs:
-    colspecs = [(0, 4), (4, 8), (8, 12)]  # start-inclusive, end-exclusive
-    cols     = ["state_code", "district_code", "indicator"]
-    txt_to_csv("pdsi_2020.txt", colspecs, cols, "pdsi_2020.csv")
+colspecs = [
+    (0, 2), (2, 4), (4, 6), (6, 10),
+    (10, 17), (17, 24), (24, 31), (31, 38),
+    (38, 45), (45, 52), (52, 59), (59, 66),
+    (66, 73), (73, 80), (80, 87), (87, 94)
+]
+
+cols = [
+    "state", "division", "element", "year",
+    "jan","feb","mar","apr","may","jun","jul","aug",
+    "sep","oct","nov","dec"
+]
+
+read_url_txt(url, txt_name, csv_name, colspecs, cols)
+
+print(pd.read_csv(csv_name).head(1).to_markdown())
 ```
 
-- **write_txt(txt_name = "string.txt", r = requests.get output)**
-Takes input an input that is requests.get().
-Saves txt file from website. 
-Does not return a value.
+- **normalized_data(df, months, groups, csv_name_clean, new_col_name)**
 
-- **txt_to_csv(txt_name = "string.txt", colspecs = [contains tuples breaking up first column's indicators], cols = [contains column names as strings], csv_name = "csv_string.csv")**
-Reads txt file.
-Creates new columns from first column, breaks up indicator into columns.
-Converts strings cells containing PDSI to numeric values, 
-Writes new table to csv.
-
-- **normalized_data(df = pandas dataframe, months = [strings of names of months used in cols list above], groups = [strings of cols to group by])**
-Averages the mean PDSI across months for each row, saves it as a column. This is the yearly average PDSI for each district of each state.
-Then creates a new table averaging the PDSI yearly PDSI for every state across all its districts.
+Overview:
+Averages the PDSI across months for each row, and saves it as a new column. This is the yearly average PDSI for each district of each state.
+Creates a new table averaging the yearly PDSI for every state across all its districts.
 Writes the table to a csv.
 
+Args:
+*df_to_read*:str - contains name of csv to read.
+*new_col_name*:str - name of new column that is added when calculating average for each row.
+*csv_name_clean*:str - name of csv you want to save your calculated table to. ("averaged_vals.csv")
+*months*:list - contains strings of values that will be used to calculate the averages for each row. (["col1","col2","col3"])
+*groups*:list - contains strings of values to group by when calculating averages across rows. (["group1", "group2"])
 
-### Precipitation/PDSI Data Tranforming
 
+Impact:
+Returns None. This function will write files, but will not return anything.
+
+Example:
+```{python}
+import pandas as pd
+from farm_precip_project import normalized_data
+
+months = ["jan","feb","mar",'apr',"may","jun","jul","aug","sep","oct","nov","dec"]
+groups = ["state","year"]
+new_col_name = "yearly_avg"
+csv_name_clean = "rain_clean.csv"
+df_to_read = "rain_dirty.csv"
+
+normalized_data(df_to_read, new_col_name, csv_name_clean, months, groups)
+print(pd.read_csv(csv_name_clean).head(1).to_markdown())
+
+```
+
+### Farm Data Preparation
+
+### EDA
 
 # Files
 

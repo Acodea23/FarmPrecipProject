@@ -188,10 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="647baecc" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from bs4 import BeautifulSoup</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import numpy as np</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># import re</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="scraping-data" class="level3">
@@ -241,53 +241,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(txt_name, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
 <span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        f.write(r.content)</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">#write_txt(txt_name, r)</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    txt_to_csv(txt_name, csv_name, colspecs, cols)</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>read_url_txt(url, txt_name, csv_name, colspecs, cols)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    txt_to_csv(txt_name, csv_name, colspecs, cols)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>read_url_txt(url, txt_name, csv_name, colspecs, cols)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="1def6705" class="cell" data-execution_count="31">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print(pd.read_fwf(txt_name).head().to_markdown())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="1def6705" class="cell" data-execution_count="57">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(csv_name).head(<span class="dv">1</span>).to_markdown())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>|    |   0101051895 |   0.11 |   -0.81 |   -0.56 |   -0.72 |   -0.85 |   -0.99 |   -0.90 |   -1.13 |   -1.69 |   -1.72 |   -2.04 |   -2.12 |
-|---:|-------------:|-------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|
-|  0 |  1.01052e+08 |  -2.47 |   -2.06 |   -1.75 |   -1.84 |   -2.16 |   -1.74 |   -1.53 |   -2.1  |   -2.23 |   -2.41 |   -1.61 |   -2.53 |
-|  1 |  1.01052e+08 |  -2.45 |    0.05 |    1.48 |    1.98 |   -0.51 |   -1.02 |   -1.39 |   -1.5  |   -2.49 |   -3.02 |   -3.23 |   -2.63 |
-|  2 |  1.01052e+08 |  -1.73 |   -2.43 |   -2.75 |   -2.09 |   -2.6  |   -2.72 |   -2.65 |   -2.47 |   -2.07 |   -1.67 |   -1.51 |   -1.97 |
-|  3 |  1.01052e+08 |   0.15 |    0.46 |    0.96 |   -0.24 |   -0.89 |   -1.51 |   -1.57 |   -2.1  |   -2.66 |   -2.85 |   -3.31 |   -2.88 |
-|  4 |  1.01052e+08 |  -3.13 |   -2.41 |   -2.61 |   -2.15 |   -2.38 |    2.31 |   -0.12 |   -0.67 |   -0.61 |    0.34 |    0.75 |   -0.57 |</code></pre>
+<pre><code>|    |   state |   division |   element |   year |   jan |   feb |   mar |   apr |   may |   jun |   jul |   aug |   sep |   oct |   nov |   dec |
+|---:|--------:|-----------:|----------:|-------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|
+|  0 |       1 |          1 |         5 |   1895 |  0.11 | -0.81 | -0.56 | -0.72 | -0.85 | -0.99 |  -0.9 | -1.13 | -1.69 | -1.72 | -2.04 | -2.12 |</code></pre>
 </div>
 </div>
 </section>
 <section id="cleaning-data" class="level3">
 <h3 class="anchored" data-anchor-id="cleaning-data">Cleaning data</h3>
 <p>Make a new csv that contains normalized precip data by state</p>
-<div id="c906add0" class="cell" data-execution_count="45">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"rain_dirty.csv"</span>).drop([<span class="st">"division"</span>, <span class="st">"element"</span>], axis <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> [<span class="st">"jan"</span>,<span class="st">"feb"</span>,<span class="st">"mar"</span>,<span class="st">'apr'</span>,<span class="st">"may"</span>,<span class="st">"jun"</span>,<span class="st">"jul"</span>,<span class="st">"aug"</span>,<span class="st">"sep"</span>,<span class="st">"oct"</span>,<span class="st">"nov"</span>,<span class="st">"dec"</span>]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [<span class="st">"state"</span>,<span class="st">"year"</span>]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>csv_name_clean <span class="op">=</span> <span class="st">"rain_clean.csv"</span></span>
+<div id="c906add0" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> [<span class="st">"jan"</span>,<span class="st">"feb"</span>,<span class="st">"mar"</span>,<span class="st">'apr'</span>,<span class="st">"may"</span>,<span class="st">"jun"</span>,<span class="st">"jul"</span>,<span class="st">"aug"</span>,<span class="st">"sep"</span>,<span class="st">"oct"</span>,<span class="st">"nov"</span>,<span class="st">"dec"</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [<span class="st">"state"</span>,<span class="st">"year"</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>new_col_name <span class="op">=</span> <span class="st">"yearly_avg"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>csv_name_clean <span class="op">=</span> <span class="st">"rain_clean.csv"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df_to_read <span class="op">=</span> <span class="st">"rain_dirty.csv"</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># takes are precip data, combines the months, and divisions to get average rain per state per year. After I normalize it</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalized_data(df, months, groups):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalized_data(df_to_read, new_col_name, csv_name_clean, months, groups):</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">#column with yearly average, combines months</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"yearly_avg"</span>] <span class="op">=</span> df[months].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(df_to_read)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># combines averages across divisions of the state. now average per state</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">#then normalizes values across states and years (x-mean)/std</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    state_precip <span class="op">=</span> df.groupby(groups)[<span class="st">"yearly_avg"</span>].mean()</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">#no need to normlaize, PDSI is already scaled by state</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">#state_precip["stand_precip"] = (state_precip["avg_precip"] - state_precip["avg_precip"].mean()) / state_precip["avg_precip"].std()</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">#writes df to csv</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    state_precip.to_csv(csv_name_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    df[new_col_name] <span class="op">=</span> df[months].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># combines averages across divisions of the state. now average per state</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#then normalizes values across states and years (x-mean)/std</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    state_precip <span class="op">=</span> df.groupby(groups)[new_col_name].mean()</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">#no need to normlaize, PDSI is already scaled by state</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">#state_precip["stand_precip"] = (state_precip["avg_precip"] - state_precip["avg_precip"].mean()) / state_precip["avg_precip"].std()</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">#writes df to csv</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    state_precip.to_csv(csv_name_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="f840f2df" class="cell" data-execution_count="48">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>normalized_data(df, months, groups)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print(pd.read_csv("rain_clean.csv").head(1).to_markdown())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="f840f2df" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>normalized_data(df_to_read, new_col_name, csv_name_clean, months, groups)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(<span class="st">"rain_clean.csv"</span>).head(<span class="dv">1</span>).to_markdown())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>|    |   state |   year |   yearly_avg |
 |---:|--------:|-------:|-------------:|

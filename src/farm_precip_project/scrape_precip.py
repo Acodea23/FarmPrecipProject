@@ -1,6 +1,7 @@
 import pandas as pd
 import requests
 
+
 def txt_to_csv(txt_name, colspecs, cols, csv_name):
     df = pd.read_fwf(txt_name, colspecs=colspecs, names=cols)
     df = df.apply(pd.to_numeric, errors='coerce')
@@ -15,3 +16,10 @@ def read_url_txt(url, txt_name, csv_name, colspecs, cols):
     with open(txt_name, "wb") as f:
         f.write(r.content)
     txt_to_csv(txt_name, csv_name, colspecs, cols)
+
+
+def normalized_data(df_to_read, new_col_name, csv_name_clean, months, groups):
+    df = pd.read_csv(df_to_read)
+    df[new_col_name] = df[months].mean(axis=1)
+    state_precip = df.groupby(groups)[new_col_name].mean()
+    state_precip.to_csv(csv_name_clean)
