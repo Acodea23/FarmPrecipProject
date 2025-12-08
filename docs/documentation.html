@@ -200,8 +200,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="precipitationpdsi-data-preparation">Precipitation/PDSI Data Preparation</h3>
 <p>These functions will use a url file to produce write multiple files. The raw output from the url to a txt and csv file. It then produces a table that provides the average PDSI per state per year and writes it to a csv.</p>
 <ul>
-<li><strong>read_url_txt(url, txt_name, csv_name colspecs, cols)</strong> Overview:</li>
+<li><strong>read_url_txt(url, txt_name, csv_name, colspecs, cols)</strong></li>
 </ul>
+<p>Overview:</p>
 <p>Input is a url containing a .txt file. Uses requests package to have requests.get output. Uses write_txt() and txt_to_csv() (see below) to save .txt and .csv files from dataset.</p>
 <p>Args:</p>
 <p><em>url</em>:str - a url pointing to a remote .txt file. (“https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt”)</p>
