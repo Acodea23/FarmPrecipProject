@@ -54,7 +54,7 @@ def crop_income_fig(df, group_by2, titles2):
 # 4. SCATTER: PRECIPITATION VS INCOME
 # --------------------------------------------------------
 title3 = ["Normalized Precipitation", "Crop Cash Receipts", "Relationship Between Precipitation and Crop Income"]
-def precip_v_income(df, title3)
+def precip_v_income(df, title3):
     plt.figure(figsize=(12,6))
     plt.scatter(df["yearly_avg"], df["Crop cash receipts"], s=10)
     plt.xlabel(title3[0])
@@ -70,7 +70,7 @@ def precip_v_income(df, title3)
 # --------------------------------------------------------
 group3 = "state"
 titlestate = ["Mean Normalized Precipitation", "Mean Crop Cash Receipts", "State-Level Comparison: Income vs Precipitation"]
-def statcompscatt(df, group3, titlestate)
+def statcompscatt(df, group3, titlestate):
     state_summary = df.groupby(group3)[["yearly_avg", "Crop cash receipts"]].mean()
     plt.figure(figsize=(12,6))
     plt.scatter(state_summary["yearly_avg"], state_summary["Crop cash receipts"])
@@ -85,12 +85,12 @@ def statcompscatt(df, group3, titlestate)
 # --------------------------------------------------------
 # 6. CORRELATION + HEATMAP SAVE
 # --------------------------------------------------------
-def correl(df)
+def correl(df):
     corr = df[["yearly_avg", "Crop cash receipts"]].corr()
     print("\nCorrelation Matrix:\n", corr)
 
 titles = "Correlation Heatmap"
-def heatmap(df, titles)
+def heatmap(df, titles):
     plt.figure(figsize=(6,5))
     plt.imshow(correl, cmap="coolwarm", vmin=-1, vmax=1)
     plt.colorbar(label="Correlation")
