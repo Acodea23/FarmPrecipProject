@@ -14,6 +14,10 @@ jupyter: python3
 The Precipitation dataset is a .txt file. It's first column contains a code for the state, division, element (in this case PDSI), and year. It then contains a column for each month, which contains the PDSI value for that month.
 
 An example row from the txt file:
+<!-- ```{python}
+import pandas as pd
+print(pd.read_fwf("rain.txt").head(1).to_markdown())
+``` -->
 
 | 0101051895 |   0.11 |   -0.81 |   -0.56 |   -0.72 |   -0.85 |   -0.99 |   -0.90 |   -1.13 |   -1.69 |   -1.72 |   -2.04 |   -2.12 |
 
@@ -27,10 +31,18 @@ February PDSI value = -0.81
 March PDSI value = -0.56
 … and so forth through December.
 
+# KATIE HERE
+The Farm Income dataset (**Katie Here**)
+
 
 ### Combined Data File
 
+The combined dataset contains information from both datasets joined on the state and the year. It provides PDSI averages for the state along with the state's to total income, and income by crop category. An example row of the data is included below.
 
+```{python}
+import pandas as pd
+print(pd.read_csv("combined_farm_precip.csv").head(1).to_markdown())
+```
 
 # Functions
 
@@ -138,9 +150,52 @@ print(pd.read_csv(csv_name_clean).head(1).to_markdown())
 
 ```
 
-### Farm Data Preparation
+### Farm Data Preparation (Katie Here)
 
-### EDA
+### Combining data
 
-# Files
+We created a function to merge two datasets on specific values and to save the merged data in a csv.
+
+- **merge_csvs(new_csv_name, csvs, group_on)**
+
+Overview:
+Reads two .csv files.
+Merges the files on a set of columns.
+Writes the merged table to a .csv.
+
+Args:
+*new_csv_name*:str Name to use for merged .csv file ("merged.csv")
+*csvs*:list Contains two strings where each string is a .csv to be read and merged (["tble1.csv", "tble2.csv"])
+*group_on*:list Contains strings where each string is a column to be grouped on (["col1", "col2", "col3"])
+
+Impact:
+Returns None. Writes a new .csv file
+
+Example:
+
+Starting csvs:
+```{python}
+csvs = ["FarmIncome_full.csv", "rain_clean.csv"]
+print(pd.read_csv(csvs[0]).head(1).to_markdown())
+print(pd.read_csv(csvs[1]).head(1).to_markdown())
+
+```
+
+Merging them:
+```{python}
+import pandas as pd
+from farm_precip_project import merge_csvs
+
+csvs = ["FarmIncome_full.csv", "rain_clean.csv"]
+group_on = ["state", "year"]
+new_csv_name = "combined_farm_precip.csv"
+
+merge_csvs(new_csv_name, csvs, group_on)
+
+print(pd.read_csv(new_csv_name).head(1).to_markdown())
+
+```
+
+### EDA (katie here)
+
 
