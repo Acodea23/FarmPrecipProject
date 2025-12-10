@@ -164,6 +164,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
   <ul class="collapse">
   <li><a href="#precipitationpdsi-data-preparation" id="toc-precipitationpdsi-data-preparation" class="nav-link" data-scroll-target="#precipitationpdsi-data-preparation">Precipitation/PDSI Data Preparation</a></li>
+  <li><a href="#farm-data-preparation" id="toc-farm-data-preparation" class="nav-link" data-scroll-target="#farm-data-preparation">Farm Data Preparation</a></li>
+  <li><a href="#eda" id="toc-eda" class="nav-link" data-scroll-target="#eda">EDA</a></li>
   </ul></li>
   <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files">Files</a></li>
   </ul>
@@ -262,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Args: <em>df_to_read</em>:str - contains name of csv to read. <em>new_col_name</em>:str - name of new column that is added when calculating average for each row. <em>csv_name_clean</em>:str - name of csv you want to save your calculated table to. (“averaged_vals.csv”) <em>months</em>:list - contains strings of values that will be used to calculate the averages for each row. ([“col1”,“col2”,“col3”]) <em>groups</em>:list - contains strings of values to group by when calculating averages across rows. ([“group1”, “group2”])</p>
 <p>Impact: Returns None. This function will write files, but will not return anything.</p>
 <p>Example:</p>
-<div id="a7983eda" class="cell" data-execution_count="1">
+<div id="a0a2ed26" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> normalized_data</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -280,6 +282,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 |  0 |       1 |   1895 |    -0.821354 |</code></pre>
 </div>
 </div>
+</section>
+<section id="farm-data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="farm-data-preparation">Farm Data Preparation</h3>
+</section>
+<section id="eda" class="level3">
+<h3 class="anchored" data-anchor-id="eda">EDA</h3>
 </section>
 </section>
 <section id="files" class="level1">

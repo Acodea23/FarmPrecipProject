@@ -5,4 +5,7 @@ from .eda_work import basic_summary, precip_trend_figure, crop_income_fig, preci
 # all code should be in this folder
 # uv pip install -e
 
-all = ["txt_to_csv", "read_url_txt", "normalized_data", "row_by_label", "extract_state_rows", "scrape_farm_data", "basic_summary", "precip_trend_figure", "crop_income_fig", "precip_v_income", "statcompscatt", "correl", "heatmap"]
+all = ["txt_to_csv", "read_url_txt", "normalized_data", 
+       "row_by_label", "extract_state_rows", "scrape_farm_data", 
+       "basic_summary", "precip_trend_figure", "crop_income_fig", "precip_v_income", "statcompscatt", "correl", "heatmap"
+       ]
