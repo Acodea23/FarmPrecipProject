@@ -1,11 +1,88 @@
 ---
-title: "getting started"
+title: "Example Usage"
 jupyter: python3
 ---
 
-Here is how you use my package:
+Here is an example of how the functions in our package can work together.
 
 ```{python}
-from farm_precip_project import write_txt
-print("Hello World")
+import pandas as pd
+import requests
+```
+
+# PDSI Data
+
+We start by using our functions to scrape the data, and save it to a csv.
+
+```{python}
+
+# remember txt_to_csv is called in read_url_txt
+from farm_precip_project import read_url_txt
+
+url = "https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt"
+
+
+#picking names for files to save. both a txt and a csv
+txt_name = "rain.txt"
+csv_name = "rain_dirty.csv"
+
+# colspecs and cols is formatting specific to this file
+#the first col of the txt contains several pieces of information in a string
+colspecs = [
+    (0, 2), (2, 4), (4, 6), (6, 10),
+    (10, 17), (17, 24), (24, 31), (31, 38),
+    (38, 45), (45, 52), (52, 59), (59, 66),
+    (66, 73), (73, 80), (80, 87), (87, 94)
+]
+
+cols = [
+    "state", "division", "element", "year",
+    "jan","feb","mar","apr","may","jun","jul","aug",
+    "sep","oct","nov","dec"
+]
+
+read_url_txt(url, txt_name, csv_name, colspecs, cols)
+
+# The head of the data saved as a .csv
+print(pd.read_csv(csv_name).head(1).to_markdown())
+```
+
+We then calculate yearly averages for each state and save it in a new csv file. In this case we will read the csv created using *read_url_txt* and perform the calculations on it.
+
+```{python}
+
+from farm_precip_project import normalized_data
+
+months = ["jan","feb","mar",'apr',"may","jun","jul","aug","sep","oct","nov","dec"]
+groups = ["state","year"]
+new_col_name = "yearly_avg"
+csv_name_clean = "rain_clean.csv"
+df_to_read = "rain_dirty.csv"
+
+normalized_data(df_to_read, new_col_name, csv_name_clean, months, groups)
+
+print(pd.read_csv(csv_name).head(1).to_markdown())
+
+```
+
+# Farm Income Data
+
+
+# Merging the Data
+
+We then use *merge_csvs* to combine our farm and PDSI datasets into one csv.
+
+```{python}
+from farm_precip_project import merge_csvs
+import pandas as pd
+
+csvs = ["FarmIncome_full.csv", "rain_clean.csv"]
+group_on = ["state", "year"]
+new_csv_name = "combined_farm_precip.csv"
+
+merge_csvs(new_csv_name, csvs, group_on)
+
+print(pd.read_csv(new_csv_name).head(1).to_markdown())
+
+
 ```
