@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "website"
+  title: "Farm Precip."
   navbar:
     left:
       - href: index.qmd
@@ -12,6 +12,8 @@ website:
         text: Documentation
       - href: tutorial.qmd
         text: Tutorial
+      - href: technicalwriteup.qmd
+        text: Technical Writeup
 
 format:
   html:
