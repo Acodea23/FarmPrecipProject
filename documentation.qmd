@@ -21,7 +21,6 @@ print(pd.read_fwf("rain.txt").head(1).to_markdown())
 
 | 0101051895 |   0.11 |   -0.81 |   -0.56 |   -0.72 |   -0.85 |   -0.99 |   -0.90 |   -1.13 |   -1.69 |   -1.72 |   -2.04 |   -2.12 |
 
-
 State code = 01 (which corresponds to a state)
 Division number = 01 (first climate division in Florida)
 Element code = 05 (PDSI)
@@ -31,8 +30,19 @@ February PDSI value = -0.81
 March PDSI value = -0.56
 … and so forth through December.
 
-# KATIE HERE
-The Farm Income dataset (**Katie Here**)
+The Farm Income dataset is an .xlsx file made up of several sheets, one for each state as well as informational guides. It contains rows of data separated by year in columns, containing income data across several different industry types. We chose to focus on food-type crops, found in the first block-like row section of each state sheet.
+
+
+An example row from the text file:
+<!--
+```{python}
+import pandas as pd
+
+
+# read the "Alabama" sheet and show the first few rows
+df = pd.read_excel("VA_State_US (1).xlsx", sheet_name="Alabama")
+print(df.head(1).to_markdown())
+``` -->
 
 
 ### Combined Data File
