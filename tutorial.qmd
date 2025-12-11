@@ -66,3 +66,23 @@ print(pd.read_csv(csv_name).head(1).to_markdown())
 ```
 
 # Farm Income Data
+
+
+# Merging the Data
+
+We then use *merge_csvs* to combine our farm and PDSI datasets into one csv.
+
+```{python}
+from farm_precip_project import merge_csvs
+import pandas as pd
+
+csvs = ["FarmIncome_full.csv", "rain_clean.csv"]
+group_on = ["state", "year"]
+new_csv_name = "combined_farm_precip.csv"
+
+merge_csvs(new_csv_name, csvs, group_on)
+
+print(pd.read_csv(new_csv_name).head(1).to_markdown())
+
+
+```
