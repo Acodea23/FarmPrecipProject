@@ -34,20 +34,20 @@ The Farm Income dataset is an .xlsx file made up of several sheets, one for each
 
 
 An example row from the text file:
-<!--
 ```{python}
-import pandas as pd
+# import pandas as pd
 
 
-# read the "Alabama" sheet and show the first few rows
-df = pd.read_excel("VA_State_US (1).xlsx", sheet_name="Alabama")
-print(df.head(1).to_markdown())
-``` -->
+# # read the "Alabama" sheet and show the first few rows
+# df = pd.read_excel("VA_State_US (1).xlsx", sheet_name="Alabama")
+# print(df.head(1).to_markdown())
+```
 
 
 ### Combined Data File
 
 The combined dataset contains information from both datasets joined on the state and the year. It provides PDSI averages for the state along with the state's to total income, and income by crop category. An example row of the data is included below.
+
 
 ```{python}
 import pandas as pd
