@@ -3,10 +3,18 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-def remove_low_outliers(df, col_name, low_threshold):
-    df = df[df[col_name] > low_threshold]
-    return df
+def remove_outliers(df, col_name, threshold, lower = True):
+    if lower:
+        df = df[df[col_name] > threshold]
+        return df
+    else:
+        df = df[df[col_name] < threshold]
+        return df
 
+def center_column(df, col_name, col_group, col_stand_name):
+    mean_state_col = df.groupby(col_group)[col_name].transform('mean')
+    df[col_stand_name] = (df[col_name] - mean_state_col)
+    return df
 
 def corr_and_plot(df, col1, col2, plot_file,n_digits):
     correlation = round(df[col1].corr(df[col2]),n_digits)

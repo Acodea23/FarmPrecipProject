@@ -65,7 +65,7 @@ print(pd.read_csv(csv_name).head(1).to_markdown())
 
 ```
 
-# Farm Income Data
+# Farm Income Data (Katie Here)
 
 
 # Merging the Data
@@ -86,3 +86,91 @@ print(pd.read_csv(new_csv_name).head(1).to_markdown())
 
 
 ```
+
+# EDA (Katie Here)
+
+
+# Analysis
+
+We now want to perform some analysis to better understand the relationship between income and PDSI values.
+
+### Data cleaning from EDA findings
+
+When performing EDA we discovered that the year 2014 had errors in their data collection that caused all states to have unrealistic values. So we will use our *remove_outliers* function to form a dataframe without the incorrect data.
+
+```{python}
+from farm_precip_project import remove_outliers
+import pandas as pd
+
+df = pd.read_csv('combined_farm_precip.csv')
+col_name = "yearly_avg"
+threshold = -50
+
+df = remove_outliers(df, col_name, threshold, lower = True)
+
+```
+
+### Analyzing data
+
+We now want to explore the relationship between the PDSI, and the agricultural income. So we will use *corr_and_plot* to produce a scatterplot of the two variable, and a correlation coefficient.
+
+```{python}
+from farm_precip_project import corr_and_plot
+import matplotlib.pyplot as plt
+
+# the df is pulled from the above cell where we cleaned the incorrect values
+colx = "yearly_avg"
+coly = "Value of crop production"
+plot_file = f"plot_{colx}_vs_{coly}.png"
+n_digits = 4
+
+corr_and_plot(df, colx, coly, plot_file,n_digits)
+
+```
+
+It appears there is not a correlation between farming income and the PDSI. This is due to different states having different average income levels. Thus we need to center the income for each state, as then we can focus on exploring the relationship between the change in income and change in PDSI. We will use *center_column* to do so.
+
+```{python}
+from farm_precip_project import center_column
+import pandas as pd
+
+col_name = "yearly_avg"
+col_group = "state"
+col_stand_name = "income_centered"
+
+df = center_column(df, col_name, col_group, col_stand_name)
+
+print(df.head(5).to_markdown())
+
+```
+
+Now we will once again use our corr_and_plot function to analyze the relationship.
+
+```{python}
+from farm_precip_project import corr_and_plot
+import matplotlib.pyplot as plt
+
+colx = "yearly_avg"
+coly = "income_centered"
+plot_file = f"plot_{colx}_vs_{coly}.png"
+n_digits = 4
+
+corr_and_plot(df, colx, coly, plot_file,n_digits)
+```
+
+We now see an apparent linear relationship between the two variables. We now want to see if this is actually a group of lines where each line is a state. This would let us know if certain states are less affected by PDSI than other states. We can use *make_scatter_w_cat* to create a scatterplot that colors the points by category.
+
+```{python}
+from farm_precip_project import make_scatter_w_cat
+import seaborn as sns
+
+colx = "yearly_avg"
+coly = "income_centered"
+colcat = "state"
+plot_file = f"plot_{colx}_vs_{coly}_by_{colcat}.png"
+
+make_scatter_w_cat(df, colx, coly, colcat, plot_file)
+```
+
+Through this plot we can see that each state appears to have a line of its points with a similar slope to each other state. The difference is the line's interecept. This causes us to note that some states perform above their average income with an average PDSI while other perform below their average income with an average PDSI. It is a relationship that would be worth exploring in the future.
+
