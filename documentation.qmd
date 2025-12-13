@@ -39,10 +39,14 @@ An example row from the text file:
 import pandas as pd
 
 
-# read the "Alabama" sheet and show the first few rows
-df = pd.read_excel("VA_State_US (1).xlsx", sheet_name="Alabama")
-print(df.head(1).to_markdown())
-``` -->
+```{python}
+# import pandas as pd
+
+
+# # read the "Alabama" sheet and show the first few rows
+# df = pd.read_excel("VA_State_US (1).xlsx", sheet_name="Alabama")
+# print(df.head(1).to_markdown())
+```
 
 
 ### Combined Data File
