@@ -1,9 +1,48 @@
 ---
-title: "Farm Precipition with Income Package"
+title: "Welcome to Farm Precipitation & Income Analysis"
 ---
 
-Here is a website about our python package
+# Welcome to Farm Precipitation & Income Analysis
 
-Documentation [here](documentation.qmd).
+Explore the relationship between precipitation patterns and farm income data. This project analyzes how weather conditions impact agricultural productivity and income across different regions and time periods.
 
-Get started [here](tutorial.qmd).
+## 🎯 About This Project
+
+This data science project investigates the correlations between precipitation and farm income. The analysis includes:
+
+- Data collection from multiple sources (USDA and precipitation databases)
+- Comprehensive exploratory data analysis
+- Statistical analysis and visualization
+- Documentation and reproducible code
+
+## 📊 Project Overview
+
+- **Data Sources**: USDA farm income data, precipitation measurements
+- **Analysis Methods**: Python, Pandas, statistical analysis
+- **Visualization**: Matplotlib, Seaborn
+- **Key Question**: How do precipitation patterns correlate with farm income?
+
+## 📚 Documentation & Resources
+
+::: {.grid}
+
+::: {.g-col-6}
+### [Documentation](documentation.qmd)
+Complete technical documentation of the project, data sources, and methodology
+:::
+
+::: {.g-col-6}
+### [Tutorial](tutorial.qmd)
+Step-by-step guide to get started with the project
+:::
+
+::: {.g-col-6}
+### [Analysis](analysis.qmd)
+Detailed analysis results and findings from the data
+:::
+
+:::
+
+---
+
+*Explore the data and discover the relationship between precipitation and farm income!*
