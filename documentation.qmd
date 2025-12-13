@@ -209,3 +209,49 @@ print(pd.read_csv(new_csv_name).head(1).to_markdown())
 ### EDA (katie here)
 
 
+
+### Analysis
+
+These functions will help us to center our data, remove data that contains errors. They will also help us plot variables on scatter plots and calculate correlation coefficients between the variables.
+
+- *remove_outliers(df, col_name, threshold, lower = True)*
+
+Overview:
+This function will return a new dataframe with rows removed based on the parameters given. 
+
+Args:
+
+*df*:Pandas DataFrame. This must contain columns with the names passed in as other arguements.
+*col_name*:str. Name of column contianing the incorrect data. ("col3")
+*threshold*:numeric. This is a numeric value to filter out values exceeding the threshold. We opted for this instead of equal to a threshold as simple functions already exist for that. (-50)
+*lower*:Bool. Indicates if filtering out all values less than, or greater than the threshold value. (True)
+
+Impact:
+Returns a pandas DataFrame. Does not write to any files.
+
+Example:
+
+Original df
+```{python}
+import pandas as pd
+from farm_precip_project import remove_outliers
+
+df = pd.DataFrame({
+    "col1": [1, 2, 3, 4],
+    "col2": [1, -3, 1, 1]
+})
+
+print(df)
+```
+
+Using the function
+
+```{python}
+import pandas as pd
+from farm_precip_project import remove_outliers
+
+df = remove_outliers(df, "col2", -1)
+
+print(df)
+
+```
