@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Example Usage – Farm Precip.</title>
+<title>Example Usage – Farm Precipitation &amp; Income Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Farm Precip.</span>
+    <span class="navbar-title">Farm Precipitation &amp; Income Analysis</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -140,8 +140,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Tutorial</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./technicalwriteup.html"> 
-<span class="menu-text">Technical Writeup</span></a>
+    <a class="nav-link" href="./analysis.qmd"> 
+<span class="menu-text">Analysis</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Acodea23"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -160,8 +167,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#pdsi-data" id="toc-pdsi-data" class="nav-link active" data-scroll-target="#pdsi-data">PDSI Data</a></li>
-  <li><a href="#farm-income-data" id="toc-farm-income-data" class="nav-link" data-scroll-target="#farm-income-data">Farm Income Data</a></li>
+  <li><a href="#farm-income-data-katie-here" id="toc-farm-income-data-katie-here" class="nav-link" data-scroll-target="#farm-income-data-katie-here">Farm Income Data (Katie Here)</a></li>
   <li><a href="#merging-the-data" id="toc-merging-the-data" class="nav-link" data-scroll-target="#merging-the-data">Merging the Data</a></li>
+  <li><a href="#eda-katie-here" id="toc-eda-katie-here" class="nav-link" data-scroll-target="#eda-katie-here">EDA (Katie Here)</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#data-cleaning-from-eda-findings" id="toc-data-cleaning-from-eda-findings" class="nav-link" data-scroll-target="#data-cleaning-from-eda-findings">Data cleaning from EDA findings</a></li>
+  <li><a href="#analyzing-data" id="toc-analyzing-data" class="nav-link" data-scroll-target="#analyzing-data">Analyzing data</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -188,14 +201,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Here is an example of how the functions in our package can work together.</p>
-<div id="3e4a5797" class="cell" data-execution_count="1">
+<div id="093182e0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="pdsi-data" class="level1">
 <h1>PDSI Data</h1>
 <p>We start by using our functions to scrape the data, and save it to a csv.</p>
-<div id="48830319" class="cell" data-execution_count="2">
+<div id="09c8637f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remember txt_to_csv is called in read_url_txt</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> read_url_txt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -232,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We then calculate yearly averages for each state and save it in a new csv file. In this case we will read the csv created using <em>read_url_txt</em> and perform the calculations on it.</p>
-<div id="685b526a" class="cell" data-execution_count="3">
+<div id="18b4370e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> normalized_data</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> [<span class="st">"jan"</span>,<span class="st">"feb"</span>,<span class="st">"mar"</span>,<span class="st">'apr'</span>,<span class="st">"may"</span>,<span class="st">"jun"</span>,<span class="st">"jul"</span>,<span class="st">"aug"</span>,<span class="st">"sep"</span>,<span class="st">"oct"</span>,<span class="st">"nov"</span>,<span class="st">"dec"</span>]</span>
@@ -251,13 +264,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="farm-income-data" class="level1">
-<h1>Farm Income Data</h1>
+<section id="farm-income-data-katie-here" class="level1">
+<h1>Farm Income Data (Katie Here)</h1>
 </section>
 <section id="merging-the-data" class="level1">
 <h1>Merging the Data</h1>
 <p>We then use <em>merge_csvs</em> to combine our farm and PDSI datasets into one csv.</p>
-<div id="2bec7631" class="cell" data-execution_count="4">
+<div id="1eaacd11" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> merge_csvs</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -274,8 +287,128 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 |  0 |       1 |   1949 |                     250813 |               230275 |   150706 |        13405 |           231 |              4937 |       30196 |                   14421 |             16238 |              39680 |                 -19142 |      1.18625 |</code></pre>
 </div>
 </div>
+</section>
+<section id="eda-katie-here" class="level1">
+<h1>EDA (Katie Here)</h1>
+</section>
+<section id="analysis" class="level1">
+<h1>Analysis</h1>
+<p>We now want to perform some analysis to better understand the relationship between income and PDSI values.</p>
+<section id="data-cleaning-from-eda-findings" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning-from-eda-findings">Data cleaning from EDA findings</h3>
+<p>When performing EDA we discovered that the year 2014 had errors in their data collection that caused all states to have unrealistic values. So we will use our <em>remove_outliers</em> function to form a dataframe without the incorrect data.</p>
+<div id="e6682511" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> remove_outliers</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'combined_farm_precip.csv'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>col_name <span class="op">=</span> <span class="st">"yearly_avg"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="op">-</span><span class="dv">50</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> remove_outliers(df, col_name, threshold, lower <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="analyzing-data" class="level3">
+<h3 class="anchored" data-anchor-id="analyzing-data">Analyzing data</h3>
+<p>We now want to explore the relationship between the PDSI, and the agricultural income. So we will use <em>corr_and_plot</em> to produce a scatterplot of the two variable, and a correlation coefficient.</p>
+<div id="4a88acc0" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> corr_and_plot</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the df is pulled from the above cell where we cleaned the incorrect values</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>colx <span class="op">=</span> <span class="st">"yearly_avg"</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>coly <span class="op">=</span> <span class="st">"Value of crop production"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plot_file <span class="op">=</span> <span class="ss">f"plot_</span><span class="sc">{</span>colx<span class="sc">}</span><span class="ss">_vs_</span><span class="sc">{</span>coly<span class="sc">}</span><span class="ss">.png"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>n_digits <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>corr_and_plot(df, colx, coly, plot_file,n_digits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial_files/figure-html/cell-7-output-1.png" width="663" height="537" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>np.float64(0.0526)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
+</div>
+</div>
+<p>It appears there is not a correlation between farming income and the PDSI. This is due to different states having different average income levels. Thus we need to center the income for each state, as then we can focus on exploring the relationship between the change in income and change in PDSI. We will use <em>center_column</em> to do so.</p>
+<div id="bf7e66b8" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> center_column</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>col_name <span class="op">=</span> <span class="st">"yearly_avg"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>col_group <span class="op">=</span> <span class="st">"state"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>col_stand_name <span class="op">=</span> <span class="st">"income_centered"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> center_column(df, col_name, col_group, col_stand_name)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">5</span>).to_markdown())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>|    |   state |   year |   Value of crop production |   Crop cash receipts |   Cotton |   Feed crops |   Food grains |   Fruits and nuts |   Oil crops |   Vegetables and melons |   All other crops |   Home consumption |   Inventory adjustment |   yearly_avg |   income_centered |
+|---:|--------:|-------:|---------------------------:|---------------------:|---------:|-------------:|--------------:|------------------:|------------:|------------------------:|------------------:|-------------------:|-----------------------:|-------------:|------------------:|
+|  0 |       1 |   1949 |                     250813 |               230275 |   150706 |        13405 |           231 |              4937 |       30196 |                   14421 |             16238 |              39680 |                 -19142 |     1.18625  |          1.07534  |
+|  1 |       1 |   1950 |                     267006 |               229713 |   130815 |        13510 |           245 |              4850 |       32003 |                   12494 |             35796 |              39254 |                  -2143 |    -0.492812 |         -0.60372  |
+|  2 |       1 |   1951 |                     292913 |               264151 |   177427 |        14241 |           192 |              6245 |       23205 |                   13414 |             29427 |              35748 |                  -7278 |    -1.1524   |         -1.2633   |
+|  3 |       1 |   1952 |                     298393 |               277208 |   189744 |         9517 |           268 |              5274 |       25783 |                   20143 |             26479 |              49808 |                 -28897 |    -1.60104  |         -1.71195  |
+|  4 |       1 |   1953 |                     331899 |               263726 |   180347 |         9779 |           682 |              7388 |       24700 |                   16534 |             24296 |              46457 |                  21395 |    -0.649375 |         -0.760282 |</code></pre>
+</div>
+</div>
+<p>Now we will once again use our corr_and_plot function to analyze the relationship.</p>
+<div id="ac30d2db" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> corr_and_plot</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>colx <span class="op">=</span> <span class="st">"yearly_avg"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>coly <span class="op">=</span> <span class="st">"income_centered"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plot_file <span class="op">=</span> <span class="ss">f"plot_</span><span class="sc">{</span>colx<span class="sc">}</span><span class="ss">_vs_</span><span class="sc">{</span>coly<span class="sc">}</span><span class="ss">.png"</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>n_digits <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>corr_and_plot(df, colx, coly, plot_file,n_digits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial_files/figure-html/cell-9-output-1.png" width="662" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>np.float64(0.9794)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
+</div>
+</div>
+<p>We now see an apparent linear relationship between the two variables. We now want to see if this is actually a group of lines where each line is a state. This would let us know if certain states are less affected by PDSI than other states. We can use <em>make_scatter_w_cat</em> to create a scatterplot that colors the points by category.</p>
+<div id="50dba612" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> make_scatter_w_cat</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>colx <span class="op">=</span> <span class="st">"yearly_avg"</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>coly <span class="op">=</span> <span class="st">"income_centered"</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>colcat <span class="op">=</span> <span class="st">"state"</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>plot_file <span class="op">=</span> <span class="ss">f"plot_</span><span class="sc">{</span>colx<span class="sc">}</span><span class="ss">_vs_</span><span class="sc">{</span>coly<span class="sc">}</span><span class="ss">_by_</span><span class="sc">{</span>colcat<span class="sc">}</span><span class="ss">.png"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>make_scatter_w_cat(df, colx, coly, colcat, plot_file)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial_files/figure-html/cell-10-output-1.png" width="737" height="475" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
+</div>
+</div>
+<p>Through this plot we can see that each state appears to have a line of its points with a similar slope to each other state. The difference is the line’s interecept. This causes us to note that some states perform above their average income with an average PDSI while other perform below their average income with an average PDSI. It is a relationship that would be worth exploring in the future.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

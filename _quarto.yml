@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Farm Precip."
+  title: "Farm Precipitation & Income Analysis"
   navbar:
     left:
       - href: index.qmd

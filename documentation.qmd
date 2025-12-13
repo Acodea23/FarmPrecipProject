@@ -221,7 +221,7 @@ This function will return a new dataframe with rows removed based on the paramet
 
 Args:
 
-*df*:Pandas DataFrame. This must contain columns with the names passed in as other arguements.
+*df*:Pandas DataFrame. This must contain columns with the names passed in as other arguments.
 *col_name*:str. Name of column contianing the incorrect data. ("col3")
 *threshold*:numeric. This is a numeric value to filter out values exceeding the threshold. We opted for this instead of equal to a threshold as simple functions already exist for that. (-50)
 *lower*:Bool. Indicates if filtering out all values less than, or greater than the threshold value. (True)
@@ -251,6 +251,52 @@ import pandas as pd
 from farm_precip_project import remove_outliers
 
 df = remove_outliers(df, "col2", -1)
+
+print(df)
+
+```
+
+- *center_column(df, col_name, col_group, col_stand_name)*
+
+Overview:
+This function will add another column to a dataframe that centers the data by group. In other words, it will take the mean of groups within the dataset. Then, it will take the values of that column, and for each row subtract the group mean that that row pertains to.
+
+Args:
+*df*:Pandas DataFrame. This must contain columns with the names passed in as other arguments.
+*col_name*:str. Name of column that will have values centered "col4"
+*col_group*:list. Contains strings where each string is a column to be grouped on (["col1", "col2", "col3"])
+*col_stand_name*:str. Name for new column contains centered values. ("colCentered")
+
+Impact: 
+
+Returns df with an addition column for the centered data. Does not write any files.
+
+Example:
+
+Original df
+```{python}
+import pandas as pd
+from farm_precip_project import center_column
+
+df = pd.DataFrame({
+    "col1": [1, 2, 3, 4, 5, 6],
+    "col2": ["A","A","A","A","A","A"]
+})
+
+print(df)
+```
+
+Using the function
+
+```{python}
+import pandas as pd
+from farm_precip_project import center_column
+
+col_name = "col1"
+col_group = ["col2"],
+col_stand_name = "col1_centered"
+
+df = center_column(df = df, col_name, col_group, col_stand_name)
 
 print(df)
 

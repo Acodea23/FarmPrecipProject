@@ -2,7 +2,6 @@
 title: "Welcome to Farm Precipitation & Income Analysis"
 ---
 
-# Welcome to Farm Precipitation & Income Analysis
 
 Explore the relationship between precipitation patterns and farm income data. This project analyzes how weather conditions impact agricultural productivity and income across different regions and time periods.
 
@@ -37,7 +36,7 @@ Step-by-step guide to get started with the project
 :::
 
 ::: {.g-col-6}
-### [Analysis](analysis.qmd)
+### [Technical Write-up](technicalwriteup.qmd)
 Detailed analysis results and findings from the data
 :::
 
