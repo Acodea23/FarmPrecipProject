@@ -165,7 +165,91 @@ print(pd.read_csv(csv_name_clean).head(1).to_markdown())
 
 ```
 
-### Farm Data Preparation (Katie Here)
+### Farm Data Preparation
+
+These functions extract and standardize farm income and crop-category data from historical USDA Excel workbooks. The workflow converts wide, state-specific tables into a tidy format with one row per state per year, matching the structure of `FarmIncome.xlsx`. The cleaned output is written to a CSV file for direct merging with the PDSI dataset.
+
+---
+
+#### Utility Functions
+
+- **row_by_label(df, label)**
+
+**Overview:**  
+Finds the first row in a DataFrame whose first column exactly matches a specified text label. This is used to locate crop-category rows (e.g., *Cotton*, *Food grains*) in the VA workbook sheets.
+
+**Args:**  
+- *df*: pd.DataFrame — DataFrame read from an Excel sheet  
+- *label*: str — row label to search for in the first column  
+
+**Impact:**  
+Returns a pandas Series for the matched row, or `None` if the label is not found. This function does not write files.
+
+---
+
+#### Farm Data Extraction
+
+- **extract_state_rows(va_path, sheet_name, state_id, years_needed)**
+
+**Overview:**  
+Extracts crop-related income values for a single state from the VA workbook and returns a standardized table with one row per year. The function maps Excel year headers to columns, pulls relevant crop-category rows, and formats the results to match the structure of `FarmIncome.xlsx`.
+
+**Args:**  
+- *va_path*: str — path to the VA workbook  
+- *sheet_name*: str — name of the Excel sheet corresponding to the state  
+- *state_id*: int — numeric identifier for the state (1–48)  
+- *years_needed*: list[int] — years to extract  
+
+**Impact:**  
+Returns a pd.DataFrame containing:
+- `state`, `year`
+- `Value of crop production`
+- `Crop cash receipts`
+- `Cotton`
+- `Feed crops`
+- `Food grains`
+- `Fruits and nuts`
+- `Oil crops`
+- `Vegetables and melons`
+- `All other crops`
+- `Home consumption`
+- `Inventory adjustment`
+
+No files are written by this function.
+
+---
+
+#### Full Farm Dataset Construction
+
+- **scrape_farm_data()**
+
+**Overview:**  
+Builds a complete farm income dataset for all 48 contiguous U.S. states by looping through each state sheet in the VA workbook, extracting standardized crop data, and combining the results into a single tidy table.
+
+Key steps:
+1. Reads `FarmIncome.xlsx` to obtain the target years and column order  
+2. Assigns numeric state IDs (1–48) in alphabetical order  
+3. Extracts yearly crop data for each state using `extract_state_rows`  
+4. Concatenates, sorts, and aligns all state data  
+5. Writes the final dataset to a CSV file  
+
+**Args:**  
+None
+
+**Impact:**  
+Returns None. Writes the cleaned dataset to:
+- **`FarmIncome_full.csv`**
+
+---
+
+#### Example
+
+```{python}
+from farm_precip_project import scrape_farm_data
+
+scrape_farm_data()
+
+```
 
 ### Combining data
 
