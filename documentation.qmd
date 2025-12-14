@@ -38,14 +38,9 @@ An example row from the text file:
 ```{python}
 import pandas as pd
 
-
-```{python}
-# import pandas as pd
-
-
-# # read the "Alabama" sheet and show the first few rows
-# df = pd.read_excel("VA_State_US (1).xlsx", sheet_name="Alabama")
-# print(df.head(1).to_markdown())
+# read the "Alabama" sheet and show the first few rows
+df = pd.read_excel("VA_State_US (1).xlsx", sheet_name="Alabama")
+print(df.head(1).to_markdown())
 ```
 
 
@@ -320,9 +315,9 @@ Provides a quick integrity check of the dataset by displaying sample rows, descr
 ```{python}
 
 def basic_summary(df):
-print(df.head())
-print(df.describe())
-print(df.isna().sum())
+    print(df.head())
+    print(df.describe())
+    print(df.isna().sum())
 
 basic_summary(df)
 ```
@@ -335,15 +330,15 @@ Plots the national mean yearly PDSI across all states.
 ```{python}
 
 def precip_trend_figure(df):
-mean_precip_by_year = df.groupby("year")["yearly_avg"].mean()
-plt.figure(figsize=(12,6))
-plt.plot(mean_precip_by_year)
-plt.xlabel("Year")
-plt.ylabel("Mean Normalized Precipitation")
-plt.title("Average Precipitation Across the U.S. Over Time")
-plt.tight_layout()
-plt.savefig("precip_over_time.png", dpi=300)
-plt.close()
+    mean_precip_by_year = df.groupby("year")["yearly_avg"].mean()
+    plt.figure(figsize=(12,6))
+    plt.plot(mean_precip_by_year)
+    plt.xlabel("Year")
+    plt.ylabel("Mean Normalized Precipitation")
+    plt.title("Average Precipitation Across the U.S. Over Time")
+    plt.tight_layout()
+    plt.savefig("precip_over_time.png", dpi=300)
+    plt.close()
 
 precip_trend_figure(df)
 ```
@@ -354,15 +349,15 @@ Plots the national mean crop cash receipts by year.
 ```{python}
 
 def crop_income_fig(df):
-mean_income_by_year = df.groupby("year")["Crop cash receipts"].mean()
-plt.figure(figsize=(12,6))
-plt.plot(mean_income_by_year)
-plt.xlabel("Year")
-plt.ylabel("Mean Crop Cash Receipts")
-plt.title("Crop Income Trends Over Time")
-plt.tight_layout()
-plt.savefig("crop_income_over_time.png", dpi=300)
-plt.close()
+    mean_income_by_year = df.groupby("year")["Crop cash receipts"].mean()
+    plt.figure(figsize=(12,6))
+    plt.plot(mean_income_by_year)
+    plt.xlabel("Year")
+    plt.ylabel("Mean Crop Cash Receipts")
+    plt.title("Crop Income Trends Over Time")
+    plt.tight_layout()
+    plt.savefig("crop_income_over_time.png", dpi=300)
+    plt.close()
 
 crop_income_fig(df) 
 ```
@@ -375,14 +370,14 @@ Scatter plot of normalized precipitation versus crop cash receipts.
 ```{python}
 
 def precip_v_income(df):
-plt.figure(figsize=(12,6))
-plt.scatter(df["yearly_avg"], df["Crop cash receipts"], s=10)
-plt.xlabel("Normalized Precipitation")
-plt.ylabel("Crop Cash Receipts")
-plt.title("Precipitation vs. Crop Income")
-plt.tight_layout()
-plt.savefig("precip_vs_income_scatter.png", dpi=300)
-plt.close()
+    plt.figure(figsize=(12,6))
+    plt.scatter(df["yearly_avg"], df["Crop cash receipts"], s=10)
+    plt.xlabel("Normalized Precipitation")
+    plt.ylabel("Crop Cash Receipts")
+    plt.title("Precipitation vs. Crop Income")
+    plt.tight_layout()
+    plt.savefig("precip_vs_income_scatter.png", dpi=300)
+    plt.close()
 
 precip_v_income(df)
 ```
@@ -393,15 +388,15 @@ Each point represents a state averaged across all years.
 ``` {python}
 
 def statcompscatt(df):
-state_summary = df.groupby("state")[["yearly_avg", "Crop cash receipts"]].mean()
-plt.figure(figsize=(12,6))
-plt.scatter(state_summary["yearly_avg"], state_summary["Crop cash receipts"])
-plt.xlabel("Mean Normalized Precipitation")
-plt.ylabel("Mean Crop Cash Receipts")
-plt.title("State-Level Income vs. Precipitation")
-plt.tight_layout()
-plt.savefig("state_level_precip_vs_income.png", dpi=300)
-plt.close()
+    state_summary = df.groupby("state")[["yearly_avg", "Crop cash receipts"]].mean()
+    plt.figure(figsize=(12,6))
+    plt.scatter(state_summary["yearly_avg"], state_summary["Crop cash receipts"])
+    plt.xlabel("Mean Normalized Precipitation")
+    plt.ylabel("Mean Crop Cash Receipts")
+    plt.title("State-Level Income vs. Precipitation")
+    plt.tight_layout()
+    plt.savefig("state_level_precip_vs_income.png", dpi=300)
+    plt.close()
 
 statcompscatt(df)
 ```
@@ -414,9 +409,9 @@ Computes the Pearson correlation between precipitation and crop income.
 ```{python}
 
 def correl(df):
-corr = df[["yearly_avg", "Crop cash receipts"]].corr()
-print("Correlation Matrix:\n", corr)
-return corr
+    corr = df[["yearly_avg", "Crop cash receipts"]].corr()
+    print("Correlation Matrix:\n", corr)
+    return corr
 
 corr = correl(df)
 ```
@@ -427,15 +422,15 @@ Visual summary of the precipitation–income relationship.
 ```{python}
 
 def heatmap(corr):
-plt.figure(figsize=(6,5))
-plt.imshow(corr, cmap="coolwarm", vmin=-1, vmax=1)
-plt.colorbar(label="Correlation")
-plt.xticks([0,1], ["Precip", "Income"])
-plt.yticks([0,1], ["Precip", "Income"])
-plt.title("Correlation Heatmap")
-plt.tight_layout()
-plt.savefig("correlation_heatmap.png", dpi=300)
-plt.close()
+    plt.figure(figsize=(6,5))
+    plt.imshow(corr, cmap="coolwarm", vmin=-1, vmax=1)
+    plt.colorbar(label="Correlation")
+    plt.xticks([0,1], ["Precip", "Income"])
+    plt.yticks([0,1], ["Precip", "Income"])
+    plt.title("Correlation Heatmap")
+    plt.tight_layout()
+    plt.savefig("correlation_heatmap.png", dpi=300)
+    plt.close()
 
 heatmap(corr)
 ```
@@ -537,10 +532,10 @@ import pandas as pd
 from farm_precip_project import center_column
 
 col_name = "col1"
-col_group = ["col2"],
+col_group = ["col2"]
 col_stand_name = "col1_centered"
 
-df = center_column(df = df, col_name, col_group, col_stand_name)
+df = center_column(df, col_name, col_group, col_stand_name)
 
 print(df)
 

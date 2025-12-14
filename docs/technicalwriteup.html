@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Technical Write-up – Farm Precip.</title>
+<title>Technical Write-up – Farm Precipitation &amp; Income Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Farm Precip.</span>
+    <span class="navbar-title">Farm Precipitation &amp; Income Analysis</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -124,7 +124,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#check-back-soon" id="toc-check-back-soon" class="nav-link active" data-scroll-target="#check-back-soon">Check back soon</a></li>
+  <li><a href="#example-usage-end-to-end-workflow" id="toc-example-usage-end-to-end-workflow" class="nav-link active" data-scroll-target="#example-usage-end-to-end-workflow">Example Usage: End-to-End Workflow</a>
+  <ul class="collapse">
+  <li><a href="#pdsi-data-ingestion-and-processing" id="toc-pdsi-data-ingestion-and-processing" class="nav-link" data-scroll-target="#pdsi-data-ingestion-and-processing">PDSI Data Ingestion and Processing</a></li>
+  <li><a href="#farm-income-data" id="toc-farm-income-data" class="nav-link" data-scroll-target="#farm-income-data">Farm Income Data</a></li>
+  <li><a href="#data-integration" id="toc-data-integration" class="nav-link" data-scroll-target="#data-integration">Data Integration</a></li>
+  <li><a href="#exploratory-data-analysis-and-cleaning" id="toc-exploratory-data-analysis-and-cleaning" class="nav-link" data-scroll-target="#exploratory-data-analysis-and-cleaning">Exploratory Data Analysis and Cleaning</a></li>
+  <li><a href="#correlation-analysis" id="toc-correlation-analysis" class="nav-link" data-scroll-target="#correlation-analysis">Correlation Analysis</a></li>
+  <li><a href="#state-level-patterns" id="toc-state-level-patterns" class="nav-link" data-scroll-target="#state-level-patterns">State-Level Patterns</a></li>
+  <li><a href="#package-development-and-distribution" id="toc-package-development-and-distribution" class="nav-link" data-scroll-target="#package-development-and-distribution">Package Development and Distribution</a></li>
+  <li><a href="#package-structure-and-github-integration" id="toc-package-structure-and-github-integration" class="nav-link" data-scroll-target="#package-structure-and-github-integration">Package Structure and GitHub Integration</a></li>
+  <li><a href="#building-and-publishing-the-package" id="toc-building-and-publishing-the-package" class="nav-link" data-scroll-target="#building-and-publishing-the-package">Building and Publishing the Package</a></li>
+  <li><a href="#reproducibility-and-extensibility" id="toc-reproducibility-and-extensibility" class="nav-link" data-scroll-target="#reproducibility-and-extensibility">Reproducibility and Extensibility</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -150,8 +163,57 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="check-back-soon" class="level1">
-<h1>Check back soon</h1>
+<section id="example-usage-end-to-end-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="example-usage-end-to-end-workflow">Example Usage: End-to-End Workflow</h2>
+<p>This example demonstrates how the functions in the farm_precip_project package work together to ingest raw climate data, construct a clean analytical dataset, and analyze the relationship between drought conditions and farm income.</p>
+<section id="pdsi-data-ingestion-and-processing" class="level3">
+<h3 class="anchored" data-anchor-id="pdsi-data-ingestion-and-processing">PDSI Data Ingestion and Processing</h3>
+<p>The analysis begins by acquiring Palmer Drought Severity Index (PDSI) data from NOAA. NOAA distributes these data as a fixed-width text file, which requires explicit column specifications for proper parsing. The read_url_txt function downloads the raw file, applies predefined column boundaries, and saves both the original text file and a preliminary CSV file. This step converts the raw data into a structured tabular format suitable for analysis.</p>
+<p>The workflow then computes yearly PDSI averages using normalized_data. The function aggregates monthly PDSI values by state and year to produce a single annual metric, yearly_avg, that summarizes drought conditions. The function saves the resulting cleaned dataset as a new CSV file for downstream use.</p>
+</section>
+<section id="farm-income-data" class="level3">
+<h3 class="anchored" data-anchor-id="farm-income-data">Farm Income Data</h3>
+<p>The analysis prepares farm income data separately using publicly available agricultural economic sources. These data follow a state year structure, which aligns directly with the aggregated PDSI dataset and allows for straightforward integration.</p>
+</section>
+<section id="data-integration" class="level3">
+<h3 class="anchored" data-anchor-id="data-integration">Data Integration</h3>
+<p>The workflow merges the climate and farm income datasets using merge_csvs. Both datasets share the same grouping variables, state and year, which allows for a clean and interpretable join. The merged dataset provides the foundation for exploratory analysis and subsequent modeling.</p>
+</section>
+<section id="exploratory-data-analysis-and-cleaning" class="level3">
+<h3 class="anchored" data-anchor-id="exploratory-data-analysis-and-cleaning">Exploratory Data Analysis and Cleaning</h3>
+<p>Exploratory analysis identified a systematic data issue in the PDSI values for 2014, where all states exhibited implausible measurements. To address this issue, the workflow applies remove_outliers to exclude observations below a specified threshold. This targeted filtering removes known measurement errors and prevents them from influencing later analyses.</p>
+</section>
+<section id="correlation-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-analysis">Correlation Analysis</h3>
+<p>The analysis evaluates the relationship between drought conditions and agricultural income using corr_and_plot, which computes a Pearson correlation coefficient and produces a scatterplot of PDSI versus farm income. At the national level, the analysis shows little correlation. Large baseline income differences across states obscure any relationship between drought conditions and income.</p>
+<p>To isolate within-state variation, the workflow centers income values by state using center_column. This transformation shifts the analysis from absolute income levels to deviations from each state’s average income. Repeating the correlation analysis on the centered data reveals a clearer linear relationship. This result suggests that year-to-year changes in drought conditions associate with changes in farm income within states.</p>
+</section>
+<section id="state-level-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="state-level-patterns">State-Level Patterns</h3>
+<p>To further examine state-level behavior, the analysis uses make_scatter_w_cat to visualize the centered income and PDSI relationship while coloring observations by state. The plot shows similar slopes across states with differing intercepts. This pattern indicates that states respond to drought in comparable ways but operate around different baseline income levels.</p>
+</section>
+<section id="package-development-and-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="package-development-and-distribution">Package Development and Distribution</h3>
+<p>The project implements the full analysis workflow as a Python package to ensure reproducibility, portability, and ease of reuse. Users can install the package directly into a Python environment and reproduce the analysis without manual configuration.</p>
+</section>
+<section id="package-structure-and-github-integration" class="level3">
+<h3 class="anchored" data-anchor-id="package-structure-and-github-integration">Package Structure and GitHub Integration</h3>
+<p>The package follows a standard Python project structure, with all core functionality contained in a dedicated module directory. Each analytical step, including data ingestion, normalization, merging, cleaning, and visualization, exists as a standalone documented function. This design promotes modularity and reuse. The repository includes supporting files such as pyproject.toml, README.md, and license information to comply with modern Python packaging standards.</p>
+<p>The project uses Git and GitHub for version control. GitHub serves as the central repository for development, documentation, and issue tracking. This setup records changes over time and allows users to inspect the source code, report issues, and contribute improvements.</p>
+</section>
+<section id="building-and-publishing-the-package" class="level3">
+<h3 class="anchored" data-anchor-id="building-and-publishing-the-package">Building and Publishing the Package</h3>
+<p>The package uses a pyproject.toml file to define build requirements, metadata, dependencies, and versioning. The project explicitly lists all external dependencies, including pandas, matplotlib, and seaborn, to ensure consistent installation across environments. The project follows semantic versioning to reflect changes in functionality and stability.</p>
+<p>Before release, the workflow builds the package locally into source and wheel distributions. This step verifies that the package installs correctly in a clean environment. The project then uploads the finalized package to PyPI using an API token for secure authentication. Publishing to PyPI allows users to install the package with a single pip install command.</p>
+</section>
+<section id="reproducibility-and-extensibility" class="level3">
+<h3 class="anchored" data-anchor-id="reproducibility-and-extensibility">Reproducibility and Extensibility</h3>
+<p>Packaging the analysis as a Python library enforces consistent data processing steps and reduces code duplication. The modular design supports future extensions, such as adding additional climate indices, incorporating new economic variables, or integrating formal statistical models.</p>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This project demonstrates a complete analytical pipeline, from raw data ingestion and cleaning to exploratory analysis and interpretation, implemented within a reusable Python package. The results indicate a consistent within-state relationship between drought severity and farm income. This finding motivates future work that explicitly models state-specific effects or incorporates additional environmental and economic variables.</p>
 
 
 </section>
