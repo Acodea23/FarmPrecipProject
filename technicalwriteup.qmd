@@ -3,4 +3,58 @@ title: "Technical Write-up"
 jupyter: python3
 ---
 
-# Check back soon
+## Example Usage: End-to-End Workflow
+
+This example demonstrates how the functions in the farm_precip_project package work together to ingest raw climate data, construct a clean analytical dataset, and analyze the relationship between drought conditions and farm income.
+
+### PDSI Data Ingestion and Processing
+
+The analysis begins by acquiring Palmer Drought Severity Index (PDSI) data from NOAA. NOAA distributes these data as a fixed-width text file, which requires explicit column specifications for proper parsing. The read_url_txt function downloads the raw file, applies predefined column boundaries, and saves both the original text file and a preliminary CSV file. This step converts the raw data into a structured tabular format suitable for analysis.
+
+The workflow then computes yearly PDSI averages using normalized_data. The function aggregates monthly PDSI values by state and year to produce a single annual metric, yearly_avg, that summarizes drought conditions. The function saves the resulting cleaned dataset as a new CSV file for downstream use.
+
+### Farm Income Data
+
+The analysis prepares farm income data separately using publicly available agricultural economic sources. These data follow a state year structure, which aligns directly with the aggregated PDSI dataset and allows for straightforward integration.
+
+### Data Integration
+
+The workflow merges the climate and farm income datasets using merge_csvs. Both datasets share the same grouping variables, state and year, which allows for a clean and interpretable join. The merged dataset provides the foundation for exploratory analysis and subsequent modeling.
+
+### Exploratory Data Analysis and Cleaning
+
+Exploratory analysis identified a systematic data issue in the PDSI values for 2014, where all states exhibited implausible measurements. To address this issue, the workflow applies remove_outliers to exclude observations below a specified threshold. This targeted filtering removes known measurement errors and prevents them from influencing later analyses.
+
+### Correlation Analysis
+
+The analysis evaluates the relationship between drought conditions and agricultural income using corr_and_plot, which computes a Pearson correlation coefficient and produces a scatterplot of PDSI versus farm income. At the national level, the analysis shows little correlation. Large baseline income differences across states obscure any relationship between drought conditions and income.
+
+To isolate within-state variation, the workflow centers income values by state using center_column. This transformation shifts the analysis from absolute income levels to deviations from each state’s average income. Repeating the correlation analysis on the centered data reveals a clearer linear relationship. This result suggests that year-to-year changes in drought conditions associate with changes in farm income within states.
+
+### State-Level Patterns
+
+To further examine state-level behavior, the analysis uses make_scatter_w_cat to visualize the centered income and PDSI relationship while coloring observations by state. The plot shows similar slopes across states with differing intercepts. This pattern indicates that states respond to drought in comparable ways but operate around different baseline income levels.
+
+### Package Development and Distribution
+
+The project implements the full analysis workflow as a Python package to ensure reproducibility, portability, and ease of reuse. Users can install the package directly into a Python environment and reproduce the analysis without manual configuration.
+
+### Package Structure and GitHub Integration
+
+The package follows a standard Python project structure, with all core functionality contained in a dedicated module directory. Each analytical step, including data ingestion, normalization, merging, cleaning, and visualization, exists as a standalone documented function. This design promotes modularity and reuse. The repository includes supporting files such as pyproject.toml, README.md, and license information to comply with modern Python packaging standards.
+
+The project uses Git and GitHub for version control. GitHub serves as the central repository for development, documentation, and issue tracking. This setup records changes over time and allows users to inspect the source code, report issues, and contribute improvements.
+
+### Building and Publishing the Package
+
+The package uses a pyproject.toml file to define build requirements, metadata, dependencies, and versioning. The project explicitly lists all external dependencies, including pandas, matplotlib, and seaborn, to ensure consistent installation across environments. The project follows semantic versioning to reflect changes in functionality and stability.
+
+Before release, the workflow builds the package locally into source and wheel distributions. This step verifies that the package installs correctly in a clean environment. The project then uploads the finalized package to PyPI using an API token for secure authentication. Publishing to PyPI allows users to install the package with a single pip install command.
+
+### Reproducibility and Extensibility
+
+Packaging the analysis as a Python library enforces consistent data processing steps and reduces code duplication. The modular design supports future extensions, such as adding additional climate indices, incorporating new economic variables, or integrating formal statistical models.
+
+## Summary
+
+This project demonstrates a complete analytical pipeline, from raw data ingestion and cleaning to exploratory analysis and interpretation, implemented within a reusable Python package. The results indicate a consistent within-state relationship between drought severity and farm income. This finding motivates future work that explicitly models state-specific effects or incorporates additional environmental and economic variables.
