@@ -8,9 +8,11 @@ from .merge_csvs import merge_csvs
 # uv pip install -e .
 # uv run quarto preview
 
-all = ["txt_to_csv", "read_url_txt", "normalized_data", 
-       "row_by_label", "extract_state_rows", "scrape_farm_data", 
-       "basic_summary", "precip_trend_figure", "crop_income_fig", "precip_v_income", "statcompscatt", "correl", "heatmap",
-       "remove_outliers", "center_column", "corr_and_plot", "make_scatter_w_cat",
-       "merge_csvs"
-       ]
+__all__ = [
+    "txt_to_csv", "read_url_txt", "normalized_data",
+    "row_by_label", "extract_state_rows", "scrape_farm_data",
+    "basic_summary", "precip_trend_figure", "crop_income_fig", "precip_v_income",
+    "statcompscatt", "correl", "heatmap",
+    "remove_outliers", "center_column", "corr_and_plot", "make_scatter_w_cat",
+    "merge_csvs",
+]
