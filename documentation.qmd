@@ -295,9 +295,164 @@ print(pd.read_csv(new_csv_name).head(1).to_markdown())
 
 ```
 
-### EDA (katie here)
+### Exploratory Data Analysis (EDA)
 
+This section performs exploratory analysis on the merged precipitation–farm income dataset to validate data quality, summarize distributions, and visualize temporal and cross-sectional relationships between normalized precipitation (PDSI) and crop income. All figures are saved as high-resolution PNG files.
 
+#### Data Loading
+
+The combined dataset produced by merge_csvs() is read once and reused across all EDA functions.
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("combined_farm_precip.csv")
+```
+
+This dataset contains one row per state per year, including normalized precipitation (yearly_avg) and multiple farm income variables.
+
+#### Summary Checks
+
+basic_summary(df)
+
+Provides a quick integrity check of the dataset by displaying sample rows, descriptive statistics, and missing-value counts.
+
+```{python}
+
+def basic_summary(df):
+print(df.head())
+print(df.describe())
+print(df.isna().sum())
+
+basic_summary(df)
+```
+
+#### Temporal Trends
+
+Precipitation over time
+Plots the national mean yearly PDSI across all states.
+
+```{python}
+
+def precip_trend_figure(df):
+mean_precip_by_year = df.groupby("year")["yearly_avg"].mean()
+plt.figure(figsize=(12,6))
+plt.plot(mean_precip_by_year)
+plt.xlabel("Year")
+plt.ylabel("Mean Normalized Precipitation")
+plt.title("Average Precipitation Across the U.S. Over Time")
+plt.tight_layout()
+plt.savefig("precip_over_time.png", dpi=300)
+plt.close()
+
+precip_trend_figure(df)
+```
+
+#### Crop income over time
+Plots the national mean crop cash receipts by year.
+
+```{python}
+
+def crop_income_fig(df):
+mean_income_by_year = df.groupby("year")["Crop cash receipts"].mean()
+plt.figure(figsize=(12,6))
+plt.plot(mean_income_by_year)
+plt.xlabel("Year")
+plt.ylabel("Mean Crop Cash Receipts")
+plt.title("Crop Income Trends Over Time")
+plt.tight_layout()
+plt.savefig("crop_income_over_time.png", dpi=300)
+plt.close()
+
+crop_income_fig(df) 
+```
+
+#### Precipitation–Income Relationships
+
+All state-year observations
+Scatter plot of normalized precipitation versus crop cash receipts.
+
+```{python}
+
+def precip_v_income(df):
+plt.figure(figsize=(12,6))
+plt.scatter(df["yearly_avg"], df["Crop cash receipts"], s=10)
+plt.xlabel("Normalized Precipitation")
+plt.ylabel("Crop Cash Receipts")
+plt.title("Precipitation vs. Crop Income")
+plt.tight_layout()
+plt.savefig("precip_vs_income_scatter.png", dpi=300)
+plt.close()
+
+precip_v_income(df)
+```
+
+#### State-level averages
+Each point represents a state averaged across all years.
+
+``` {python}
+
+def statcompscatt(df):
+state_summary = df.groupby("state")[["yearly_avg", "Crop cash receipts"]].mean()
+plt.figure(figsize=(12,6))
+plt.scatter(state_summary["yearly_avg"], state_summary["Crop cash receipts"])
+plt.xlabel("Mean Normalized Precipitation")
+plt.ylabel("Mean Crop Cash Receipts")
+plt.title("State-Level Income vs. Precipitation")
+plt.tight_layout()
+plt.savefig("state_level_precip_vs_income.png", dpi=300)
+plt.close()
+
+statcompscatt(df)
+```
+
+#### Correlation Analysis
+
+correl(df)
+Computes the Pearson correlation between precipitation and crop income.
+
+```{python}
+
+def correl(df):
+corr = df[["yearly_avg", "Crop cash receipts"]].corr()
+print("Correlation Matrix:\n", corr)
+return corr
+
+corr = correl(df)
+```
+
+Correlation heatmap
+Visual summary of the precipitation–income relationship.
+
+```{python}
+
+def heatmap(corr):
+plt.figure(figsize=(6,5))
+plt.imshow(corr, cmap="coolwarm", vmin=-1, vmax=1)
+plt.colorbar(label="Correlation")
+plt.xticks([0,1], ["Precip", "Income"])
+plt.yticks([0,1], ["Precip", "Income"])
+plt.title("Correlation Heatmap")
+plt.tight_layout()
+plt.savefig("correlation_heatmap.png", dpi=300)
+plt.close()
+
+heatmap(corr)
+```
+
+#### Outputs
+
+Running the EDA section produces the following figures:
+
+precip_over_time.png
+
+crop_income_over_time.png
+
+precip_vs_income_scatter.png
+
+state_level_precip_vs_income.png
+
+correlation_heatmap.png
 
 ### Analysis
 
