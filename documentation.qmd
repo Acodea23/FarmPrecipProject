@@ -34,7 +34,7 @@ The Farm Income dataset is an .xlsx file made up of several sheets, one for each
 
 
 An example row from the text file:
-<!--
+
 ```{python}
 import pandas as pd
 
