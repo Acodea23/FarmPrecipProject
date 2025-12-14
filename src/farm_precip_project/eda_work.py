@@ -61,14 +61,14 @@ def correl(df):
     print("\nCorrelation Matrix:\n", corr)
 
 titles = "Correlation Heatmap"
-def heatmap(df, titles):
-    plt.figure(figsize=(6,5))
-    plt.imshow(correl, cmap="coolwarm", vmin=-1, vmax=1)
+def heatmap(df, title="Correlation Heatmap"):
+    corr = df[["yearly_avg", "Crop cash receipts"]].corr()
+    plt.figure(figsize=(6, 5))
+    plt.imshow(corr, vmin=-1, vmax=1)
     plt.colorbar(label="Correlation")
-    plt.xticks([0,1], ["Precip", "Income"])
-    plt.yticks([0,1], ["Precip", "Income"])
-    plt.title(titles)
+    plt.xticks([0, 1], ["Precip", "Income"])
+    plt.yticks([0, 1], ["Precip", "Income"])
+    plt.title(title)
     plt.tight_layout()
     plt.savefig("correlation_heatmap.png", dpi=300)
     plt.close()
-

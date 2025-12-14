@@ -16,3 +16,5 @@ __all__ = [
     "remove_outliers", "center_column", "corr_and_plot", "make_scatter_w_cat",
     "merge_csvs",
 ]
+
+__version__ = "0.1.2"

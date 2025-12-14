@@ -2,14 +2,16 @@ import pandas as pd
 import requests
 
 
-def txt_to_csv(txt_name, csv_name, colspecs, cols):
+def txt_to_csv(url, txt_name, csv_name, colspecs, cols):
     df = pd.read_fwf(txt_name, colspecs=colspecs, names=cols)
     df = df.apply(pd.to_numeric, errors='coerce')
-    df.to_csv(csv_name, index=False)
+    df.to_csv(txt_name, csv_name, colspecs, cols)
 
 
 def read_url_txt(url, txt_name, csv_name, colspecs, cols):
-    r = requests.get(url)
+    r = requests.get(url, timeout=30)
+    r.raise_for_status()
+    
     if r.status_code != 200:
         print(f"url status code is {r.status_code} not 200. Please check your url")
         return
