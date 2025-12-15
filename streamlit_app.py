@@ -41,6 +41,8 @@ titles = ["Year", "Mean Normalized Precipitation", "Average Precipitation Across
 plot = precip_trend_figure(df, group_by,titles)
 st.pyplot(plot)
 
+plt.close()
+
 st.write("We see that PDSI is stable over time, the only error is the data provided in 2014, which we will remove before analysis.")
 
 
@@ -48,6 +50,8 @@ group_by2 = "year"
 titles2 = ["Year", "Mean Crop Cash Receipts", "Crop Income Trends Over Time"]
 plot2 = crop_income_fig(df, group_by2, titles2)
 st.pyplot(plot2)
+
+plt.close()
 
 st.write("Crop income has been steadily increasing over time, which we will have to be aware of during our analysis.")
 
@@ -66,6 +70,8 @@ n_digits = 4
 
 plot3 = corr_and_plot(df, colx, coly, plot_file,n_digits)
 st.pyplot(plot3)
+
+plt.close()
 
 st.write("We see little to no correlation between PDSI and crop income when the income is not normalized by state. " \
 "This demonstrates that PDSI by itself does not accurately predict crop income. " \
