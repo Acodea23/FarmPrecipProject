@@ -40,6 +40,11 @@ Step-by-step guide to get started with the project
 Detailed analysis results and findings from the data
 :::
 
+::: {.g-col-6}
+### [Streamlit App](https://farmprecipproject-overview.streamlit.app/)
+A live dashboard with insights and summaries. **This will take you to another website**.
+:::
+
 :::
 
 ---
