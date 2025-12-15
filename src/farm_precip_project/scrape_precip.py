@@ -2,10 +2,10 @@ import pandas as pd
 import requests
 
 
-def txt_to_csv(url, txt_name, csv_name, colspecs, cols):
+def txt_to_csv(txt_name, csv_name, colspecs, cols):
     df = pd.read_fwf(txt_name, colspecs=colspecs, names=cols)
     df = df.apply(pd.to_numeric, errors='coerce')
-    df.to_csv(txt_name, csv_name, colspecs, cols)
+    df.to_csv(csv_name, index=False)
 
 
 def read_url_txt(url, txt_name, csv_name, colspecs, cols):
