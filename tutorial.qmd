@@ -1,6 +1,10 @@
 ---
 title: "Example Usage"
 jupyter: python3
+format:
+  html:
+    code-fold: true
+    toc: true
 ---
 
 Here is an example of how the functions in our package can work together.

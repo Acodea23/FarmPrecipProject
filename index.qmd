@@ -1,5 +1,9 @@
 ---
 title: "Welcome to Farm Precipitation & Income Analysis"
+format:
+  html:
+    code-fold: true
+    toc: true
 ---
 
 

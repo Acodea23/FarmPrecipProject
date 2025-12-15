@@ -1,6 +1,10 @@
 ---
 title: "Documentation For Package"
 jupyter: python3
+format:
+  html:
+    code-fold: true
+    toc: true
 ---
 
 # Data
