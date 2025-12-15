@@ -40,11 +40,11 @@ The Farm Income dataset is an .xlsx file made up of several sheets, one for each
 An example row from the text file:
 
 ```{python}
-import pandas as pd
+# import pandas as pd
 
-# read the "Alabama" sheet and show the first few rows
-df = pd.read_excel("VA_State_US (1).xlsx", sheet_name="Alabama")
-print(df.head(1).to_markdown())
+# # read the "Alabama" sheet and show the first few rows
+# df = pd.read_excel("VA_State_US (1).xlsx", sheet_name="Alabama")
+# print(df[5,].to_markdown())
 ```
 
 
@@ -544,3 +544,71 @@ df = center_column(df, col_name, col_group, col_stand_name)
 print(df)
 
 ```
+
+- *corr_and_plot(df, col1, col2, plot_file, n_digits)*
+
+Overview: Creates a plot using *matplotlib* library, saves it to a file and includes correlation between variables in plot.
+
+Args:
+*df*:Pandas DataFrame. This must contain columns with the names passed in as other arguments.
+*col1*:str. Name of column to plot on x-axis. ("col3")
+*col2*:str. Name of column to plot on y-axis. ("col2")
+*plot_file*:str. File name for .png of plot. ("plot.png")
+*n_digits*:int. Integer for rounding correlation coefficent value (4)
+
+Impact:
+Returns the plot from a matplotlib.pyplot. Also saves the plot as a file.
+
+Example:
+```{python}
+from farm_precip_project import corr_and_plot, remove_outliers
+import matplotlib.pyplot as plt
+
+#prepping data for plot example
+df = pd.read_csv('combined_farm_precip.csv')
+col_name = "yearly_avg"
+threshold = -50
+
+df = remove_outliers(df, col_name, threshold, lower = True)
+colx = "yearly_avg"
+coly = "Value of crop production"
+plot_file = f"plot_{colx}_vs_{coly}.png"
+n_digits = 4
+
+plot = corr_and_plot(df, colx, coly, plot_file,n_digits)
+
+plt.show()
+```
+
+- *make_scatter_w_cat(df, colx, coly, colcat, plot_file)*
+
+Overview: Uses seaborn package to produce a scatterplot that colors the data by a categorical variable in the df.
+
+Args:
+*df*:Pandas DataFrame. This must contain columns with the names passed in as other arguments.
+*colx*:str. Name of column to plot on x-axis. ("col3")
+*coly*:str. Name of column to plot on y-axis. ("col2")
+*colcat*:str. Name of column containing categorical variable to group by.
+*plot_file*:str. File name for .png of plot. ("plot.png")
+
+Impact:
+Returns plot from matplotlib.pyplot. Also saves plot as a .png file.
+
+Example:
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+from farm_precip_project import make_scatter_w_cat
+
+df = pd.DataFrame({
+    "col1": [1, 2, 3, 4, 5, 6],
+    "col2": ["A","A","A","B","B","B"],
+    "col3": [2, 4, 3, 7, 8, 9]
+})
+
+plot = make_scatter_w_cat(df, "col1", "col3", "col2", "example.png")
+plt.show
+
+```
+

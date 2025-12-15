@@ -175,7 +175,7 @@ def scrape_farm_data():
     all_states = []
 
     for state_id, state_name in enumerate(contiguous_states, start=1):
-        print(f"Processing state {state_id}: {state_name}")
+        #print(f"Processing state {state_id}: {state_name}")
         df_state = extract_state_rows(va_path, state_name, state_id, years)
         all_states.append(df_state)
 

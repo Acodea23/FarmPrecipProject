@@ -16,7 +16,7 @@ def center_column(df, col_name, col_group, col_stand_name):
     df[col_stand_name] = (df[col_name] - mean_state_col)
     return df
 
-def corr_and_plot(df, col1, col2, plot_file,n_digits):
+def corr_and_plot(df, col1, col2, plot_file, n_digits):
     correlation = round(df[col1].corr(df[col2]),n_digits)
     
     plt.figure(figsize=(8, 6))
@@ -26,8 +26,7 @@ def corr_and_plot(df, col1, col2, plot_file,n_digits):
     plt.ylabel(col2)
     plt.show()
     plt.savefig(plot_file)
-
-    return correlation
+    return plt.gcf()
 
 
 def make_scatter_w_cat(df, colx, coly, colcat, plot_file):
@@ -52,3 +51,4 @@ def make_scatter_w_cat(df, colx, coly, colcat, plot_file):
 
     plt.show()
     plt.savefig(plot_file)
+    return plt.gcf()
