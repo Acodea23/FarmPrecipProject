@@ -1,17 +1,14 @@
 ---
 title: "Technical Write-up"
-jupyter: python3
 format:
   html:
-    toc: true
-    number-sections: true
-  pdf:
     toc: true
     number-sections: true
 execute:
   echo: false
   warning: false
   message: false
+freeze: auto
 ---
 
 Abstract
