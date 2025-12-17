@@ -216,7 +216,7 @@ print(pd.read_fwf("rain.txt").head(1).to_markdown())
 <p>State code = 01 (which corresponds to a state) Division number = 01 (first climate division in Florida) Element code = 05 (PDSI) Year = 1895 January PDSI value = 0.11 February PDSI value = -0.81 March PDSI value = -0.56 … and so forth through December.</p>
 <p>The Farm Income dataset is an .xlsx file made up of several sheets, one for each state as well as informational guides. It contains rows of data separated by year in columns, containing income data across several different industry types. We chose to focus on food-type crops, found in the first block-like row section of each state sheet.</p>
 <p>An example row from the text file:</p>
-<div id="c9dace70" class="cell" data-execution_count="1">
+<div id="2a7644ba" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import pandas as pd</span></span>
@@ -230,7 +230,7 @@ print(pd.read_fwf("rain.txt").head(1).to_markdown())
 <section id="combined-data-file" class="level3">
 <h3 class="anchored" data-anchor-id="combined-data-file">Combined Data File</h3>
 <p>The combined dataset contains information from both datasets joined on the state and the year. It provides PDSI averages for the state along with the state’s to total income, and income by crop category. An example row of the data is included below.</p>
-<div id="4a492cfa" class="cell" data-execution_count="2">
+<div id="5e76c1df" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -297,7 +297,7 @@ print(pd.read_fwf("rain.txt").head(1).to_markdown())
 <p>Args: <em>df_to_read</em>:str - contains name of csv to read. <em>new_col_name</em>:str - name of new column that is added when calculating average for each row. <em>csv_name_clean</em>:str - name of csv you want to save your calculated table to. (“averaged_vals.csv”) <em>months</em>:list - contains strings of values that will be used to calculate the averages for each row. ([“col1”,“col2”,“col3”]) <em>groups</em>:list - contains strings of values to group by when calculating averages across rows. ([“group1”, “group2”])</p>
 <p>Impact: Returns None. This function will write files, but will not return anything.</p>
 <p>Example:</p>
-<div id="312f0014" class="cell" data-execution_count="3">
+<div id="09ea0b62" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -374,7 +374,7 @@ Returns None. Writes the cleaned dataset to: - <strong><code>FarmIncome_full.csv
 </section>
 <section id="example" class="level4">
 <h4 class="anchored" data-anchor-id="example">Example</h4>
-<div id="b86b939b" class="cell" data-execution_count="4">
+<div id="39354589" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> scrape_farm_data</span>
@@ -398,7 +398,7 @@ Returns None. Writes the cleaned dataset to: - <strong><code>FarmIncome_full.csv
 <p>Impact: Returns None. Writes a new .csv file</p>
 <p>Example:</p>
 <p>Starting csvs:</p>
-<div id="9ef3a28e" class="cell" data-execution_count="5">
+<div id="f0afd247" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>csvs <span class="op">=</span> [<span class="st">"FarmIncome_full.csv"</span>, <span class="st">"rain_clean.csv"</span>]</span>
@@ -415,7 +415,7 @@ Returns None. Writes the cleaned dataset to: - <strong><code>FarmIncome_full.csv
 </div>
 </div>
 <p>Merging them:</p>
-<div id="1bcda1d9" class="cell" data-execution_count="6">
+<div id="f7c6b87b" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -442,7 +442,7 @@ Returns None. Writes the cleaned dataset to: - <strong><code>FarmIncome_full.csv
 <section id="data-loading" class="level4">
 <h4 class="anchored" data-anchor-id="data-loading">Data Loading</h4>
 <p>The combined dataset produced by merge_csvs() is read once and reused across all EDA functions.</p>
-<div id="32509c96" class="cell" data-execution_count="7">
+<div id="c23d9f92" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -457,7 +457,7 @@ Returns None. Writes the cleaned dataset to: - <strong><code>FarmIncome_full.csv
 <h4 class="anchored" data-anchor-id="summary-checks">Summary Checks</h4>
 <p>basic_summary(df)</p>
 <p>Provides a quick integrity check of the dataset by displaying sample rows, descriptive statistics, and missing-value counts.</p>
-<div id="34b0bb6c" class="cell" data-execution_count="8">
+<div id="a4745456" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> basic_summary(df):</span>
@@ -548,7 +548,7 @@ dtype: int64</code></pre>
 <section id="temporal-trends" class="level4">
 <h4 class="anchored" data-anchor-id="temporal-trends">Temporal Trends</h4>
 <p>Precipitation over time Plots the national mean yearly PDSI across all states.</p>
-<div id="f5bac12e" class="cell" data-execution_count="9">
+<div id="5bb53689" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> precip_trend_figure(df):</span>
@@ -569,7 +569,7 @@ dtype: int64</code></pre>
 <section id="crop-income-over-time" class="level4">
 <h4 class="anchored" data-anchor-id="crop-income-over-time">Crop income over time</h4>
 <p>Plots the national mean crop cash receipts by year.</p>
-<div id="078249d8" class="cell" data-execution_count="10">
+<div id="a56f821e" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crop_income_fig(df):</span>
@@ -590,7 +590,7 @@ dtype: int64</code></pre>
 <section id="precipitationincome-relationships" class="level4">
 <h4 class="anchored" data-anchor-id="precipitationincome-relationships">Precipitation–Income Relationships</h4>
 <p>All state-year observations Scatter plot of normalized precipitation versus crop cash receipts.</p>
-<div id="ccd9bfad" class="cell" data-execution_count="11">
+<div id="459a84ca" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> precip_v_income(df):</span>
@@ -610,7 +610,7 @@ dtype: int64</code></pre>
 <section id="state-level-averages" class="level4">
 <h4 class="anchored" data-anchor-id="state-level-averages">State-level averages</h4>
 <p>Each point represents a state averaged across all years.</p>
-<div id="1563ebef" class="cell" data-execution_count="12">
+<div id="d6960d9e" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> statcompscatt(df):</span>
@@ -631,7 +631,7 @@ dtype: int64</code></pre>
 <section id="correlation-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="correlation-analysis">Correlation Analysis</h4>
 <p>correl(df) Computes the Pearson correlation between precipitation and crop income.</p>
-<div id="d6c3ca09" class="cell" data-execution_count="13">
+<div id="7b375339" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> correl(df):</span>
@@ -649,7 +649,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 </div>
 </div>
 <p>Correlation heatmap Visual summary of the precipitation–income relationship.</p>
-<div id="80f9ade9" class="cell" data-execution_count="14">
+<div id="72ff0ae8" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> heatmap(corr):</span>
@@ -689,7 +689,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 <p>Impact: Returns a pandas DataFrame. Does not write to any files.</p>
 <p>Example:</p>
 <p>Original df</p>
-<div id="8d92c50e" class="cell" data-execution_count="15">
+<div id="c72459c2" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -711,7 +711,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 </div>
 </div>
 <p>Using the function</p>
-<div id="9d952fbc" class="cell" data-execution_count="16">
+<div id="5333df09" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -737,7 +737,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 <p>Returns df with an addition column for the centered data. Does not write any files.</p>
 <p>Example:</p>
 <p>Original df</p>
-<div id="aa822969" class="cell" data-execution_count="17">
+<div id="9dddfb24" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -761,7 +761,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 </div>
 </div>
 <p>Using the function</p>
-<div id="8ff6b55d" class="cell" data-execution_count="18">
+<div id="8e37ebba" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -792,7 +792,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 <p>Args: <em>df</em>:Pandas DataFrame. This must contain columns with the names passed in as other arguments. <em>col1</em>:str. Name of column to plot on x-axis. (“col3”) <em>col2</em>:str. Name of column to plot on y-axis. (“col2”) <em>plot_file</em>:str. File name for .png of plot. (“plot.png”) <em>n_digits</em>:int. Integer for rounding correlation coefficent value (4)</p>
 <p>Impact: Returns the plot from a matplotlib.pyplot. Also saves the plot as a file.</p>
 <p>Example:</p>
-<div id="165e8b4a" class="cell" data-execution_count="19">
+<div id="b63830a0" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> corr_and_plot, remove_outliers</span>
@@ -831,7 +831,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 <p>Args: <em>df</em>:Pandas DataFrame. This must contain columns with the names passed in as other arguments. <em>colx</em>:str. Name of column to plot on x-axis. (“col3”) <em>coly</em>:str. Name of column to plot on y-axis. (“col2”) <em>colcat</em>:str. Name of column containing categorical variable to group by. <em>plot_file</em>:str. File name for .png of plot. (“plot.png”)</p>
 <p>Impact: Returns plot from matplotlib.pyplot. Also saves plot as a .png file.</p>
 <p>Example:</p>
-<div id="f85e2d2e" class="cell" data-execution_count="20">
+<div id="553c7555" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>

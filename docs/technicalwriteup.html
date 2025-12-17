@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,6 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -154,27 +157,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#example-usage-end-to-end-workflow" id="toc-example-usage-end-to-end-workflow" class="nav-link active" data-scroll-target="#example-usage-end-to-end-workflow">Example Usage: End-to-End Workflow</a>
-  <ul class="collapse">
-  <li><a href="#pdsi-data-ingestion-and-processing" id="toc-pdsi-data-ingestion-and-processing" class="nav-link" data-scroll-target="#pdsi-data-ingestion-and-processing">PDSI Data Ingestion and Processing</a></li>
-  <li><a href="#farm-income-data" id="toc-farm-income-data" class="nav-link" data-scroll-target="#farm-income-data">Farm Income Data</a></li>
-  <li><a href="#data-integration" id="toc-data-integration" class="nav-link" data-scroll-target="#data-integration">Data Integration</a></li>
-  <li><a href="#exploratory-data-analysis-and-cleaning" id="toc-exploratory-data-analysis-and-cleaning" class="nav-link" data-scroll-target="#exploratory-data-analysis-and-cleaning">Exploratory Data Analysis and Cleaning</a></li>
-  <li><a href="#correlation-analysis" id="toc-correlation-analysis" class="nav-link" data-scroll-target="#correlation-analysis">Correlation Analysis</a></li>
-  <li><a href="#state-level-patterns" id="toc-state-level-patterns" class="nav-link" data-scroll-target="#state-level-patterns">State-Level Patterns</a></li>
-  <li><a href="#package-development-and-distribution" id="toc-package-development-and-distribution" class="nav-link" data-scroll-target="#package-development-and-distribution">Package Development and Distribution</a></li>
-  <li><a href="#package-structure-and-github-integration" id="toc-package-structure-and-github-integration" class="nav-link" data-scroll-target="#package-structure-and-github-integration">Package Structure and GitHub Integration</a></li>
-  <li><a href="#building-and-publishing-the-package" id="toc-building-and-publishing-the-package" class="nav-link" data-scroll-target="#building-and-publishing-the-package">Building and Publishing the Package</a></li>
-  <li><a href="#reproducibility-and-extensibility" id="toc-reproducibility-and-extensibility" class="nav-link" data-scroll-target="#reproducibility-and-extensibility">Reproducibility and Extensibility</a></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -198,62 +182,217 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="example-usage-end-to-end-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="example-usage-end-to-end-workflow">Example Usage: End-to-End Workflow</h2>
-<p>This example demonstrates how the functions in the farm_precip_project package work together to ingest raw climate data, construct a clean analytical dataset, and analyze the relationship between drought conditions and farm income.</p>
-<section id="pdsi-data-ingestion-and-processing" class="level3">
-<h3 class="anchored" data-anchor-id="pdsi-data-ingestion-and-processing">PDSI Data Ingestion and Processing</h3>
-<p>The analysis begins by acquiring Palmer Drought Severity Index (PDSI) data from NOAA. NOAA distributes these data as a fixed-width text file, which requires explicit column specifications for proper parsing. The read_url_txt function downloads the raw file, applies predefined column boundaries, and saves both the original text file and a preliminary CSV file. This step converts the raw data into a structured tabular format suitable for analysis.</p>
-<p>The workflow then computes yearly PDSI averages using normalized_data. The function aggregates monthly PDSI values by state and year to produce a single annual metric, yearly_avg, that summarizes drought conditions. The function saves the resulting cleaned dataset as a new CSV file for downstream use.</p>
-</section>
-<section id="farm-income-data" class="level3">
-<h3 class="anchored" data-anchor-id="farm-income-data">Farm Income Data</h3>
-<p>The analysis prepares farm income data separately using publicly available agricultural economic sources. These data follow a state year structure, which aligns directly with the aggregated PDSI dataset and allows for straightforward integration.</p>
-</section>
-<section id="data-integration" class="level3">
-<h3 class="anchored" data-anchor-id="data-integration">Data Integration</h3>
-<p>The workflow merges the climate and farm income datasets using merge_csvs. Both datasets share the same grouping variables, state and year, which allows for a clean and interpretable join. The merged dataset provides the foundation for exploratory analysis and subsequent modeling.</p>
-</section>
-<section id="exploratory-data-analysis-and-cleaning" class="level3">
-<h3 class="anchored" data-anchor-id="exploratory-data-analysis-and-cleaning">Exploratory Data Analysis and Cleaning</h3>
-<p>Exploratory analysis identified a systematic data issue in the PDSI values for 2014, where all states exhibited implausible measurements. To address this issue, the workflow applies remove_outliers to exclude observations below a specified threshold. This targeted filtering removes known measurement errors and prevents them from influencing later analyses.</p>
-</section>
-<section id="correlation-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="correlation-analysis">Correlation Analysis</h3>
-<p>The analysis evaluates the relationship between drought conditions and agricultural income using corr_and_plot, which computes a Pearson correlation coefficient and produces a scatterplot of PDSI versus farm income. At the national level, the analysis shows little correlation. Large baseline income differences across states obscure any relationship between drought conditions and income.</p>
-<p>To isolate within-state variation, the workflow centers income values by state using center_column. This transformation shifts the analysis from absolute income levels to deviations from each state’s average income. Repeating the correlation analysis on the centered data reveals a clearer linear relationship. This result suggests that year-to-year changes in drought conditions associate with changes in farm income within states.</p>
-</section>
-<section id="state-level-patterns" class="level3">
-<h3 class="anchored" data-anchor-id="state-level-patterns">State-Level Patterns</h3>
-<p>To further examine state-level behavior, the analysis uses make_scatter_w_cat to visualize the centered income and PDSI relationship while coloring observations by state. The plot shows similar slopes across states with differing intercepts. This pattern indicates that states respond to drought in comparable ways but operate around different baseline income levels.</p>
-</section>
-<section id="package-development-and-distribution" class="level3">
-<h3 class="anchored" data-anchor-id="package-development-and-distribution">Package Development and Distribution</h3>
-<p>The project implements the full analysis workflow as a Python package to ensure reproducibility, portability, and ease of reuse. Users can install the package directly into a Python environment and reproduce the analysis without manual configuration.</p>
-</section>
-<section id="package-structure-and-github-integration" class="level3">
-<h3 class="anchored" data-anchor-id="package-structure-and-github-integration">Package Structure and GitHub Integration</h3>
-<p>The package follows a standard Python project structure, with all core functionality contained in a dedicated module directory. Each analytical step, including data ingestion, normalization, merging, cleaning, and visualization, exists as a standalone documented function. This design promotes modularity and reuse. The repository includes supporting files such as pyproject.toml, README.md, and license information to comply with modern Python packaging standards.</p>
-<p>The project uses Git and GitHub for version control. GitHub serves as the central repository for development, documentation, and issue tracking. This setup records changes over time and allows users to inspect the source code, report issues, and contribute improvements.</p>
-</section>
-<section id="building-and-publishing-the-package" class="level3">
-<h3 class="anchored" data-anchor-id="building-and-publishing-the-package">Building and Publishing the Package</h3>
-<p>The package uses a pyproject.toml file to define build requirements, metadata, dependencies, and versioning. The project explicitly lists all external dependencies, including pandas, matplotlib, and seaborn, to ensure consistent installation across environments. The project follows semantic versioning to reflect changes in functionality and stability.</p>
-<p>Before release, the workflow builds the package locally into source and wheel distributions. This step verifies that the package installs correctly in a clean environment. The project then uploads the finalized package to PyPI using an API token for secure authentication. Publishing to PyPI allows users to install the package with a single pip install command.</p>
-</section>
-<section id="reproducibility-and-extensibility" class="level3">
-<h3 class="anchored" data-anchor-id="reproducibility-and-extensibility">Reproducibility and Extensibility</h3>
-<p>Packaging the analysis as a Python library enforces consistent data processing steps and reduces code duplication. The modular design supports future extensions, such as adding additional climate indices, incorporating new economic variables, or integrating formal statistical models.</p>
-</section>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>This project demonstrates a complete analytical pipeline, from raw data ingestion and cleaning to exploratory analysis and interpretation, implemented within a reusable Python package. The results indicate a consistent within-state relationship between drought severity and farm income. This finding motivates future work that explicitly models state-specific effects or incorporates additional environmental and economic variables.</p>
+<p>Abstract</p>
+<p>This project looks at how drought conditions relate to farm income across U.S. states using state data from 1949 until 2014. Drought severity is measured with the Palmer Drought Severity Index (PDSI), and farm income is measured using state-level income totals categorized by farming product. The analysis follows a consistent workflow to clean, combine, and analyze the data. When income is analyzed at the national level, the relationship with drought appears weak. After adjusting income within each state, a much clearer relationship appears. This shows that changes in drought conditions are linked to changes in farm income within states, even if this pattern is hidden in overall comparisons.</p>
+<ol type="1">
+<li>Introduction</li>
+</ol>
+<p>Studying how weather affects farm income is challenging because U.S. states differ widely from one another. Some states consistently earn much more farm income than others due to differences in crops, land use, and scale of production. When all states are analyzed together, these baseline differences can dominate smaller year-to-year changes.</p>
+<p>The goal of this project is to determine whether drought conditions are related to changes in farm income once these baseline differences are removed. Rather than focusing on raw income levels, the analysis examines how income in a given year compares to a state’s typical income. This makes it easier to compare patterns across states and focus on changes rather than overall size.</p>
+<ol start="2" type="1">
+<li>Data Sources 2.1 Climate Data (PDSI)</li>
+</ol>
+<p>Monthly Palmer Drought Severity Index data were downloaded from NOAA. The raw data are provided as fixed-width text files, so the column locations must be specified manually in order to read them correctly. Each observation includes a state, year, month, and a PDSI value that reflects drought conditions.</p>
+<div id="4413ced4" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">state</th>
+<th data-quarto-table-cell-role="th">division</th>
+<th data-quarto-table-cell-role="th">element</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">jan</th>
+<th data-quarto-table-cell-role="th">feb</th>
+<th data-quarto-table-cell-role="th">mar</th>
+<th data-quarto-table-cell-role="th">apr</th>
+<th data-quarto-table-cell-role="th">may</th>
+<th data-quarto-table-cell-role="th">jun</th>
+<th data-quarto-table-cell-role="th">jul</th>
+<th data-quarto-table-cell-role="th">aug</th>
+<th data-quarto-table-cell-role="th">sep</th>
+<th data-quarto-table-cell-role="th">oct</th>
+<th data-quarto-table-cell-role="th">nov</th>
+<th data-quarto-table-cell-role="th">dec</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>1895</td>
+<td>0.11</td>
+<td>-0.81</td>
+<td>-0.56</td>
+<td>-0.72</td>
+<td>-0.85</td>
+<td>-0.99</td>
+<td>-0.90</td>
+<td>-1.13</td>
+<td>-1.69</td>
+<td>-1.72</td>
+<td>-2.04</td>
+<td>-2.12</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>1896</td>
+<td>-2.47</td>
+<td>-2.06</td>
+<td>-1.75</td>
+<td>-1.84</td>
+<td>-2.16</td>
+<td>-1.74</td>
+<td>-1.53</td>
+<td>-2.10</td>
+<td>-2.23</td>
+<td>-2.41</td>
+<td>-1.61</td>
+<td>-2.53</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>1897</td>
+<td>-2.45</td>
+<td>0.05</td>
+<td>1.48</td>
+<td>1.98</td>
+<td>-0.51</td>
+<td>-1.02</td>
+<td>-1.39</td>
+<td>-1.50</td>
+<td>-2.49</td>
+<td>-3.02</td>
+<td>-3.23</td>
+<td>-2.63</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>1898</td>
+<td>-1.73</td>
+<td>-2.43</td>
+<td>-2.75</td>
+<td>-2.09</td>
+<td>-2.60</td>
+<td>-2.72</td>
+<td>-2.65</td>
+<td>-2.47</td>
+<td>-2.07</td>
+<td>-1.67</td>
+<td>-1.51</td>
+<td>-1.97</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>1899</td>
+<td>0.15</td>
+<td>0.46</td>
+<td>0.96</td>
+<td>-0.24</td>
+<td>-0.89</td>
+<td>-1.51</td>
+<td>-1.57</td>
+<td>-2.10</td>
+<td>-2.66</td>
+<td>-2.85</td>
+<td>-3.31</td>
+<td>-2.88</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>2.2 Farm Income Data</p>
+<p>Farm income data were collected from public U.S. agricultural economic sources. These data are reported at the state-by-year level and represent total farm income before any adjustments. The structure of these data matches the aggregated PDSI data, which allows the two datasets to be combined cleanly.</p>
+<ol start="3" type="1">
+<li>Data Processing and Combination 3.1 Reading and Aggregating PDSI Data</li>
+</ol>
+<p>The raw PDSI text files were read using a custom function designed for fixed-width data. This step converts the text files into tables that can be used in Python. Monthly PDSI values were then averaged within each state and year to create a single yearly drought value, referred to as yearly_avg.</p>
+<p>3.2 Combining Climate and Income Data</p>
+<p>The yearly PDSI data and farm income data were combined using state and year as matching keys. The result is a state-by-year dataset where each row represents one state in one year, with both drought and income information.</p>
+<ol start="4" type="1">
+<li>Exploratory Analysis and Data Cleaning</li>
+</ol>
+<p>Initial plots revealed a clear issue in the PDSI data for the year 2014. In that year, all states showed unusually low values that did not follow the patterns seen in nearby years. Because this behavior is most likely due to a data issue rather than actual drought conditions, these extreme values were removed before continuing the analysis.</p>
+<p>Only values that were clearly unrealistic were filtered out. This helps prevent these points from having too much influence on correlations and fitted relationships.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="precip_over_time.png" class="img-fluid figure-img"></p>
+<figcaption>2014 anomaly</figcaption>
+</figure>
+</div>
+<ol start="5" type="1">
+<li>Methods 5.1 Correlation Analysis</li>
+</ol>
+<p>The relationship between drought conditions and farm income was first explored using Pearson correlation values. Scatter plots were also used to visually examine the relationship and check for general patterns or unusual spread.</p>
+<p>5.2 Adjusting Income Within States</p>
+<p>To remove large income differences across states, farm income was adjusted within each state. For each state, the average income across all years was calculated and subtracted from each yearly value. <!-- $$ 
+\text{adjusted income}_{it}
+= \text{income}_{it} - \bar{\text{income}}_{i}
+$$  --></p>
+<p>This shifts the focus away from absolute income levels and toward how much a given year is above or below a state’s typical income.</p>
+<p>5.3 State-Level Plots</p>
+<p>Scatter plots colored by state were used to see whether states behave differently. These plots make it easier to compare how income responds to drought across states while still showing the overall trend.</p>
+<ol start="6" type="1">
+<li>Results 6.1 Results Using Unadjusted Income</li>
+</ol>
+<p>When farm income is analyzed in its original form, the relationship with PDSI appears weak. The scatter plot shows a wide range of income values, largely driven by differences between states rather than changes over time.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plots/plot_yearly_avg_vs_Value of crop production.png.png" class="img-fluid figure-img"></p>
+<figcaption>PDSI versus unadjusted farm income</figcaption>
+</figure>
+</div>
+<p>6.2 Results Using Adjusted Income</p>
+<p>After adjusting income within states, the relationship between PDSI and income becomes much clearer. The scatter plot is more tightly grouped, and the correlation increases substantially. This suggests that when drought conditions improve or worsen within a state, farm income tends to change in the same direction.</p>
+<p>When points are colored by state, most states show similar upward trends, even though their average income levels differ. This suggests that drought affects farm income in a similar way across states, but around different baseline income levels.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plots/plot_yearly_avg_vs_income_centered.png" class="img-fluid figure-img"></p>
+<figcaption>PDSI versus adjusted farm income</figcaption>
+</figure>
+</div>
+<ol start="7" type="1">
+<li>Python Package Implementation</li>
+</ol>
+<p>All steps of the analysis are wrapped into a Python package so the workflow can be rerun easily. Each step, including reading data, averaging values, combining datasets, cleaning data issues, adjusting income, and creating plots, is handled by a separate function. This structure makes the code easier to follow and reuse.</p>
+<p>The package follows standard Python project rules, including a pyproject.toml file that lists dependencies and build settings. The package can be installed and run in a clean environment without manual setup.</p>
+<ol start="8" type="1">
+<li>Discussion</li>
+</ol>
+<p>Once income differences across states are accounted for, drought severity shows a clear relationship with farm income. Analyses that ignore these differences may incorrectly suggest that drought has little effect. This project shows how relatively simple adjustments can change how results are interpreted.</p>
+<ol start="9" type="1">
+<li>Limitations and Future Work</li>
+</ol>
+<p>This analysis focuses on patterns and correlations rather than cause-and-effect claims. Future work could add regression models with state fixed effects, include delayed drought effects, or use more detailed income data.</p>
+<ol start="10" type="1">
+<li>Conclusion</li>
+</ol>
+<p>This project shows that drought conditions are closely related to changes in farm income within states. By adjusting income to remove baseline differences, the analysis reveals patterns that are hidden when all states are compared together. The workflow also provides a reusable setup for future studies of climate and agriculture.</p>
 
 
 <!-- -->
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -710,63 +849,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Technical Write-up"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example Usage: End-to-End Workflow</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>This example demonstrates how the functions in the farm_precip_project package work together to ingest raw climate data, construct a clean analytical dataset, and analyze the relationship between drought conditions and farm income.</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">### PDSI Data Ingestion and Processing</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>The analysis begins by acquiring Palmer Drought Severity Index (PDSI) data from NOAA. NOAA distributes these data as a fixed-width text file, which requires explicit column specifications for proper parsing. The read_url_txt function downloads the raw file, applies predefined column boundaries, and saves both the original text file and a preliminary CSV file. This step converts the raw data into a structured tabular format suitable for analysis.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>The workflow then computes yearly PDSI averages using normalized_data. The function aggregates monthly PDSI values by state and year to produce a single annual metric, yearly_avg, that summarizes drought conditions. The function saves the resulting cleaned dataset as a new CSV file for downstream use.</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Abstract</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### Farm Income Data</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>This project looks at how drought conditions relate to farm income across U.S. states using state data from 1949 until 2014. Drought severity is measured with the Palmer Drought Severity Index (PDSI), and farm income is measured using state-level income totals categorized by farming product. The analysis follows a consistent workflow to clean, combine, and analyze the data. When income is analyzed at the national level, the relationship with drought appears weak. After adjusting income within each state, a much clearer relationship appears. This shows that changes in drought conditions are linked to changes in farm income within states, even if this pattern is hidden in overall comparisons.</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>The analysis prepares farm income data separately using publicly available agricultural economic sources. These data follow a state year structure, which aligns directly with the aggregated PDSI dataset and allows for straightforward integration.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Introduction</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Integration</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Studying how weather affects farm income is challenging because U.S. states differ widely from one another. Some states consistently earn much more farm income than others due to differences in crops, land use, and scale of production. When all states are analyzed together, these baseline differences can dominate smaller year-to-year changes.</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>The workflow merges the climate and farm income datasets using merge_csvs. Both datasets share the same grouping variables, state and year, which allows for a clean and interpretable join. The merged dataset provides the foundation for exploratory analysis and subsequent modeling.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>The goal of this project is to determine whether drought conditions are related to changes in farm income once these baseline differences are removed. Rather than focusing on raw income levels, the analysis examines how income in a given year compares to a state’s typical income. This makes it easier to compare patterns across states and focus on changes rather than overall size.</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exploratory Data Analysis and Cleaning</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Exploratory analysis identified a systematic data issue in the PDSI values for 2014, where all states exhibited implausible measurements. To address this issue, the workflow applies remove_outliers to exclude observations below a specified threshold. This targeted filtering removes known measurement errors and prevents them from influencing later analyses.</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">### Correlation Analysis</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>The analysis evaluates the relationship between drought conditions and agricultural income using corr_and_plot, which computes a Pearson correlation coefficient and produces a scatterplot of PDSI versus farm income. At the national level, the analysis shows little correlation. Large baseline income differences across states obscure any relationship between drought conditions and income.</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>To isolate within-state variation, the workflow centers income values by state using center_column. This transformation shifts the analysis from absolute income levels to deviations from each state’s average income. Repeating the correlation analysis on the centered data reveals a clearer linear relationship. This result suggests that year-to-year changes in drought conditions associate with changes in farm income within states.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Data Sources</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>2.1 Climate Data (PDSI)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Monthly Palmer Drought Severity Index data were downloaded from NOAA. The raw data are provided as fixed-width text files, so the column locations must be specified manually in order to read them correctly. Each observation includes a state, year, month, and a PDSI value that reflects drought conditions.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">### State-Level Patterns</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>To further examine state-level behavior, the analysis uses make_scatter_w_cat to visualize the centered income and PDSI relationship while coloring observations by state. The plot shows similar slopes across states with differing intercepts. This pattern indicates that states respond to drought in comparable ways but operate around different baseline income levels.</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">### Package Development and Distribution</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>The project implements the full analysis workflow as a Python package to ensure reproducibility, portability, and ease of reuse. Users can install the package directly into a Python environment and reproduce the analysis without manual configuration.</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### Package Structure and GitHub Integration</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">"rain_dirty.csv"</span>).head(<span class="dv">5</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>2.2 Farm Income Data</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Farm income data were collected from public U.S. agricultural economic sources. These data are reported at the state-by-year level and represent total farm income before any adjustments. The structure of these data matches the aggregated PDSI data, which allows the two datasets to be combined cleanly.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Data Processing and Combination</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>3.1 Reading and Aggregating PDSI Data</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>The package follows a standard Python project structure, with all core functionality contained in a dedicated module directory. Each analytical step, including data ingestion, normalization, merging, cleaning, and visualization, exists as a standalone documented function. This design promotes modularity and reuse. The repository includes supporting files such as pyproject.toml, README.md, and license information to comply with modern Python packaging standards.</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>The raw PDSI text files were read using a custom function designed for fixed-width data. This step converts the text files into tables that can be used in Python. Monthly PDSI values were then averaged within each state and year to create a single yearly drought value, referred to as yearly_avg.</span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>The project uses Git and GitHub for version control. GitHub serves as the central repository for development, documentation, and issue tracking. This setup records changes over time and allows users to inspect the source code, report issues, and contribute improvements.</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>3.2 Combining Climate and Income Data</span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">### Building and Publishing the Package</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>The yearly PDSI data and farm income data were combined using state and year as matching keys. The result is a state-by-year dataset where each row represents one state in one year, with both drought and income information.</span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>The package uses a pyproject.toml file to define build requirements, metadata, dependencies, and versioning. The project explicitly lists all external dependencies, including pandas, matplotlib, and seaborn, to ensure consistent installation across environments. The project follows semantic versioning to reflect changes in functionality and stability.</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Exploratory Analysis and Data Cleaning</span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>Before release, the workflow builds the package locally into source and wheel distributions. This step verifies that the package installs correctly in a clean environment. The project then uploads the finalized package to PyPI using an API token for secure authentication. Publishing to PyPI allows users to install the package with a single pip install command.</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>Initial plots revealed a clear issue in the PDSI data for the year 2014. In that year, all states showed unusually low values that did not follow the patterns seen in nearby years. Because this behavior is most likely due to a data issue rather than actual drought conditions, these extreme values were removed before continuing the analysis.</span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">### Reproducibility and Extensibility</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>Only values that were clearly unrealistic were filtered out. This helps prevent these points from having too much influence on correlations and fitted relationships.</span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>Packaging the analysis as a Python library enforces consistent data processing steps and reduces code duplication. The modular design supports future extensions, such as adding additional climate indices, incorporating new economic variables, or integrating formal statistical models.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="al">![2014 anomaly](precip_over_time.png)</span></span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>This project demonstrates a complete analytical pipeline, from raw data ingestion and cleaning to exploratory analysis and interpretation, implemented within a reusable Python package. The results indicate a consistent within-state relationship between drought severity and farm income. This finding motivates future work that explicitly models state-specific effects or incorporates additional environmental and economic variables.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Methods</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>5.1 Correlation Analysis</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>The relationship between drought conditions and farm income was first explored using Pearson correlation values. Scatter plots were also used to visually examine the relationship and check for general patterns or unusual spread.</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>5.2 Adjusting Income Within States</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>To remove large income differences across states, farm income was adjusted within each state. For each state, the average income across all years was calculated and subtracted from each yearly value.</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- $$ </span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co">\text{adjusted income}_{it}</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co">= \text{income}_{it} - \bar{\text{income}}_{i}</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co">$$  --&gt;</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>This shifts the focus away from absolute income levels and toward how much a given year is above or below a state’s typical income.</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>5.3 State-Level Plots</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>Scatter plots colored by state were used to see whether states behave differently. These plots make it easier to compare how income responds to drought across states while still showing the overall trend.</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Results</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>6.1 Results Using Unadjusted Income</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>When farm income is analyzed in its original form, the relationship with PDSI appears weak. The scatter plot shows a wide range of income values, largely driven by differences between states rather than changes over time.</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="al">![PDSI versus unadjusted farm income](plots/plot_yearly_avg_vs_Value%20of%20crop%20production.png.png)</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>6.2 Results Using Adjusted Income</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>After adjusting income within states, the relationship between PDSI and income becomes much clearer. The scatter plot is more tightly grouped, and the correlation increases substantially. This suggests that when drought conditions improve or worsen within a state, farm income tends to change in the same direction.</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>When points are colored by state, most states show similar upward trends, even though their average income levels differ. This suggests that drought affects farm income in a similar way across states, but around different baseline income levels.</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="al">![PDSI versus adjusted farm income](plots/plot_yearly_avg_vs_income_centered.png)</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Python Package Implementation</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>All steps of the analysis are wrapped into a Python package so the workflow can be rerun easily. Each step, including reading data, averaging values, combining datasets, cleaning data issues, adjusting income, and creating plots, is handled by a separate function. This structure makes the code easier to follow and reuse.</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>The package follows standard Python project rules, including a pyproject.toml file that lists dependencies and build settings. The package can be installed and run in a clean environment without manual setup.</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Discussion</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>Once income differences across states are accounted for, drought severity shows a clear relationship with farm income. Analyses that ignore these differences may incorrectly suggest that drought has little effect. This project shows how relatively simple adjustments can change how results are interpreted.</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ss">9. </span>Limitations and Future Work</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>This analysis focuses on patterns and correlations rather than cause-and-effect claims. Future work could add regression models with state fixed effects, include delayed drought effects, or use more detailed income data.</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>Conclusion</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>This project shows that drought conditions are closely related to changes in farm income within states. By adjusting income to remove baseline differences, the analysis reveals patterns that are hidden when all states are compared together. The workflow also provides a reusable setup for future studies of climate and agriculture.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

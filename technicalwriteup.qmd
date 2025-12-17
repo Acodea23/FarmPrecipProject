@@ -5,9 +5,6 @@ format:
   html:
     toc: true
     number-sections: true
-  pdf:
-    toc: true
-    number-sections: true
 execute:
   echo: false
   warning: false
@@ -29,7 +26,11 @@ The goal of this project is to determine whether drought conditions are related 
 
 Monthly Palmer Drought Severity Index data were downloaded from NOAA. The raw data are provided as fixed-width text files, so the column locations must be specified manually in order to read them correctly. Each observation includes a state, year, month, and a PDSI value that reflects drought conditions.
 
-![Raw monthly PDSI values by state and year](docs/tutorial_files/figure-html/cell-7-output-1.png)
+```{python}
+import pandas as pd
+
+pd.read_csv("rain_dirty.csv").head(5)
+```
 
 2.2 Farm Income Data
 
@@ -50,7 +51,7 @@ Initial plots revealed a clear issue in the PDSI data for the year 2014. In that
 
 Only values that were clearly unrealistic were filtered out. This helps prevent these points from having too much influence on correlations and fitted relationships.
 
-![2014 anomaly](docs/tutorial_files/figure-html/cell-9-output-1.png)
+![2014 anomaly](precip_over_time.png)
 
 5. Methods
 5.1 Correlation Analysis
@@ -59,11 +60,11 @@ The relationship between drought conditions and farm income was first explored u
 
 5.2 Adjusting Income Within States
 
-To remove large income differences across states, farm income was adjusted within each state. For each state, the average income across all years was calculated and subtracted from each yearly value:
-$$ 
+To remove large income differences across states, farm income was adjusted within each state. For each state, the average income across all years was calculated and subtracted from each yearly value.
+<!-- $$ 
 \text{adjusted income}_{it}
 = \text{income}_{it} - \bar{\text{income}}_{i}
-$$ 
+$$  -->
 
 This shifts the focus away from absolute income levels and toward how much a given year is above or below a state’s typical income.
 
@@ -76,7 +77,7 @@ Scatter plots colored by state were used to see whether states behave differentl
 
 When farm income is analyzed in its original form, the relationship with PDSI appears weak. The scatter plot shows a wide range of income values, largely driven by differences between states rather than changes over time.
 
-![PDSI versus unadjusted farm income](tutorial_files/figure-html/cell-10-output-1.png)
+![PDSI versus unadjusted farm income](plots/plot_yearly_avg_vs_Value%20of%20crop%20production.png.png)
 
 6.2 Results Using Adjusted Income
 
@@ -84,7 +85,7 @@ After adjusting income within states, the relationship between PDSI and income b
 
 When points are colored by state, most states show similar upward trends, even though their average income levels differ. This suggests that drought affects farm income in a similar way across states, but around different baseline income levels.
 
-![PDSI versus adjusted farm income](tutorial_files/figure-html/cell-18-output-1.png)
+![PDSI versus adjusted farm income](plots/plot_yearly_avg_vs_income_centered.png)
 
 7. Python Package Implementation
 

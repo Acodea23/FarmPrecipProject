@@ -115,6 +115,7 @@ We begin by inspecting basic summaries of the key variables, including PDSI year
 
 ```{python}
 # basic summary statistics
+df = pd.read_csv("combined_farm_precip.csv")
 print(df[["yearly_avg", "Value of crop production"]].describe().to_markdown())
 ```
 
