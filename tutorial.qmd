@@ -120,19 +120,6 @@ print(df[["yearly_avg", "Value of crop production"]].describe().to_markdown())
 
 During this exploration, we discovered that the year 2014 contains extreme PDSI values across all states that are not consistent with surrounding years. These anomalies are likely due to errors in data collection or reporting rather than real climatic conditions.
 
-To address this issue, we remove observations with unrealistic PDSI values using our `remove_outliers` function. This step ensures that subsequent analysis is not driven by spurious data points.
-
-```{python}
-from farm_precip_project import remove_outliers
-
-col_name = "yearly_avg"
-threshold = -50
-
-df = remove_outliers(df, col_name, threshold, lower=True)
-```
-
-After removing these outliers, we re-examine the distributions and confirm that the remaining data follow plausible ranges. With these corrections applied, the dataset is now suitable for correlation analysis and visualization, which we perform in the following sections.
-
 # Analysis
 
 We now want to perform some analysis to better understand the relationship between income and PDSI values.
