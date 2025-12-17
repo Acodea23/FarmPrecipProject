@@ -111,14 +111,10 @@ print(pd.read_csv(new_csv_name).head(1).to_markdown())
 
 Before conducting formal analysis, we perform exploratory data analysis (EDA) to better understand the structure, scale, and potential issues within the merged dataset.
 
-We begin by inspecting basic summaries of the key variables, including PDSI yearly averages and farm income values. This allows us to identify unusual values, missing observations, or potential data collection issues.
+We create several kinds of plots to understand where there may be patterns within our data. 
 
-```{python}
-# basic summary statistics
-print(df[["yearly_avg", "Value of crop production"]].describe().to_markdown())
-```
-
-During this exploration, we discovered that the year 2014 contains extreme PDSI values across all states that are not consistent with surrounding years. These anomalies are likely due to errors in data collection or reporting rather than real climatic conditions.
+![](precip_over_time.png)
+![](correlation_heatmap.png)
 
 # Analysis
 
