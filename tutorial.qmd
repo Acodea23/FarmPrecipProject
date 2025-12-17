@@ -69,8 +69,25 @@ print(pd.read_csv(csv_name).head(1).to_markdown())
 
 ```
 
-# Farm Income Data (Katie Here)
+# Farm Income Data
 
+We now turn to the agricultural income data. These data were collected from publicly available USDA Economic Research Service (ERS) tables and provide yearly state-level measures of farm income.
+
+The raw files contain multiple categories of income and expenses, along with metadata rows that are not useful for analysis. We first clean and reshape the data so that each row corresponds to a single state–year observation with a clearly defined income variable.
+
+```{python}
+import pandas as pd
+
+# read in the raw farm income data
+farm_df = pd.read_csv("FarmIncome_full.csv")
+
+# preview the structure of the data
+print(farm_df.head(1).to_markdown())
+```
+
+We inspect the data to verify that the dataset already contains state and year identifiers, allowing it to be merged directly with the cleaned PDSI data later in the workflow. The income variable of interest is the value of crop production, which we will use as our primary measure of agricultural output.
+
+At this stage, no aggregation is needed, as the data are already recorded at the yearly level. The cleaned farm income file is therefore ready to be merged with the PDSI dataset using state and year as the grouping variables.
 
 # Merging the Data
 
@@ -88,11 +105,33 @@ merge_csvs(new_csv_name, csvs, group_on)
 
 print(pd.read_csv(new_csv_name).head(1).to_markdown())
 
-
 ```
 
-# EDA (Katie Here)
+# EDA
 
+Before conducting formal analysis, we perform exploratory data analysis (EDA) to better understand the structure, scale, and potential issues within the merged dataset.
+
+We begin by inspecting basic summaries of the key variables, including PDSI yearly averages and farm income values. This allows us to identify unusual values, missing observations, or potential data collection issues.
+
+```{python}
+# basic summary statistics
+print(df[["yearly_avg", "Value of crop production"]].describe().to_markdown())
+```
+
+During this exploration, we discovered that the year 2014 contains extreme PDSI values across all states that are not consistent with surrounding years. These anomalies are likely due to errors in data collection or reporting rather than real climatic conditions.
+
+To address this issue, we remove observations with unrealistic PDSI values using our `remove_outliers` function. This step ensures that subsequent analysis is not driven by spurious data points.
+
+```{python}
+from farm_precip_project import remove_outliers
+
+col_name = "yearly_avg"
+threshold = -50
+
+df = remove_outliers(df, col_name, threshold, lower=True)
+```
+
+After removing these outliers, we re-examine the distributions and confirm that the remaining data follow plausible ranges. With these corrections applied, the dataset is now suitable for correlation analysis and visualization, which we perform in the following sections.
 
 # Analysis
 
