@@ -119,6 +119,9 @@ df = pd.read_csv("combined_farm_precip.csv")
 print(df[["yearly_avg", "Value of crop production"]].describe().to_markdown())
 ```
 
+![](precip_over_time.png)
+![](correlation_heatmap.png)
+
 During this exploration, we discovered that the year 2014 contains extreme PDSI values across all states that are not consistent with surrounding years. These anomalies are likely due to errors in data collection or reporting rather than real climatic conditions.
 
 To address this issue, we remove observations with unrealistic PDSI values using our `remove_outliers` function. This step ensures that subsequent analysis is not driven by spurious data points.
