@@ -29,7 +29,7 @@ The goal of this project is to determine whether drought conditions are related 
 
 Monthly Palmer Drought Severity Index data were downloaded from NOAA. The raw data are provided as fixed-width text files, so the column locations must be specified manually in order to read them correctly. Each observation includes a state, year, month, and a PDSI value that reflects drought conditions.
 
-![Raw monthly PDSI values by state and year](docs/tutorial_files/figure-html/cell-10-output-1.png)
+![Raw monthly PDSI values by state and year](docs/tutorial_files/figure-html/cell-7-output-1.png)
 
 2.2 Farm Income Data
 
@@ -50,7 +50,7 @@ Initial plots revealed a clear issue in the PDSI data for the year 2014. In that
 
 Only values that were clearly unrealistic were filtered out. This helps prevent these points from having too much influence on correlations and fitted relationships.
 
-![2014 anomaly](docs/tutorial_files/figure-html/cell-11-output-1.png)
+![2014 anomaly](docs/tutorial_files/figure-html/cell-9-output-1.png)
 
 5. Methods
 5.1 Correlation Analysis
@@ -76,7 +76,7 @@ Scatter plots colored by state were used to see whether states behave differentl
 
 When farm income is analyzed in its original form, the relationship with PDSI appears weak. The scatter plot shows a wide range of income values, largely driven by differences between states rather than changes over time.
 
-![PDSI versus unadjusted farm income](tutorial_files/figure-html/cell-15-output-1.png)
+![PDSI versus unadjusted farm income](tutorial_files/figure-html/cell-10-output-1.png)
 
 6.2 Results Using Adjusted Income
 
