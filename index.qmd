@@ -20,9 +20,9 @@ This data science project investigates the correlations between precipitation an
 
 ## 📊 Project Overview
 
-- **Data Sources**: USDA farm income data, precipitation measurements
-- **Analysis Methods**: Python, Pandas, statistical analysis
-- **Visualization**: Matplotlib, Seaborn
+- **Data Sources**: USDA farm income data, precipitation measurements, BeautifulSoup, Requests
+- **Analysis Methods**: Python, Pandas, Numpy, statistical analysis
+- **Visualization**: Matplotlib, Seaborn, Streamlit
 - **Key Question**: How do precipitation patterns correlate with farm income?
 
 ## 📚 Documentation & Resources
@@ -31,12 +31,12 @@ This data science project investigates the correlations between precipitation an
 
 ::: {.g-col-6}
 ### [Documentation](documentation.qmd)
-Complete technical documentation of the project, data sources, and methodology
+Complete technical documentation of the project, data sources, and functions
 :::
 
 ::: {.g-col-6}
 ### [Tutorial](tutorial.qmd)
-Step-by-step guide to get started with the project
+Step-by-step guide demonstrating how to use the functions to complete an analysis
 :::
 
 ::: {.g-col-6}
@@ -46,7 +46,7 @@ Detailed analysis results and findings from the data
 
 ::: {.g-col-6}
 ### [Streamlit App](https://farmprecipproject-overview.streamlit.app/)
-A live dashboard with insights and summaries. **This will take you to another website**.
+A live dashboard with insights and summaries. **This will take you to another website**
 :::
 
 :::

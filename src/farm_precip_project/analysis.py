@@ -25,7 +25,7 @@ def corr_and_plot(df, col1, col2, plot_file, n_digits):
     plt.xlabel(col1)
     plt.ylabel(col2)
     plt.show()
-    plt.savefig(plot_file)
+    plt.savefig(f"plots/{plot_file}")
     return plt.gcf()
 
 
@@ -50,5 +50,5 @@ def make_scatter_w_cat(df, colx, coly, colcat, plot_file):
         text.set_fontsize(8)  # smaller labels
 
     plt.show()
-    plt.savefig(plot_file)
+    plt.savefig(f"plots/{plot_file}")
     return plt.gcf()

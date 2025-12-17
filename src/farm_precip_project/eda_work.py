@@ -16,7 +16,7 @@ def precip_trend_figure(df, group_by,titles):
     plt.ylabel(titles[1])
     plt.title(titles[2])
     plt.tight_layout()
-    plt.savefig("precip_over_time.png", dpi=300)
+    plt.savefig("plots/precip_over_time.png", dpi=300)
     #plt.close()
     return plt.gcf()  # <- return the figure instead of saving
 
@@ -45,7 +45,7 @@ def crop_income_fig(df, group_by2, titles2):
     plt.ylabel(titles2[1])
     plt.title(titles2[2])
     plt.tight_layout()
-    plt.savefig("crop_income_over_time.png", dpi=300)
+    plt.savefig("plots/crop_income_over_time.png", dpi=300)
     #plt.close()
     return plt.gcf()
 
@@ -58,7 +58,7 @@ def precip_v_income(df, title3):
     plt.ylabel(title3[1])
     plt.title(title3[2])
     plt.tight_layout()
-    plt.savefig("precip_vs_income_scatter.png", dpi=300)
+    plt.savefig("plots/precip_vs_income_scatter.png", dpi=300)
     plt.close()
 
 group3 = "state"
@@ -71,7 +71,7 @@ def statcompscatt(df, group3, titlestate):
     plt.ylabel(titlestate[1])
     plt.title(titlestate[2])
     plt.tight_layout()
-    plt.savefig("state_level_precip_vs_income.png", dpi=300)
+    plt.savefig("plots/state_level_precip_vs_income.png", dpi=300)
     plt.close()
 
 def correl(df):
@@ -88,5 +88,5 @@ def heatmap(df, title="Correlation Heatmap"):
     plt.yticks([0, 1], ["Precip", "Income"])
     plt.title(title)
     plt.tight_layout()
-    plt.savefig("correlation_heatmap.png", dpi=300)
+    plt.savefig("plots/correlation_heatmap.png", dpi=300)
     plt.close()

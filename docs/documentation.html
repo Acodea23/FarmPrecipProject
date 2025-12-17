@@ -181,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Documentation For Package</h1>
+<div class="quarto-title-block"><div><h1 class="title">Documentation For Package</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -216,7 +216,7 @@ print(pd.read_fwf("rain.txt").head(1).to_markdown())
 <p>State code = 01 (which corresponds to a state) Division number = 01 (first climate division in Florida) Element code = 05 (PDSI) Year = 1895 January PDSI value = 0.11 February PDSI value = -0.81 March PDSI value = -0.56 … and so forth through December.</p>
 <p>The Farm Income dataset is an .xlsx file made up of several sheets, one for each state as well as informational guides. It contains rows of data separated by year in columns, containing income data across several different industry types. We chose to focus on food-type crops, found in the first block-like row section of each state sheet.</p>
 <p>An example row from the text file:</p>
-<div id="49e724c0" class="cell" data-execution_count="1">
+<div id="c9dace70" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import pandas as pd</span></span>
@@ -230,7 +230,7 @@ print(pd.read_fwf("rain.txt").head(1).to_markdown())
 <section id="combined-data-file" class="level3">
 <h3 class="anchored" data-anchor-id="combined-data-file">Combined Data File</h3>
 <p>The combined dataset contains information from both datasets joined on the state and the year. It provides PDSI averages for the state along with the state’s to total income, and income by crop category. An example row of the data is included below.</p>
-<div id="b6f8bbac" class="cell" data-execution_count="2">
+<div id="4a492cfa" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -297,7 +297,7 @@ print(pd.read_fwf("rain.txt").head(1).to_markdown())
 <p>Args: <em>df_to_read</em>:str - contains name of csv to read. <em>new_col_name</em>:str - name of new column that is added when calculating average for each row. <em>csv_name_clean</em>:str - name of csv you want to save your calculated table to. (“averaged_vals.csv”) <em>months</em>:list - contains strings of values that will be used to calculate the averages for each row. ([“col1”,“col2”,“col3”]) <em>groups</em>:list - contains strings of values to group by when calculating averages across rows. ([“group1”, “group2”])</p>
 <p>Impact: Returns None. This function will write files, but will not return anything.</p>
 <p>Example:</p>
-<div id="33b246c1" class="cell" data-execution_count="3">
+<div id="312f0014" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -374,7 +374,7 @@ Returns None. Writes the cleaned dataset to: - <strong><code>FarmIncome_full.csv
 </section>
 <section id="example" class="level4">
 <h4 class="anchored" data-anchor-id="example">Example</h4>
-<div id="081afff6" class="cell" data-execution_count="4">
+<div id="b86b939b" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> scrape_farm_data</span>
@@ -398,7 +398,7 @@ Returns None. Writes the cleaned dataset to: - <strong><code>FarmIncome_full.csv
 <p>Impact: Returns None. Writes a new .csv file</p>
 <p>Example:</p>
 <p>Starting csvs:</p>
-<div id="60f028fd" class="cell" data-execution_count="5">
+<div id="9ef3a28e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>csvs <span class="op">=</span> [<span class="st">"FarmIncome_full.csv"</span>, <span class="st">"rain_clean.csv"</span>]</span>
@@ -415,7 +415,7 @@ Returns None. Writes the cleaned dataset to: - <strong><code>FarmIncome_full.csv
 </div>
 </div>
 <p>Merging them:</p>
-<div id="5da49737" class="cell" data-execution_count="6">
+<div id="1bcda1d9" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -442,7 +442,7 @@ Returns None. Writes the cleaned dataset to: - <strong><code>FarmIncome_full.csv
 <section id="data-loading" class="level4">
 <h4 class="anchored" data-anchor-id="data-loading">Data Loading</h4>
 <p>The combined dataset produced by merge_csvs() is read once and reused across all EDA functions.</p>
-<div id="9f3c5053" class="cell" data-execution_count="7">
+<div id="32509c96" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -457,7 +457,7 @@ Returns None. Writes the cleaned dataset to: - <strong><code>FarmIncome_full.csv
 <h4 class="anchored" data-anchor-id="summary-checks">Summary Checks</h4>
 <p>basic_summary(df)</p>
 <p>Provides a quick integrity check of the dataset by displaying sample rows, descriptive statistics, and missing-value counts.</p>
-<div id="26c97101" class="cell" data-execution_count="8">
+<div id="34b0bb6c" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> basic_summary(df):</span>
@@ -548,7 +548,7 @@ dtype: int64</code></pre>
 <section id="temporal-trends" class="level4">
 <h4 class="anchored" data-anchor-id="temporal-trends">Temporal Trends</h4>
 <p>Precipitation over time Plots the national mean yearly PDSI across all states.</p>
-<div id="3931aa35" class="cell" data-execution_count="9">
+<div id="f5bac12e" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> precip_trend_figure(df):</span>
@@ -569,7 +569,7 @@ dtype: int64</code></pre>
 <section id="crop-income-over-time" class="level4">
 <h4 class="anchored" data-anchor-id="crop-income-over-time">Crop income over time</h4>
 <p>Plots the national mean crop cash receipts by year.</p>
-<div id="55168069" class="cell" data-execution_count="10">
+<div id="078249d8" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crop_income_fig(df):</span>
@@ -590,7 +590,7 @@ dtype: int64</code></pre>
 <section id="precipitationincome-relationships" class="level4">
 <h4 class="anchored" data-anchor-id="precipitationincome-relationships">Precipitation–Income Relationships</h4>
 <p>All state-year observations Scatter plot of normalized precipitation versus crop cash receipts.</p>
-<div id="744de00c" class="cell" data-execution_count="11">
+<div id="ccd9bfad" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> precip_v_income(df):</span>
@@ -610,7 +610,7 @@ dtype: int64</code></pre>
 <section id="state-level-averages" class="level4">
 <h4 class="anchored" data-anchor-id="state-level-averages">State-level averages</h4>
 <p>Each point represents a state averaged across all years.</p>
-<div id="3513fae9" class="cell" data-execution_count="12">
+<div id="1563ebef" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> statcompscatt(df):</span>
@@ -631,7 +631,7 @@ dtype: int64</code></pre>
 <section id="correlation-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="correlation-analysis">Correlation Analysis</h4>
 <p>correl(df) Computes the Pearson correlation between precipitation and crop income.</p>
-<div id="5db146db" class="cell" data-execution_count="13">
+<div id="d6c3ca09" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> correl(df):</span>
@@ -649,7 +649,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 </div>
 </div>
 <p>Correlation heatmap Visual summary of the precipitation–income relationship.</p>
-<div id="af99a92e" class="cell" data-execution_count="14">
+<div id="80f9ade9" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> heatmap(corr):</span>
@@ -689,7 +689,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 <p>Impact: Returns a pandas DataFrame. Does not write to any files.</p>
 <p>Example:</p>
 <p>Original df</p>
-<div id="7a5f3798" class="cell" data-execution_count="15">
+<div id="8d92c50e" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -711,7 +711,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 </div>
 </div>
 <p>Using the function</p>
-<div id="6441f85b" class="cell" data-execution_count="16">
+<div id="9d952fbc" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -737,7 +737,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 <p>Returns df with an addition column for the centered data. Does not write any files.</p>
 <p>Example:</p>
 <p>Original df</p>
-<div id="99de3bfb" class="cell" data-execution_count="17">
+<div id="aa822969" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -761,7 +761,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 </div>
 </div>
 <p>Using the function</p>
-<div id="92366410" class="cell" data-execution_count="18">
+<div id="8ff6b55d" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -792,7 +792,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 <p>Args: <em>df</em>:Pandas DataFrame. This must contain columns with the names passed in as other arguments. <em>col1</em>:str. Name of column to plot on x-axis. (“col3”) <em>col2</em>:str. Name of column to plot on y-axis. (“col2”) <em>plot_file</em>:str. File name for .png of plot. (“plot.png”) <em>n_digits</em>:int. Integer for rounding correlation coefficent value (4)</p>
 <p>Impact: Returns the plot from a matplotlib.pyplot. Also saves the plot as a file.</p>
 <p>Example:</p>
-<div id="360ff758" class="cell" data-execution_count="19">
+<div id="165e8b4a" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> corr_and_plot, remove_outliers</span>
@@ -831,7 +831,7 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 <p>Args: <em>df</em>:Pandas DataFrame. This must contain columns with the names passed in as other arguments. <em>colx</em>:str. Name of column to plot on x-axis. (“col3”) <em>coly</em>:str. Name of column to plot on y-axis. (“col2”) <em>colcat</em>:str. Name of column containing categorical variable to group by. <em>plot_file</em>:str. File name for .png of plot. (“plot.png”)</p>
 <p>Impact: Returns plot from matplotlib.pyplot. Also saves plot as a .png file.</p>
 <p>Example:</p>
-<div id="4ee84c64" class="cell" data-execution_count="20">
+<div id="f85e2d2e" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -859,6 +859,8 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
 </div>
 </div>
 
+
+<!-- -->
 
 </section>
 </section>
@@ -934,6 +936,57 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1263,7 +1316,616 @@ Crop cash receipts   -0.121813            1.000000</code></pre>
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Documentation For Package"</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sources</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Precipitation</span><span class="co">](https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt)</span> - NOAA (National Oceanic and Atmospheric Administration). This data uses the PDSI metric. Which is an indicator of how much water is available compared to the average amount of water normally available in that region. It factors in precipitation, temperature, and soil moisture. This data tells us the monthly PDSI of each region of each state for each year. It is reasonable to average across regions, because for each state the regions are roughy equal in size.</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Farm Income</span><span class="co">](https://data.ers.usda.gov/reports.aspx?ID=4047#Pae6cc0e926f6455896ee3f109f3b7f51_14_109iT0R0x43)</span> - USDA (United States Department of Agriculture). This website contains an excel spreadsheet that can be downloaded. This excel file contians a sheet for each state. Each state's sheet contains a column per year where each row contains dollar values for different parts of a State's agricultural profits. It includes crop, livestock, and expense data among other things.</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="fu">### File Descriptions</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>The Precipitation dataset is a .txt file. It's first column contains a code for the state, division, element (in this case PDSI), and year. It then contains a column for each month, which contains the PDSI value for that month.</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>An example row from the txt file:</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{python}</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a><span class="co">import pandas as pd</span></span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a><span class="co">print(pd.read_fwf("rain.txt").head(1).to_markdown())</span></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="co">``` --&gt;</span></span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0101051895 <span class="pp">|</span>   0.11 <span class="pp">|</span>   -0.81 <span class="pp">|</span>   -0.56 <span class="pp">|</span>   -0.72 <span class="pp">|</span>   -0.85 <span class="pp">|</span>   -0.99 <span class="pp">|</span>   -0.90 <span class="pp">|</span>   -1.13 <span class="pp">|</span>   -1.69 <span class="pp">|</span>   -1.72 <span class="pp">|</span>   -2.04 <span class="pp">|</span>   -2.12 <span class="pp">|</span></span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a>State code = 01 (which corresponds to a state)</span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a>Division number = 01 (first climate division in Florida)</span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>Element code = 05 (PDSI)</span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a>Year = 1895</span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a>January PDSI value = 0.11</span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a>February PDSI value = -0.81</span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a>March PDSI value = -0.56</span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a>… and so forth through December.</span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a>The Farm Income dataset is an .xlsx file made up of several sheets, one for each state as well as informational guides. It contains rows of data separated by year in columns, containing income data across several different industry types. We chose to focus on food-type crops, found in the first block-like row section of each state sheet.</span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a>An example row from the text file:</span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a><span class="co"># import pandas as pd</span></span>
+<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a><span class="co"># # read the "Alabama" sheet and show the first few rows</span></span>
+<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a><span class="co"># df = pd.read_excel("VA_State_US (1).xlsx", sheet_name="Alabama")</span></span>
+<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df[5,].to_markdown())</span></span>
+<span id="cb35-50"><a href="#cb35-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-51"><a href="#cb35-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-52"><a href="#cb35-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-53"><a href="#cb35-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Combined Data File</span></span>
+<span id="cb35-54"><a href="#cb35-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-55"><a href="#cb35-55" aria-hidden="true" tabindex="-1"></a>The combined dataset contains information from both datasets joined on the state and the year. It provides PDSI averages for the state along with the state's to total income, and income by crop category. An example row of the data is included below.</span>
+<span id="cb35-56"><a href="#cb35-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-57"><a href="#cb35-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-60"><a href="#cb35-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-61"><a href="#cb35-61" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-62"><a href="#cb35-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(<span class="st">"combined_farm_precip.csv"</span>).head(<span class="dv">1</span>).to_markdown())</span>
+<span id="cb35-63"><a href="#cb35-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-64"><a href="#cb35-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-65"><a href="#cb35-65" aria-hidden="true" tabindex="-1"></a><span class="fu"># Functions</span></span>
+<span id="cb35-66"><a href="#cb35-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-67"><a href="#cb35-67" aria-hidden="true" tabindex="-1"></a><span class="fu">### Precipitation/PDSI Data Preparation</span></span>
+<span id="cb35-68"><a href="#cb35-68" aria-hidden="true" tabindex="-1"></a>These functions will use a url file to produce write multiple files. The raw output from the url to a txt and csv file. It then produces a table that provides the average PDSI per state per year and writes it to a csv.</span>
+<span id="cb35-69"><a href="#cb35-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-70"><a href="#cb35-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**read_url_txt(url, txt_name, csv_name, colspecs, cols)**</span>
+<span id="cb35-71"><a href="#cb35-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-72"><a href="#cb35-72" aria-hidden="true" tabindex="-1"></a>Overview:</span>
+<span id="cb35-73"><a href="#cb35-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-74"><a href="#cb35-74" aria-hidden="true" tabindex="-1"></a>Input is a url containing a .txt file.</span>
+<span id="cb35-75"><a href="#cb35-75" aria-hidden="true" tabindex="-1"></a>Uses requests package to have requests.get output.</span>
+<span id="cb35-76"><a href="#cb35-76" aria-hidden="true" tabindex="-1"></a>Saves a .csv file and uses txt_to_csv() (see below) to save .txt file of dataset.</span>
+<span id="cb35-77"><a href="#cb35-77" aria-hidden="true" tabindex="-1"></a>Calls *txt_to_csv* as part of process.</span>
+<span id="cb35-78"><a href="#cb35-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-79"><a href="#cb35-79" aria-hidden="true" tabindex="-1"></a>Args:</span>
+<span id="cb35-80"><a href="#cb35-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-81"><a href="#cb35-81" aria-hidden="true" tabindex="-1"></a>*url*:str - a url pointing to a remote .txt file. ("https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt")</span>
+<span id="cb35-82"><a href="#cb35-82" aria-hidden="true" tabindex="-1"></a>*txt_name*:str - the name the .txt file will be saved to. ("name.txt")</span>
+<span id="cb35-83"><a href="#cb35-83" aria-hidden="true" tabindex="-1"></a>*csv_name*:str - the name the .csv file will be saved to. ("name.csv")</span>
+<span id="cb35-84"><a href="#cb35-84" aria-hidden="true" tabindex="-1"></a>*col_specs*:list - contains tuples that indicate how to break string into parts. Must be same length as *cols*.(<span class="co">[</span><span class="ot">(0, 2), (2, 4), (4, 6), (6, 10),(10, 17)</span><span class="co">]</span>)</span>
+<span id="cb35-85"><a href="#cb35-85" aria-hidden="true" tabindex="-1"></a>*cols*:list - contains names of new columns that are created with col_specs. Must be same length as *col_specs*. (cols = <span class="co">[</span><span class="ot">"col1", "col2", "col3", "col4","col5"</span><span class="co">]</span>)</span>
+<span id="cb35-86"><a href="#cb35-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-87"><a href="#cb35-87" aria-hidden="true" tabindex="-1"></a>Impact:</span>
+<span id="cb35-88"><a href="#cb35-88" aria-hidden="true" tabindex="-1"></a>Returns None. This function will write files, but will not return anything.</span>
+<span id="cb35-89"><a href="#cb35-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-90"><a href="#cb35-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**txt_to_csv(txt_name, csv_name, colspecs, cols)**</span>
+<span id="cb35-91"><a href="#cb35-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-92"><a href="#cb35-92" aria-hidden="true" tabindex="-1"></a>Overview:</span>
+<span id="cb35-93"><a href="#cb35-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-94"><a href="#cb35-94" aria-hidden="true" tabindex="-1"></a>Reads txt file.</span>
+<span id="cb35-95"><a href="#cb35-95" aria-hidden="true" tabindex="-1"></a>Parses government coding system from first column into various columns.</span>
+<span id="cb35-96"><a href="#cb35-96" aria-hidden="true" tabindex="-1"></a>Converts strings cells containing PDSI information to numeric values, </span>
+<span id="cb35-97"><a href="#cb35-97" aria-hidden="true" tabindex="-1"></a>Writes new broken up table to csv.</span>
+<span id="cb35-98"><a href="#cb35-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-99"><a href="#cb35-99" aria-hidden="true" tabindex="-1"></a>Args:</span>
+<span id="cb35-100"><a href="#cb35-100" aria-hidden="true" tabindex="-1"></a>*txt_name*:str - the name the .txt file will be saved to. ("name.txt")</span>
+<span id="cb35-101"><a href="#cb35-101" aria-hidden="true" tabindex="-1"></a>*csv_name*:str - the name the .csv file will be saved to. ("name.csv")</span>
+<span id="cb35-102"><a href="#cb35-102" aria-hidden="true" tabindex="-1"></a>*col_specs*:list - contains tuples that indicate how to break string into parts. Must be same length as *cols*.(<span class="co">[</span><span class="ot">(0, 2), (2, 4), (4, 6), (6, 10),(10, 17)</span><span class="co">]</span>)</span>
+<span id="cb35-103"><a href="#cb35-103" aria-hidden="true" tabindex="-1"></a>*cols*:list - contains names of new columns that are created with col_specs. Must be same length as *col_specs*. (cols = <span class="co">[</span><span class="ot">"col1", "col2", "col3", "col4","col5"</span><span class="co">]</span>)</span>
+<span id="cb35-104"><a href="#cb35-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-105"><a href="#cb35-105" aria-hidden="true" tabindex="-1"></a>Impact:</span>
+<span id="cb35-106"><a href="#cb35-106" aria-hidden="true" tabindex="-1"></a>Returns None. This function will write files, but will not return anything.</span>
+<span id="cb35-107"><a href="#cb35-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-108"><a href="#cb35-108" aria-hidden="true" tabindex="-1"></a>Example:</span>
+<span id="cb35-109"><a href="#cb35-109" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb35-110"><a href="#cb35-110" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb35-111"><a href="#cb35-111" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-112"><a href="#cb35-112" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> read_url_txt, txt_to_csv</span>
+<span id="cb35-113"><a href="#cb35-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-114"><a href="#cb35-114" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.ncei.noaa.gov/pub/data/cirs/drd/drd964x.pdsi.txt"</span></span>
+<span id="cb35-115"><a href="#cb35-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-116"><a href="#cb35-116" aria-hidden="true" tabindex="-1"></a>txt_name <span class="op">=</span> <span class="st">"rain.txt"</span></span>
+<span id="cb35-117"><a href="#cb35-117" aria-hidden="true" tabindex="-1"></a>csv_name <span class="op">=</span> <span class="st">"rain_dirty.csv"</span></span>
+<span id="cb35-118"><a href="#cb35-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-119"><a href="#cb35-119" aria-hidden="true" tabindex="-1"></a>colspecs <span class="op">=</span> [</span>
+<span id="cb35-120"><a href="#cb35-120" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">0</span>, <span class="dv">2</span>), (<span class="dv">2</span>, <span class="dv">4</span>), (<span class="dv">4</span>, <span class="dv">6</span>), (<span class="dv">6</span>, <span class="dv">10</span>),</span>
+<span id="cb35-121"><a href="#cb35-121" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">10</span>, <span class="dv">17</span>), (<span class="dv">17</span>, <span class="dv">24</span>), (<span class="dv">24</span>, <span class="dv">31</span>), (<span class="dv">31</span>, <span class="dv">38</span>),</span>
+<span id="cb35-122"><a href="#cb35-122" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">38</span>, <span class="dv">45</span>), (<span class="dv">45</span>, <span class="dv">52</span>), (<span class="dv">52</span>, <span class="dv">59</span>), (<span class="dv">59</span>, <span class="dv">66</span>),</span>
+<span id="cb35-123"><a href="#cb35-123" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">66</span>, <span class="dv">73</span>), (<span class="dv">73</span>, <span class="dv">80</span>), (<span class="dv">80</span>, <span class="dv">87</span>), (<span class="dv">87</span>, <span class="dv">94</span>)</span>
+<span id="cb35-124"><a href="#cb35-124" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb35-125"><a href="#cb35-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-126"><a href="#cb35-126" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [</span>
+<span id="cb35-127"><a href="#cb35-127" aria-hidden="true" tabindex="-1"></a>    <span class="st">"state"</span>, <span class="st">"division"</span>, <span class="st">"element"</span>, <span class="st">"year"</span>,</span>
+<span id="cb35-128"><a href="#cb35-128" aria-hidden="true" tabindex="-1"></a>    <span class="st">"jan"</span>,<span class="st">"feb"</span>,<span class="st">"mar"</span>,<span class="st">"apr"</span>,<span class="st">"may"</span>,<span class="st">"jun"</span>,<span class="st">"jul"</span>,<span class="st">"aug"</span>,</span>
+<span id="cb35-129"><a href="#cb35-129" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sep"</span>,<span class="st">"oct"</span>,<span class="st">"nov"</span>,<span class="st">"dec"</span></span>
+<span id="cb35-130"><a href="#cb35-130" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb35-131"><a href="#cb35-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-132"><a href="#cb35-132" aria-hidden="true" tabindex="-1"></a>read_url_txt(url, txt_name, csv_name, colspecs, cols)</span>
+<span id="cb35-133"><a href="#cb35-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-134"><a href="#cb35-134" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(csv_name).head(<span class="dv">1</span>).to_markdown())</span>
+<span id="cb35-135"><a href="#cb35-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-136"><a href="#cb35-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-137"><a href="#cb35-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**normalized_data(df, months, groups, csv_name_clean, new_col_name)**</span>
+<span id="cb35-138"><a href="#cb35-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-139"><a href="#cb35-139" aria-hidden="true" tabindex="-1"></a>Overview:</span>
+<span id="cb35-140"><a href="#cb35-140" aria-hidden="true" tabindex="-1"></a>Averages the PDSI across months for each row, and saves it as a new column. This is the yearly average PDSI for each district of each state.</span>
+<span id="cb35-141"><a href="#cb35-141" aria-hidden="true" tabindex="-1"></a>Creates a new table averaging the yearly PDSI for every state across all its districts.</span>
+<span id="cb35-142"><a href="#cb35-142" aria-hidden="true" tabindex="-1"></a>Writes the table to a csv.</span>
+<span id="cb35-143"><a href="#cb35-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-144"><a href="#cb35-144" aria-hidden="true" tabindex="-1"></a>Args:</span>
+<span id="cb35-145"><a href="#cb35-145" aria-hidden="true" tabindex="-1"></a>*df_to_read*:str - contains name of csv to read.</span>
+<span id="cb35-146"><a href="#cb35-146" aria-hidden="true" tabindex="-1"></a>*new_col_name*:str - name of new column that is added when calculating average for each row.</span>
+<span id="cb35-147"><a href="#cb35-147" aria-hidden="true" tabindex="-1"></a>*csv_name_clean*:str - name of csv you want to save your calculated table to. ("averaged_vals.csv")</span>
+<span id="cb35-148"><a href="#cb35-148" aria-hidden="true" tabindex="-1"></a>*months*:list - contains strings of values that will be used to calculate the averages for each row. (<span class="co">[</span><span class="ot">"col1","col2","col3"</span><span class="co">]</span>)</span>
+<span id="cb35-149"><a href="#cb35-149" aria-hidden="true" tabindex="-1"></a>*groups*:list - contains strings of values to group by when calculating averages across rows. (<span class="co">[</span><span class="ot">"group1", "group2"</span><span class="co">]</span>)</span>
+<span id="cb35-150"><a href="#cb35-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-151"><a href="#cb35-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-152"><a href="#cb35-152" aria-hidden="true" tabindex="-1"></a>Impact:</span>
+<span id="cb35-153"><a href="#cb35-153" aria-hidden="true" tabindex="-1"></a>Returns None. This function will write files, but will not return anything.</span>
+<span id="cb35-154"><a href="#cb35-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-155"><a href="#cb35-155" aria-hidden="true" tabindex="-1"></a>Example:</span>
+<span id="cb35-158"><a href="#cb35-158" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-159"><a href="#cb35-159" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-160"><a href="#cb35-160" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> normalized_data</span>
+<span id="cb35-161"><a href="#cb35-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-162"><a href="#cb35-162" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> [<span class="st">"jan"</span>,<span class="st">"feb"</span>,<span class="st">"mar"</span>,<span class="st">'apr'</span>,<span class="st">"may"</span>,<span class="st">"jun"</span>,<span class="st">"jul"</span>,<span class="st">"aug"</span>,<span class="st">"sep"</span>,<span class="st">"oct"</span>,<span class="st">"nov"</span>,<span class="st">"dec"</span>]</span>
+<span id="cb35-163"><a href="#cb35-163" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [<span class="st">"state"</span>,<span class="st">"year"</span>]</span>
+<span id="cb35-164"><a href="#cb35-164" aria-hidden="true" tabindex="-1"></a>new_col_name <span class="op">=</span> <span class="st">"yearly_avg"</span></span>
+<span id="cb35-165"><a href="#cb35-165" aria-hidden="true" tabindex="-1"></a>csv_name_clean <span class="op">=</span> <span class="st">"rain_clean.csv"</span></span>
+<span id="cb35-166"><a href="#cb35-166" aria-hidden="true" tabindex="-1"></a>df_to_read <span class="op">=</span> <span class="st">"rain_dirty.csv"</span></span>
+<span id="cb35-167"><a href="#cb35-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-168"><a href="#cb35-168" aria-hidden="true" tabindex="-1"></a>normalized_data(df_to_read, new_col_name, csv_name_clean, months, groups)</span>
+<span id="cb35-169"><a href="#cb35-169" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(csv_name_clean).head(<span class="dv">1</span>).to_markdown())</span>
+<span id="cb35-170"><a href="#cb35-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-171"><a href="#cb35-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-172"><a href="#cb35-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-173"><a href="#cb35-173" aria-hidden="true" tabindex="-1"></a><span class="fu">### Farm Data Preparation</span></span>
+<span id="cb35-174"><a href="#cb35-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-175"><a href="#cb35-175" aria-hidden="true" tabindex="-1"></a>These functions extract and standardize farm income and crop-category data from historical USDA Excel workbooks. The workflow converts wide, state-specific tables into a tidy format with one row per state per year, matching the structure of <span class="in">`FarmIncome.xlsx`</span>. The cleaned output is written to a CSV file for direct merging with the PDSI dataset.</span>
+<span id="cb35-176"><a href="#cb35-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-177"><a href="#cb35-177" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb35-178"><a href="#cb35-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-179"><a href="#cb35-179" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Utility Functions</span></span>
+<span id="cb35-180"><a href="#cb35-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-181"><a href="#cb35-181" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**row_by_label(df, label)**</span>
+<span id="cb35-182"><a href="#cb35-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-183"><a href="#cb35-183" aria-hidden="true" tabindex="-1"></a>**Overview:**  </span>
+<span id="cb35-184"><a href="#cb35-184" aria-hidden="true" tabindex="-1"></a>Finds the first row in a DataFrame whose first column exactly matches a specified text label. This is used to locate crop-category rows (e.g., *Cotton*, *Food grains*) in the VA workbook sheets.</span>
+<span id="cb35-185"><a href="#cb35-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-186"><a href="#cb35-186" aria-hidden="true" tabindex="-1"></a>**Args:**  </span>
+<span id="cb35-187"><a href="#cb35-187" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*df*: pd.DataFrame — DataFrame read from an Excel sheet  </span>
+<span id="cb35-188"><a href="#cb35-188" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*label*: str — row label to search for in the first column  </span>
+<span id="cb35-189"><a href="#cb35-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-190"><a href="#cb35-190" aria-hidden="true" tabindex="-1"></a>**Impact:**  </span>
+<span id="cb35-191"><a href="#cb35-191" aria-hidden="true" tabindex="-1"></a>Returns a pandas Series for the matched row, or <span class="in">`None`</span> if the label is not found. This function does not write files.</span>
+<span id="cb35-192"><a href="#cb35-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-193"><a href="#cb35-193" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb35-194"><a href="#cb35-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-195"><a href="#cb35-195" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Farm Data Extraction</span></span>
+<span id="cb35-196"><a href="#cb35-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-197"><a href="#cb35-197" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**extract_state_rows(va_path, sheet_name, state_id, years_needed)**</span>
+<span id="cb35-198"><a href="#cb35-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-199"><a href="#cb35-199" aria-hidden="true" tabindex="-1"></a>**Overview:**  </span>
+<span id="cb35-200"><a href="#cb35-200" aria-hidden="true" tabindex="-1"></a>Extracts crop-related income values for a single state from the VA workbook and returns a standardized table with one row per year. The function maps Excel year headers to columns, pulls relevant crop-category rows, and formats the results to match the structure of <span class="in">`FarmIncome.xlsx`</span>.</span>
+<span id="cb35-201"><a href="#cb35-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-202"><a href="#cb35-202" aria-hidden="true" tabindex="-1"></a>**Args:**  </span>
+<span id="cb35-203"><a href="#cb35-203" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*va_path*: str — path to the VA workbook  </span>
+<span id="cb35-204"><a href="#cb35-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*sheet_name*: str — name of the Excel sheet corresponding to the state  </span>
+<span id="cb35-205"><a href="#cb35-205" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*state_id*: int — numeric identifier for the state (1–48)  </span>
+<span id="cb35-206"><a href="#cb35-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*years_needed*: list<span class="co">[</span><span class="ot">int</span><span class="co">]</span> — years to extract  </span>
+<span id="cb35-207"><a href="#cb35-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-208"><a href="#cb35-208" aria-hidden="true" tabindex="-1"></a>**Impact:**  </span>
+<span id="cb35-209"><a href="#cb35-209" aria-hidden="true" tabindex="-1"></a>Returns a pd.DataFrame containing:</span>
+<span id="cb35-210"><a href="#cb35-210" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`state`</span>, <span class="in">`year`</span></span>
+<span id="cb35-211"><a href="#cb35-211" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Value of crop production`</span></span>
+<span id="cb35-212"><a href="#cb35-212" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Crop cash receipts`</span></span>
+<span id="cb35-213"><a href="#cb35-213" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Cotton`</span></span>
+<span id="cb35-214"><a href="#cb35-214" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Feed crops`</span></span>
+<span id="cb35-215"><a href="#cb35-215" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Food grains`</span></span>
+<span id="cb35-216"><a href="#cb35-216" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Fruits and nuts`</span></span>
+<span id="cb35-217"><a href="#cb35-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Oil crops`</span></span>
+<span id="cb35-218"><a href="#cb35-218" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Vegetables and melons`</span></span>
+<span id="cb35-219"><a href="#cb35-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`All other crops`</span></span>
+<span id="cb35-220"><a href="#cb35-220" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Home consumption`</span></span>
+<span id="cb35-221"><a href="#cb35-221" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Inventory adjustment`</span></span>
+<span id="cb35-222"><a href="#cb35-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-223"><a href="#cb35-223" aria-hidden="true" tabindex="-1"></a>No files are written by this function.</span>
+<span id="cb35-224"><a href="#cb35-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-225"><a href="#cb35-225" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb35-226"><a href="#cb35-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-227"><a href="#cb35-227" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Full Farm Dataset Construction</span></span>
+<span id="cb35-228"><a href="#cb35-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-229"><a href="#cb35-229" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**scrape_farm_data()**</span>
+<span id="cb35-230"><a href="#cb35-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-231"><a href="#cb35-231" aria-hidden="true" tabindex="-1"></a>**Overview:**  </span>
+<span id="cb35-232"><a href="#cb35-232" aria-hidden="true" tabindex="-1"></a>Builds a complete farm income dataset for all 48 contiguous U.S. states by looping through each state sheet in the VA workbook, extracting standardized crop data, and combining the results into a single tidy table.</span>
+<span id="cb35-233"><a href="#cb35-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-234"><a href="#cb35-234" aria-hidden="true" tabindex="-1"></a>Key steps:</span>
+<span id="cb35-235"><a href="#cb35-235" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Reads <span class="in">`FarmIncome.xlsx`</span> to obtain the target years and column order  </span>
+<span id="cb35-236"><a href="#cb35-236" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Assigns numeric state IDs (1–48) in alphabetical order  </span>
+<span id="cb35-237"><a href="#cb35-237" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Extracts yearly crop data for each state using <span class="in">`extract_state_rows`</span>  </span>
+<span id="cb35-238"><a href="#cb35-238" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Concatenates, sorts, and aligns all state data  </span>
+<span id="cb35-239"><a href="#cb35-239" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Writes the final dataset to a CSV file  </span>
+<span id="cb35-240"><a href="#cb35-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-241"><a href="#cb35-241" aria-hidden="true" tabindex="-1"></a>**Args:**  </span>
+<span id="cb35-242"><a href="#cb35-242" aria-hidden="true" tabindex="-1"></a>None</span>
+<span id="cb35-243"><a href="#cb35-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-244"><a href="#cb35-244" aria-hidden="true" tabindex="-1"></a>**Impact:**  </span>
+<span id="cb35-245"><a href="#cb35-245" aria-hidden="true" tabindex="-1"></a>Returns None. Writes the cleaned dataset to:</span>
+<span id="cb35-246"><a href="#cb35-246" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**`FarmIncome_full.csv`**</span>
+<span id="cb35-247"><a href="#cb35-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-248"><a href="#cb35-248" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb35-249"><a href="#cb35-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-250"><a href="#cb35-250" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Example</span></span>
+<span id="cb35-251"><a href="#cb35-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-254"><a href="#cb35-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-255"><a href="#cb35-255" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> scrape_farm_data</span>
+<span id="cb35-256"><a href="#cb35-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-257"><a href="#cb35-257" aria-hidden="true" tabindex="-1"></a>scrape_farm_data()</span>
+<span id="cb35-258"><a href="#cb35-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-259"><a href="#cb35-259" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-260"><a href="#cb35-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-261"><a href="#cb35-261" aria-hidden="true" tabindex="-1"></a><span class="fu">### Combining data</span></span>
+<span id="cb35-262"><a href="#cb35-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-263"><a href="#cb35-263" aria-hidden="true" tabindex="-1"></a>We created a function to merge two datasets on specific values and to save the merged data in a csv.</span>
+<span id="cb35-264"><a href="#cb35-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-265"><a href="#cb35-265" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**merge_csvs(new_csv_name, csvs, group_on)**</span>
+<span id="cb35-266"><a href="#cb35-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-267"><a href="#cb35-267" aria-hidden="true" tabindex="-1"></a>Overview:</span>
+<span id="cb35-268"><a href="#cb35-268" aria-hidden="true" tabindex="-1"></a>Reads two .csv files.</span>
+<span id="cb35-269"><a href="#cb35-269" aria-hidden="true" tabindex="-1"></a>Merges the files on a set of columns.</span>
+<span id="cb35-270"><a href="#cb35-270" aria-hidden="true" tabindex="-1"></a>Writes the merged table to a .csv.</span>
+<span id="cb35-271"><a href="#cb35-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-272"><a href="#cb35-272" aria-hidden="true" tabindex="-1"></a>Args:</span>
+<span id="cb35-273"><a href="#cb35-273" aria-hidden="true" tabindex="-1"></a>*new_csv_name*:str Name to use for merged .csv file ("merged.csv")</span>
+<span id="cb35-274"><a href="#cb35-274" aria-hidden="true" tabindex="-1"></a>*csvs*:list Contains two strings where each string is a .csv to be read and merged (<span class="co">[</span><span class="ot">"tble1.csv", "tble2.csv"</span><span class="co">]</span>)</span>
+<span id="cb35-275"><a href="#cb35-275" aria-hidden="true" tabindex="-1"></a>*group_on*:list Contains strings where each string is a column to be grouped on (<span class="co">[</span><span class="ot">"col1", "col2", "col3"</span><span class="co">]</span>)</span>
+<span id="cb35-276"><a href="#cb35-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-277"><a href="#cb35-277" aria-hidden="true" tabindex="-1"></a>Impact:</span>
+<span id="cb35-278"><a href="#cb35-278" aria-hidden="true" tabindex="-1"></a>Returns None. Writes a new .csv file</span>
+<span id="cb35-279"><a href="#cb35-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-280"><a href="#cb35-280" aria-hidden="true" tabindex="-1"></a>Example:</span>
+<span id="cb35-281"><a href="#cb35-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-282"><a href="#cb35-282" aria-hidden="true" tabindex="-1"></a>Starting csvs:</span>
+<span id="cb35-285"><a href="#cb35-285" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-286"><a href="#cb35-286" aria-hidden="true" tabindex="-1"></a>csvs <span class="op">=</span> [<span class="st">"FarmIncome_full.csv"</span>, <span class="st">"rain_clean.csv"</span>]</span>
+<span id="cb35-287"><a href="#cb35-287" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(csvs[<span class="dv">0</span>]).head(<span class="dv">1</span>).to_markdown())</span>
+<span id="cb35-288"><a href="#cb35-288" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(csvs[<span class="dv">1</span>]).head(<span class="dv">1</span>).to_markdown())</span>
+<span id="cb35-289"><a href="#cb35-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-290"><a href="#cb35-290" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-291"><a href="#cb35-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-292"><a href="#cb35-292" aria-hidden="true" tabindex="-1"></a>Merging them:</span>
+<span id="cb35-295"><a href="#cb35-295" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-296"><a href="#cb35-296" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-297"><a href="#cb35-297" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> merge_csvs</span>
+<span id="cb35-298"><a href="#cb35-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-299"><a href="#cb35-299" aria-hidden="true" tabindex="-1"></a>csvs <span class="op">=</span> [<span class="st">"FarmIncome_full.csv"</span>, <span class="st">"rain_clean.csv"</span>]</span>
+<span id="cb35-300"><a href="#cb35-300" aria-hidden="true" tabindex="-1"></a>group_on <span class="op">=</span> [<span class="st">"state"</span>, <span class="st">"year"</span>]</span>
+<span id="cb35-301"><a href="#cb35-301" aria-hidden="true" tabindex="-1"></a>new_csv_name <span class="op">=</span> <span class="st">"combined_farm_precip.csv"</span></span>
+<span id="cb35-302"><a href="#cb35-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-303"><a href="#cb35-303" aria-hidden="true" tabindex="-1"></a>merge_csvs(new_csv_name, csvs, group_on)</span>
+<span id="cb35-304"><a href="#cb35-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-305"><a href="#cb35-305" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.read_csv(new_csv_name).head(<span class="dv">1</span>).to_markdown())</span>
+<span id="cb35-306"><a href="#cb35-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-307"><a href="#cb35-307" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-308"><a href="#cb35-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-309"><a href="#cb35-309" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exploratory Data Analysis (EDA)</span></span>
+<span id="cb35-310"><a href="#cb35-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-311"><a href="#cb35-311" aria-hidden="true" tabindex="-1"></a>This section performs exploratory analysis on the merged precipitation–farm income dataset to validate data quality, summarize distributions, and visualize temporal and cross-sectional relationships between normalized precipitation (PDSI) and crop income. All figures are saved as high-resolution PNG files.</span>
+<span id="cb35-312"><a href="#cb35-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-313"><a href="#cb35-313" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Data Loading</span></span>
+<span id="cb35-314"><a href="#cb35-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-315"><a href="#cb35-315" aria-hidden="true" tabindex="-1"></a>The combined dataset produced by merge_csvs() is read once and reused across all EDA functions.</span>
+<span id="cb35-318"><a href="#cb35-318" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-319"><a href="#cb35-319" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-320"><a href="#cb35-320" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb35-321"><a href="#cb35-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-322"><a href="#cb35-322" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"combined_farm_precip.csv"</span>)</span>
+<span id="cb35-323"><a href="#cb35-323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-324"><a href="#cb35-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-325"><a href="#cb35-325" aria-hidden="true" tabindex="-1"></a>This dataset contains one row per state per year, including normalized precipitation (yearly_avg) and multiple farm income variables.</span>
+<span id="cb35-326"><a href="#cb35-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-327"><a href="#cb35-327" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Summary Checks</span></span>
+<span id="cb35-328"><a href="#cb35-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-329"><a href="#cb35-329" aria-hidden="true" tabindex="-1"></a>basic_summary(df)</span>
+<span id="cb35-330"><a href="#cb35-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-331"><a href="#cb35-331" aria-hidden="true" tabindex="-1"></a>Provides a quick integrity check of the dataset by displaying sample rows, descriptive statistics, and missing-value counts.</span>
+<span id="cb35-332"><a href="#cb35-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-335"><a href="#cb35-335" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-336"><a href="#cb35-336" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> basic_summary(df):</span>
+<span id="cb35-337"><a href="#cb35-337" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df.head())</span>
+<span id="cb35-338"><a href="#cb35-338" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df.describe())</span>
+<span id="cb35-339"><a href="#cb35-339" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df.isna().<span class="bu">sum</span>())</span>
+<span id="cb35-340"><a href="#cb35-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-341"><a href="#cb35-341" aria-hidden="true" tabindex="-1"></a>basic_summary(df)</span>
+<span id="cb35-342"><a href="#cb35-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-343"><a href="#cb35-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-344"><a href="#cb35-344" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Temporal Trends</span></span>
+<span id="cb35-345"><a href="#cb35-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-346"><a href="#cb35-346" aria-hidden="true" tabindex="-1"></a>Precipitation over time</span>
+<span id="cb35-347"><a href="#cb35-347" aria-hidden="true" tabindex="-1"></a>Plots the national mean yearly PDSI across all states.</span>
+<span id="cb35-348"><a href="#cb35-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-351"><a href="#cb35-351" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-352"><a href="#cb35-352" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> precip_trend_figure(df):</span>
+<span id="cb35-353"><a href="#cb35-353" aria-hidden="true" tabindex="-1"></a>    mean_precip_by_year <span class="op">=</span> df.groupby(<span class="st">"year"</span>)[<span class="st">"yearly_avg"</span>].mean()</span>
+<span id="cb35-354"><a href="#cb35-354" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb35-355"><a href="#cb35-355" aria-hidden="true" tabindex="-1"></a>    plt.plot(mean_precip_by_year)</span>
+<span id="cb35-356"><a href="#cb35-356" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb35-357"><a href="#cb35-357" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Mean Normalized Precipitation"</span>)</span>
+<span id="cb35-358"><a href="#cb35-358" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Average Precipitation Across the U.S. Over Time"</span>)</span>
+<span id="cb35-359"><a href="#cb35-359" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb35-360"><a href="#cb35-360" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"precip_over_time.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb35-361"><a href="#cb35-361" aria-hidden="true" tabindex="-1"></a>    plt.close()</span>
+<span id="cb35-362"><a href="#cb35-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-363"><a href="#cb35-363" aria-hidden="true" tabindex="-1"></a>precip_trend_figure(df)</span>
+<span id="cb35-364"><a href="#cb35-364" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-365"><a href="#cb35-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-366"><a href="#cb35-366" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Crop income over time</span></span>
+<span id="cb35-367"><a href="#cb35-367" aria-hidden="true" tabindex="-1"></a>Plots the national mean crop cash receipts by year.</span>
+<span id="cb35-368"><a href="#cb35-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-371"><a href="#cb35-371" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-372"><a href="#cb35-372" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crop_income_fig(df):</span>
+<span id="cb35-373"><a href="#cb35-373" aria-hidden="true" tabindex="-1"></a>    mean_income_by_year <span class="op">=</span> df.groupby(<span class="st">"year"</span>)[<span class="st">"Crop cash receipts"</span>].mean()</span>
+<span id="cb35-374"><a href="#cb35-374" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb35-375"><a href="#cb35-375" aria-hidden="true" tabindex="-1"></a>    plt.plot(mean_income_by_year)</span>
+<span id="cb35-376"><a href="#cb35-376" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb35-377"><a href="#cb35-377" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Mean Crop Cash Receipts"</span>)</span>
+<span id="cb35-378"><a href="#cb35-378" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Crop Income Trends Over Time"</span>)</span>
+<span id="cb35-379"><a href="#cb35-379" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb35-380"><a href="#cb35-380" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"crop_income_over_time.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb35-381"><a href="#cb35-381" aria-hidden="true" tabindex="-1"></a>    plt.close()</span>
+<span id="cb35-382"><a href="#cb35-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-383"><a href="#cb35-383" aria-hidden="true" tabindex="-1"></a>crop_income_fig(df) </span>
+<span id="cb35-384"><a href="#cb35-384" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-385"><a href="#cb35-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-386"><a href="#cb35-386" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Precipitation–Income Relationships</span></span>
+<span id="cb35-387"><a href="#cb35-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-388"><a href="#cb35-388" aria-hidden="true" tabindex="-1"></a>All state-year observations</span>
+<span id="cb35-389"><a href="#cb35-389" aria-hidden="true" tabindex="-1"></a>Scatter plot of normalized precipitation versus crop cash receipts.</span>
+<span id="cb35-390"><a href="#cb35-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-393"><a href="#cb35-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-394"><a href="#cb35-394" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> precip_v_income(df):</span>
+<span id="cb35-395"><a href="#cb35-395" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb35-396"><a href="#cb35-396" aria-hidden="true" tabindex="-1"></a>    plt.scatter(df[<span class="st">"yearly_avg"</span>], df[<span class="st">"Crop cash receipts"</span>], s<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb35-397"><a href="#cb35-397" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Normalized Precipitation"</span>)</span>
+<span id="cb35-398"><a href="#cb35-398" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Crop Cash Receipts"</span>)</span>
+<span id="cb35-399"><a href="#cb35-399" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Precipitation vs. Crop Income"</span>)</span>
+<span id="cb35-400"><a href="#cb35-400" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb35-401"><a href="#cb35-401" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"precip_vs_income_scatter.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb35-402"><a href="#cb35-402" aria-hidden="true" tabindex="-1"></a>    plt.close()</span>
+<span id="cb35-403"><a href="#cb35-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-404"><a href="#cb35-404" aria-hidden="true" tabindex="-1"></a>precip_v_income(df)</span>
+<span id="cb35-405"><a href="#cb35-405" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-406"><a href="#cb35-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-407"><a href="#cb35-407" aria-hidden="true" tabindex="-1"></a><span class="fu">#### State-level averages</span></span>
+<span id="cb35-408"><a href="#cb35-408" aria-hidden="true" tabindex="-1"></a>Each point represents a state averaged across all years.</span>
+<span id="cb35-409"><a href="#cb35-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-410"><a href="#cb35-410" aria-hidden="true" tabindex="-1"></a><span class="in">``` {python}</span></span>
+<span id="cb35-411"><a href="#cb35-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-412"><a href="#cb35-412" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> statcompscatt(df):</span>
+<span id="cb35-413"><a href="#cb35-413" aria-hidden="true" tabindex="-1"></a>    state_summary <span class="op">=</span> df.groupby(<span class="st">"state"</span>)[[<span class="st">"yearly_avg"</span>, <span class="st">"Crop cash receipts"</span>]].mean()</span>
+<span id="cb35-414"><a href="#cb35-414" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb35-415"><a href="#cb35-415" aria-hidden="true" tabindex="-1"></a>    plt.scatter(state_summary[<span class="st">"yearly_avg"</span>], state_summary[<span class="st">"Crop cash receipts"</span>])</span>
+<span id="cb35-416"><a href="#cb35-416" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Mean Normalized Precipitation"</span>)</span>
+<span id="cb35-417"><a href="#cb35-417" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Mean Crop Cash Receipts"</span>)</span>
+<span id="cb35-418"><a href="#cb35-418" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"State-Level Income vs. Precipitation"</span>)</span>
+<span id="cb35-419"><a href="#cb35-419" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb35-420"><a href="#cb35-420" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"state_level_precip_vs_income.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb35-421"><a href="#cb35-421" aria-hidden="true" tabindex="-1"></a>    plt.close()</span>
+<span id="cb35-422"><a href="#cb35-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-423"><a href="#cb35-423" aria-hidden="true" tabindex="-1"></a>statcompscatt(df)</span>
+<span id="cb35-424"><a href="#cb35-424" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-425"><a href="#cb35-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-426"><a href="#cb35-426" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Correlation Analysis</span></span>
+<span id="cb35-427"><a href="#cb35-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-428"><a href="#cb35-428" aria-hidden="true" tabindex="-1"></a>correl(df)</span>
+<span id="cb35-429"><a href="#cb35-429" aria-hidden="true" tabindex="-1"></a>Computes the Pearson correlation between precipitation and crop income.</span>
+<span id="cb35-430"><a href="#cb35-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-433"><a href="#cb35-433" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-434"><a href="#cb35-434" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> correl(df):</span>
+<span id="cb35-435"><a href="#cb35-435" aria-hidden="true" tabindex="-1"></a>    corr <span class="op">=</span> df[[<span class="st">"yearly_avg"</span>, <span class="st">"Crop cash receipts"</span>]].corr()</span>
+<span id="cb35-436"><a href="#cb35-436" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Correlation Matrix:</span><span class="ch">\n</span><span class="st">"</span>, corr)</span>
+<span id="cb35-437"><a href="#cb35-437" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corr</span>
+<span id="cb35-438"><a href="#cb35-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-439"><a href="#cb35-439" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> correl(df)</span>
+<span id="cb35-440"><a href="#cb35-440" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-441"><a href="#cb35-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-442"><a href="#cb35-442" aria-hidden="true" tabindex="-1"></a>Correlation heatmap</span>
+<span id="cb35-443"><a href="#cb35-443" aria-hidden="true" tabindex="-1"></a>Visual summary of the precipitation–income relationship.</span>
+<span id="cb35-444"><a href="#cb35-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-447"><a href="#cb35-447" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-448"><a href="#cb35-448" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> heatmap(corr):</span>
+<span id="cb35-449"><a href="#cb35-449" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">5</span>))</span>
+<span id="cb35-450"><a href="#cb35-450" aria-hidden="true" tabindex="-1"></a>    plt.imshow(corr, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb35-451"><a href="#cb35-451" aria-hidden="true" tabindex="-1"></a>    plt.colorbar(label<span class="op">=</span><span class="st">"Correlation"</span>)</span>
+<span id="cb35-452"><a href="#cb35-452" aria-hidden="true" tabindex="-1"></a>    plt.xticks([<span class="dv">0</span>,<span class="dv">1</span>], [<span class="st">"Precip"</span>, <span class="st">"Income"</span>])</span>
+<span id="cb35-453"><a href="#cb35-453" aria-hidden="true" tabindex="-1"></a>    plt.yticks([<span class="dv">0</span>,<span class="dv">1</span>], [<span class="st">"Precip"</span>, <span class="st">"Income"</span>])</span>
+<span id="cb35-454"><a href="#cb35-454" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Correlation Heatmap"</span>)</span>
+<span id="cb35-455"><a href="#cb35-455" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb35-456"><a href="#cb35-456" aria-hidden="true" tabindex="-1"></a>    plt.savefig(<span class="st">"correlation_heatmap.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb35-457"><a href="#cb35-457" aria-hidden="true" tabindex="-1"></a>    plt.close()</span>
+<span id="cb35-458"><a href="#cb35-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-459"><a href="#cb35-459" aria-hidden="true" tabindex="-1"></a>heatmap(corr)</span>
+<span id="cb35-460"><a href="#cb35-460" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-461"><a href="#cb35-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-462"><a href="#cb35-462" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Outputs</span></span>
+<span id="cb35-463"><a href="#cb35-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-464"><a href="#cb35-464" aria-hidden="true" tabindex="-1"></a>Running the EDA section produces the following figures:</span>
+<span id="cb35-465"><a href="#cb35-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-466"><a href="#cb35-466" aria-hidden="true" tabindex="-1"></a>precip_over_time.png</span>
+<span id="cb35-467"><a href="#cb35-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-468"><a href="#cb35-468" aria-hidden="true" tabindex="-1"></a>crop_income_over_time.png</span>
+<span id="cb35-469"><a href="#cb35-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-470"><a href="#cb35-470" aria-hidden="true" tabindex="-1"></a>precip_vs_income_scatter.png</span>
+<span id="cb35-471"><a href="#cb35-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-472"><a href="#cb35-472" aria-hidden="true" tabindex="-1"></a>state_level_precip_vs_income.png</span>
+<span id="cb35-473"><a href="#cb35-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-474"><a href="#cb35-474" aria-hidden="true" tabindex="-1"></a>correlation_heatmap.png</span>
+<span id="cb35-475"><a href="#cb35-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-476"><a href="#cb35-476" aria-hidden="true" tabindex="-1"></a><span class="fu">### Analysis</span></span>
+<span id="cb35-477"><a href="#cb35-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-478"><a href="#cb35-478" aria-hidden="true" tabindex="-1"></a>These functions will help us to center our data, remove data that contains errors. They will also help us plot variables on scatter plots and calculate correlation coefficients between the variables.</span>
+<span id="cb35-479"><a href="#cb35-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-480"><a href="#cb35-480" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*remove_outliers(df, col_name, threshold, lower = True)*</span>
+<span id="cb35-481"><a href="#cb35-481" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-482"><a href="#cb35-482" aria-hidden="true" tabindex="-1"></a>Overview:</span>
+<span id="cb35-483"><a href="#cb35-483" aria-hidden="true" tabindex="-1"></a>This function will return a new dataframe with rows removed based on the parameters given. </span>
+<span id="cb35-484"><a href="#cb35-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-485"><a href="#cb35-485" aria-hidden="true" tabindex="-1"></a>Args:</span>
+<span id="cb35-486"><a href="#cb35-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-487"><a href="#cb35-487" aria-hidden="true" tabindex="-1"></a>*df*:Pandas DataFrame. This must contain columns with the names passed in as other arguments.</span>
+<span id="cb35-488"><a href="#cb35-488" aria-hidden="true" tabindex="-1"></a>*col_name*:str. Name of column contianing the incorrect data. ("col3")</span>
+<span id="cb35-489"><a href="#cb35-489" aria-hidden="true" tabindex="-1"></a>*threshold*:numeric. This is a numeric value to filter out values exceeding the threshold. We opted for this instead of equal to a threshold as simple functions already exist for that. (-50)</span>
+<span id="cb35-490"><a href="#cb35-490" aria-hidden="true" tabindex="-1"></a>*lower*:Bool. Indicates if filtering out all values less than, or greater than the threshold value. (True)</span>
+<span id="cb35-491"><a href="#cb35-491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-492"><a href="#cb35-492" aria-hidden="true" tabindex="-1"></a>Impact:</span>
+<span id="cb35-493"><a href="#cb35-493" aria-hidden="true" tabindex="-1"></a>Returns a pandas DataFrame. Does not write to any files.</span>
+<span id="cb35-494"><a href="#cb35-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-495"><a href="#cb35-495" aria-hidden="true" tabindex="-1"></a>Example:</span>
+<span id="cb35-496"><a href="#cb35-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-497"><a href="#cb35-497" aria-hidden="true" tabindex="-1"></a>Original df</span>
+<span id="cb35-500"><a href="#cb35-500" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-501"><a href="#cb35-501" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-502"><a href="#cb35-502" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> remove_outliers</span>
+<span id="cb35-503"><a href="#cb35-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-504"><a href="#cb35-504" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb35-505"><a href="#cb35-505" aria-hidden="true" tabindex="-1"></a>    <span class="st">"col1"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>],</span>
+<span id="cb35-506"><a href="#cb35-506" aria-hidden="true" tabindex="-1"></a>    <span class="st">"col2"</span>: [<span class="dv">1</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb35-507"><a href="#cb35-507" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb35-508"><a href="#cb35-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-509"><a href="#cb35-509" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span>
+<span id="cb35-510"><a href="#cb35-510" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-511"><a href="#cb35-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-512"><a href="#cb35-512" aria-hidden="true" tabindex="-1"></a>Using the function</span>
+<span id="cb35-513"><a href="#cb35-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-516"><a href="#cb35-516" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-517"><a href="#cb35-517" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-518"><a href="#cb35-518" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> remove_outliers</span>
+<span id="cb35-519"><a href="#cb35-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-520"><a href="#cb35-520" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> remove_outliers(df, <span class="st">"col2"</span>, <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb35-521"><a href="#cb35-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-522"><a href="#cb35-522" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span>
+<span id="cb35-523"><a href="#cb35-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-524"><a href="#cb35-524" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-525"><a href="#cb35-525" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-526"><a href="#cb35-526" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*center_column(df, col_name, col_group, col_stand_name)*</span>
+<span id="cb35-527"><a href="#cb35-527" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-528"><a href="#cb35-528" aria-hidden="true" tabindex="-1"></a>Overview:</span>
+<span id="cb35-529"><a href="#cb35-529" aria-hidden="true" tabindex="-1"></a>This function will add another column to a dataframe that centers the data by group. In other words, it will take the mean of groups within the dataset. Then, it will take the values of that column, and for each row subtract the group mean that that row pertains to.</span>
+<span id="cb35-530"><a href="#cb35-530" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-531"><a href="#cb35-531" aria-hidden="true" tabindex="-1"></a>Args:</span>
+<span id="cb35-532"><a href="#cb35-532" aria-hidden="true" tabindex="-1"></a>*df*:Pandas DataFrame. This must contain columns with the names passed in as other arguments.</span>
+<span id="cb35-533"><a href="#cb35-533" aria-hidden="true" tabindex="-1"></a>*col_name*:str. Name of column that will have values centered "col4"</span>
+<span id="cb35-534"><a href="#cb35-534" aria-hidden="true" tabindex="-1"></a>*col_group*:list. Contains strings where each string is a column to be grouped on (<span class="co">[</span><span class="ot">"col1", "col2", "col3"</span><span class="co">]</span>)</span>
+<span id="cb35-535"><a href="#cb35-535" aria-hidden="true" tabindex="-1"></a>*col_stand_name*:str. Name for new column contains centered values. ("colCentered")</span>
+<span id="cb35-536"><a href="#cb35-536" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-537"><a href="#cb35-537" aria-hidden="true" tabindex="-1"></a>Impact: </span>
+<span id="cb35-538"><a href="#cb35-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-539"><a href="#cb35-539" aria-hidden="true" tabindex="-1"></a>Returns df with an addition column for the centered data. Does not write any files.</span>
+<span id="cb35-540"><a href="#cb35-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-541"><a href="#cb35-541" aria-hidden="true" tabindex="-1"></a>Example:</span>
+<span id="cb35-542"><a href="#cb35-542" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-543"><a href="#cb35-543" aria-hidden="true" tabindex="-1"></a>Original df</span>
+<span id="cb35-546"><a href="#cb35-546" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-547"><a href="#cb35-547" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-548"><a href="#cb35-548" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> center_column</span>
+<span id="cb35-549"><a href="#cb35-549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-550"><a href="#cb35-550" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb35-551"><a href="#cb35-551" aria-hidden="true" tabindex="-1"></a>    <span class="st">"col1"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>],</span>
+<span id="cb35-552"><a href="#cb35-552" aria-hidden="true" tabindex="-1"></a>    <span class="st">"col2"</span>: [<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>]</span>
+<span id="cb35-553"><a href="#cb35-553" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb35-554"><a href="#cb35-554" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-555"><a href="#cb35-555" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span>
+<span id="cb35-556"><a href="#cb35-556" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-557"><a href="#cb35-557" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-558"><a href="#cb35-558" aria-hidden="true" tabindex="-1"></a>Using the function</span>
+<span id="cb35-559"><a href="#cb35-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-562"><a href="#cb35-562" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-563"><a href="#cb35-563" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-564"><a href="#cb35-564" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> center_column</span>
+<span id="cb35-565"><a href="#cb35-565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-566"><a href="#cb35-566" aria-hidden="true" tabindex="-1"></a>col_name <span class="op">=</span> <span class="st">"col1"</span></span>
+<span id="cb35-567"><a href="#cb35-567" aria-hidden="true" tabindex="-1"></a>col_group <span class="op">=</span> [<span class="st">"col2"</span>]</span>
+<span id="cb35-568"><a href="#cb35-568" aria-hidden="true" tabindex="-1"></a>col_stand_name <span class="op">=</span> <span class="st">"col1_centered"</span></span>
+<span id="cb35-569"><a href="#cb35-569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-570"><a href="#cb35-570" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> center_column(df, col_name, col_group, col_stand_name)</span>
+<span id="cb35-571"><a href="#cb35-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-572"><a href="#cb35-572" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span>
+<span id="cb35-573"><a href="#cb35-573" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-574"><a href="#cb35-574" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-575"><a href="#cb35-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-576"><a href="#cb35-576" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*corr_and_plot(df, col1, col2, plot_file, n_digits)*</span>
+<span id="cb35-577"><a href="#cb35-577" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-578"><a href="#cb35-578" aria-hidden="true" tabindex="-1"></a>Overview: Creates a plot using *matplotlib* library, saves it to a file and includes correlation between variables in plot.</span>
+<span id="cb35-579"><a href="#cb35-579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-580"><a href="#cb35-580" aria-hidden="true" tabindex="-1"></a>Args:</span>
+<span id="cb35-581"><a href="#cb35-581" aria-hidden="true" tabindex="-1"></a>*df*:Pandas DataFrame. This must contain columns with the names passed in as other arguments.</span>
+<span id="cb35-582"><a href="#cb35-582" aria-hidden="true" tabindex="-1"></a>*col1*:str. Name of column to plot on x-axis. ("col3")</span>
+<span id="cb35-583"><a href="#cb35-583" aria-hidden="true" tabindex="-1"></a>*col2*:str. Name of column to plot on y-axis. ("col2")</span>
+<span id="cb35-584"><a href="#cb35-584" aria-hidden="true" tabindex="-1"></a>*plot_file*:str. File name for .png of plot. ("plot.png")</span>
+<span id="cb35-585"><a href="#cb35-585" aria-hidden="true" tabindex="-1"></a>*n_digits*:int. Integer for rounding correlation coefficent value (4)</span>
+<span id="cb35-586"><a href="#cb35-586" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-587"><a href="#cb35-587" aria-hidden="true" tabindex="-1"></a>Impact:</span>
+<span id="cb35-588"><a href="#cb35-588" aria-hidden="true" tabindex="-1"></a>Returns the plot from a matplotlib.pyplot. Also saves the plot as a file.</span>
+<span id="cb35-589"><a href="#cb35-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-590"><a href="#cb35-590" aria-hidden="true" tabindex="-1"></a>Example:</span>
+<span id="cb35-593"><a href="#cb35-593" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-594"><a href="#cb35-594" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> corr_and_plot, remove_outliers</span>
+<span id="cb35-595"><a href="#cb35-595" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb35-596"><a href="#cb35-596" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-597"><a href="#cb35-597" aria-hidden="true" tabindex="-1"></a><span class="co">#prepping data for plot example</span></span>
+<span id="cb35-598"><a href="#cb35-598" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'combined_farm_precip.csv'</span>)</span>
+<span id="cb35-599"><a href="#cb35-599" aria-hidden="true" tabindex="-1"></a>col_name <span class="op">=</span> <span class="st">"yearly_avg"</span></span>
+<span id="cb35-600"><a href="#cb35-600" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="op">-</span><span class="dv">50</span></span>
+<span id="cb35-601"><a href="#cb35-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-602"><a href="#cb35-602" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> remove_outliers(df, col_name, threshold, lower <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb35-603"><a href="#cb35-603" aria-hidden="true" tabindex="-1"></a>colx <span class="op">=</span> <span class="st">"yearly_avg"</span></span>
+<span id="cb35-604"><a href="#cb35-604" aria-hidden="true" tabindex="-1"></a>coly <span class="op">=</span> <span class="st">"Value of crop production"</span></span>
+<span id="cb35-605"><a href="#cb35-605" aria-hidden="true" tabindex="-1"></a>plot_file <span class="op">=</span> <span class="ss">f"plot_</span><span class="sc">{</span>colx<span class="sc">}</span><span class="ss">_vs_</span><span class="sc">{</span>coly<span class="sc">}</span><span class="ss">.png"</span></span>
+<span id="cb35-606"><a href="#cb35-606" aria-hidden="true" tabindex="-1"></a>n_digits <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb35-607"><a href="#cb35-607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-608"><a href="#cb35-608" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> corr_and_plot(df, colx, coly, plot_file,n_digits)</span>
+<span id="cb35-609"><a href="#cb35-609" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-610"><a href="#cb35-610" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb35-611"><a href="#cb35-611" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-612"><a href="#cb35-612" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-613"><a href="#cb35-613" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*make_scatter_w_cat(df, colx, coly, colcat, plot_file)*</span>
+<span id="cb35-614"><a href="#cb35-614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-615"><a href="#cb35-615" aria-hidden="true" tabindex="-1"></a>Overview: Uses seaborn package to produce a scatterplot that colors the data by a categorical variable in the df.</span>
+<span id="cb35-616"><a href="#cb35-616" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-617"><a href="#cb35-617" aria-hidden="true" tabindex="-1"></a>Args:</span>
+<span id="cb35-618"><a href="#cb35-618" aria-hidden="true" tabindex="-1"></a>*df*:Pandas DataFrame. This must contain columns with the names passed in as other arguments.</span>
+<span id="cb35-619"><a href="#cb35-619" aria-hidden="true" tabindex="-1"></a>*colx*:str. Name of column to plot on x-axis. ("col3")</span>
+<span id="cb35-620"><a href="#cb35-620" aria-hidden="true" tabindex="-1"></a>*coly*:str. Name of column to plot on y-axis. ("col2")</span>
+<span id="cb35-621"><a href="#cb35-621" aria-hidden="true" tabindex="-1"></a>*colcat*:str. Name of column containing categorical variable to group by.</span>
+<span id="cb35-622"><a href="#cb35-622" aria-hidden="true" tabindex="-1"></a>*plot_file*:str. File name for .png of plot. ("plot.png")</span>
+<span id="cb35-623"><a href="#cb35-623" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-624"><a href="#cb35-624" aria-hidden="true" tabindex="-1"></a>Impact:</span>
+<span id="cb35-625"><a href="#cb35-625" aria-hidden="true" tabindex="-1"></a>Returns plot from matplotlib.pyplot. Also saves plot as a .png file.</span>
+<span id="cb35-626"><a href="#cb35-626" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-627"><a href="#cb35-627" aria-hidden="true" tabindex="-1"></a>Example:</span>
+<span id="cb35-628"><a href="#cb35-628" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-631"><a href="#cb35-631" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-632"><a href="#cb35-632" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-633"><a href="#cb35-633" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb35-634"><a href="#cb35-634" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> farm_precip_project <span class="im">import</span> make_scatter_w_cat</span>
+<span id="cb35-635"><a href="#cb35-635" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-636"><a href="#cb35-636" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb35-637"><a href="#cb35-637" aria-hidden="true" tabindex="-1"></a>    <span class="st">"col1"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>],</span>
+<span id="cb35-638"><a href="#cb35-638" aria-hidden="true" tabindex="-1"></a>    <span class="st">"col2"</span>: [<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"B"</span>,<span class="st">"B"</span>],</span>
+<span id="cb35-639"><a href="#cb35-639" aria-hidden="true" tabindex="-1"></a>    <span class="st">"col3"</span>: [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span>
+<span id="cb35-640"><a href="#cb35-640" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb35-641"><a href="#cb35-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-642"><a href="#cb35-642" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> make_scatter_w_cat(df, <span class="st">"col1"</span>, <span class="st">"col3"</span>, <span class="st">"col2"</span>, <span class="st">"example.png"</span>)</span>
+<span id="cb35-643"><a href="#cb35-643" aria-hidden="true" tabindex="-1"></a>plt.show</span>
+<span id="cb35-644"><a href="#cb35-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-645"><a href="#cb35-645" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
